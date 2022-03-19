@@ -33,7 +33,7 @@ col3.metric(label="Move Out", value=mov_out[mov_out.columns[0]].count())
 col4.metric(label="On List", value=(mov_in[mov_in.columns[0]].count()-mov_out[mov_out.columns[0]].count()))
 
 summary = deta.Base("trello_movement_summary")
-
+st.write(summary)
 for item in summary.items() :
     col1.metric(label="", value=item['key'])
     col2.metric(label="", value=item['mov_in'])
