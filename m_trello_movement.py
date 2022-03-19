@@ -26,7 +26,11 @@ df = pd.DataFrame (req_columns, columns = ['After', 'Before'])
 st.write(df)
 mov_in = df.loc[df['After'] == 'Up Next']
 mov_out = df.loc[df['Before'] == 'Up Next']
-st.metric(label="Move In", value=mov_in[mov_in.columns[0]].count())
+col1, col2, col3 = st.columns(3)
+col1.metric(label="Move In", value=mov_in[mov_in.columns[0]].count())
+col2.metric(label="Move Out", value=mov_out[mov_out.columns[0]].count())
+col3.metric("Humidity", "86%", "4%")
+
 #
 
 #hist_values = np.histogram(df)
