@@ -23,7 +23,7 @@ st.dataframe(data=data, width=None, height=None)
 req_columns = [[col['listAfter'], col['listBefore']] for col in res.items]
 df = pd.DataFrame (req_columns, columns = ['After', 'Before'])
 
-st.write(df['After'].value_counts())
+st.write(df.groupby('After').count())
 #st.subheader('Raw data')
 
 #hist_values = np.histogram(df)
