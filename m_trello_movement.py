@@ -24,9 +24,10 @@ req_columns = [[col['listAfter'], col['listBefore']] for col in res.items]
 
 df = pd.DataFrame (req_columns, columns = ['After', 'Before'])
 st.write(df)
-req = df.loc[df['After'] == 'Up Next']
-st.metric(df.groupby('Up Next').count())
+mov_in = df.loc[df['After'] == 'Up Next']
+mov_out = df.loc[df['Before'] == 'Up Next']
 
+st.metric(len(mov_in.index))
 #st.subheader('Raw data')
 
 #hist_values = np.histogram(df)
