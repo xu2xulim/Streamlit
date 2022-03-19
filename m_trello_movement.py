@@ -18,7 +18,9 @@ data = res.items
 # Notify the reader that the data was successfully loaded.
 data_load_state.text('Loading data...done!')
 
-st.subheader('Raw data')
-st.write(data)
+#st.subheader('Raw data')
+#st.write(data)
 
-st.table(data)
+#st.table(data)
+
+st.bar_chart(data=data, width=0, height=0, use_container_width=True)
