@@ -43,4 +43,5 @@ for col in res.items:
     output = output.append(col, ignore_index=True)
 
 output.columns = ['Date', 'Move In', 'Move Out', 'On List']
+st.header('Daily summary')
 st.table(output)
