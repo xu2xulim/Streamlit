@@ -36,6 +36,7 @@ summary = deta.Base("trello_movement_summary")
 res = summary.fetch(query = None, limit=1000, last=None)
 req_columns = []
 for col in res.items:
+    st.write(col)
     temp = ",".join(col['key'], col['mov_in'], col['mov_out'])
     req_columns.append(temp)
 df = pd.DataFrame (req_columns, columns = ['Date', 'Moved In', 'Moved Out'])
