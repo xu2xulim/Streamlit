@@ -22,7 +22,7 @@ data_load_state.text('Loading data...done!')
 st.dataframe(data=data, width=None, height=None)
 req_columns = [[col['listAfter'], col['listBefore']] for col in res.items]
 df = pd.DataFrame (req_columns, columns = ['After', 'Before'])
-
+st.write(df)
 st.write(df.groupby('After').count())
 st.write(df.groupby('Before').count())
 #st.subheader('Raw data')
