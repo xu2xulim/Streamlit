@@ -26,9 +26,8 @@ df = pd.DataFrame (req_columns, columns = ['After', 'Before'])
 st.write(df)
 mov_in = df.loc[df['After'] == 'Up Next']
 mov_out = df.loc[df['Before'] == 'Up Next']
-st.subheader('Raw data')
-st.write(mov_in[mov_in.columns[0]].count())
-
+st.metric(label="Move In", value=mov_in[mov_in.columns[0]].count())
+#
 
 #hist_values = np.histogram(df)
 #st.bar_chart(data=df)
