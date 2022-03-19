@@ -27,7 +27,15 @@ df = pd.DataFrame (req_columns, columns = ['After', 'Before'])
 mov_in = df.loc[df['After'] == 'Up Next']
 mov_out = df.loc[df['Before'] == 'Up Next']
 col1, col2, col3, col4 = st.columns(4)
-col1.metric(label="List", value='Up Next')
+col1.metric(label="When", value='Now')
 col2.metric(label="Move In", value=mov_in[mov_in.columns[0]].count())
 col3.metric(label="Move Out", value=mov_out[mov_out.columns[0]].count())
 col4.metric(label="On List", value=(mov_in[mov_in.columns[0]].count()-mov_out[mov_out.columns[0]].count()))
+
+summary = deta.Base("trello_movement_summary")
+
+for item in summary.items :
+    col1.metric(label="", value=item['key'])
+    col2.metric(label="", value=item['mov_in'])
+    col3.metric(label="", value=item['mov_out'])
+    col4.metric(label="On List", value=abs(int(item['mov_in'])-int(item['mov_out'])].count()))
