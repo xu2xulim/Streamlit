@@ -38,7 +38,7 @@ res = summary.fetch(query = None, limit=1000, last=None)
 #st.write(res.items)
 output = pd.DataFrame()
 for col in res.items:
-    st.write(type(int(col['mov_in'])-int(col['mov_out']), int(col['mov_in'])-int(col['mov_out'])
+    st.write(type(int(col['mov_in'])-int(col['mov_out'])), int(col['mov_in'])-int(col['mov_out']))
     col['on_list'] = 3
     output = output.append(col, ignore_index=True)
 
