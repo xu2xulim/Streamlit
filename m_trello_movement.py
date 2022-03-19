@@ -25,7 +25,7 @@ req_columns = [[col['listAfter'], col['listBefore']] for col in res.items]
 df = pd.DataFrame (req_columns, columns = ['After', 'Before'])
 st.write(df)
 req = df.loc[df['After'] == 'Up Next']
-st.write(req.count_values())
+st.metric(df['After'].groupby('Up Next').count())
 
 #st.subheader('Raw data')
 
