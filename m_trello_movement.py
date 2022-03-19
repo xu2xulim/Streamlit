@@ -41,5 +41,5 @@ for col in res.items:
     col['on_list'] = abs(int(col['mov_in'])-int(col['mov_out']))
     output = output.append(col, ignore_index=True)
 
-output.columns = ['','Date', 'Move In', 'Move Out', 'On List']
+output.columns = ['Date', 'Move In', 'Move Out', 'On List']
 st.write(output)
