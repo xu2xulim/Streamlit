@@ -20,7 +20,7 @@ data = res.items
 # Notify the reader that the data was successfully loaded.
 data_load_state.text('Loading data...done!')
 st.dataframe(data=data, width=None, height=None)
-#req_columns = [[col['listAfter'], col['listBefore']] for col in res.items]
+req_columns = [[col['listAfter'], col['listBefore']] for col in res.items]
 df = pd.DataFrame (req_columns, columns = ['After', 'Before'])
 st.write(df.head(3))
 #st.subheader('Raw data')
