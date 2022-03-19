@@ -24,7 +24,7 @@ req_columns = [[col['listAfter'], col['listBefore']] for col in res.items]
 
 df = pd.DataFrame (req_columns, columns = ['After', 'Before'])
 st.write(df)
-req = pd.loc[(df['After'] == 'Up Next')]
+req = pd.loc[df['After'] == 'Up Next']
 st.write(req)
 
 #st.subheader('Raw data')
