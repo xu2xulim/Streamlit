@@ -39,7 +39,7 @@ res = summary.fetch(query = None, limit=1000, last=None)
 output = pd.DataFrame()
 for col in res.items:
     st.write(type(int(col['mov_in'])-int(col['mov_out'])), int(col['mov_in'])-int(col['mov_out']))
-    col.update({'on_list' : str(int(col['mov_in'])-int(col['mov_out']))})
+    col.update({'on_list' : '{}'.format(int(col['mov_in'])-int(col['mov_out']))})
     #col['on_list'] = int(col['mov_in'])-int(col['mov_out'])
     output = output.append(col, ignore_index=True)
 
