@@ -2,6 +2,7 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 
+from datetime import datetime
 from deta import Deta
 import json
 
@@ -10,8 +11,9 @@ deta = Deta(st.secrets["DETA_PROJECT"])
 
 # 3) create and use as many DBs as you want!
 db = deta.Base(st.secrets["MOVEMENT"])
+today = datetime.today().strftime('%Y-%m-%d')
+res = db.fetch(query = {'date' : today}, limit=1000, last=None)
 
-res = db.fetch(query = None, limit=1000, last=None)
 
 # Create a text element and let the reader know the data is loading.
 data_load_state = st.text('Loading data...')
