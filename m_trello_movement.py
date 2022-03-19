@@ -29,7 +29,7 @@ mov_out = df.loc[df['Before'] == 'Up Next']
 col1, col2, col3 = st.columns(3)
 col1.metric(label="Move In", value=mov_in[mov_in.columns[0]].count())
 col2.metric(label="Move Out", value=mov_out[mov_out.columns[0]].count())
-col3.metric("Humidity", "86%", "4%")
+col3.metric(label="On List", value=(mov_in[mov_in.columns[0]].count()-mov_out[mov_out.columns[0]].count()))
 
 #
 
