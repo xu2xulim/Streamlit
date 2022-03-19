@@ -27,7 +27,7 @@ st.write(df)
 mov_in = df.loc[df['After'] == 'Up Next']
 mov_out = df.loc[df['Before'] == 'Up Next']
 st.subheader('Raw data')
-st.metric(len(mov_in.index))
+st.write(mov_in[mov_in.columns[0]].count())
 
 
 #hist_values = np.histogram(df)
