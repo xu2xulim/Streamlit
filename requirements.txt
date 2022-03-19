@@ -1,1 +1,4 @@
 deta
+
+pandas
+numpy
