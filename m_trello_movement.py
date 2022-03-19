@@ -6,10 +6,10 @@ from deta import Deta
 import json
 
 # 2) initialize with a project key
-deta = Deta("c0vidk60_8unssenvnHkuZmQfqhZ4jW49o5hRMvwG")
+deta = Deta(st.secrets["DETA_PROJECT"])
 
 # 3) create and use as many DBs as you want!
-db = deta.Base("trello_movement")
+db = deta.Base(st.secrets["MOVEMENT"])
 
 res = db.fetch(query = None, limit=1000, last=None)
 
@@ -33,7 +33,7 @@ col2.metric(label="Move In", value=mov_in[mov_in.columns[0]].count())
 col3.metric(label="Move Out", value=mov_out[mov_out.columns[0]].count())
 col4.metric(label="On List", value=(mov_in[mov_in.columns[0]].count()-mov_out[mov_out.columns[0]].count()))
 
-summary = deta.Base("trello_movement_summary")
+summary = deta.Base(st.secrets["SUMMARY"])
 #st.write(summary)
 res = summary.fetch(query = None, limit=1000, last=None)
 #st.write(res.items)
