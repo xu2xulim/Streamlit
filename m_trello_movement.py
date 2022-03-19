@@ -22,9 +22,10 @@ data_load_state.text('Loading data...done!')
 st.dataframe(data=data, width=None, height=None)
 req_columns = [[col['listAfter'], col['listBefore']] for col in res.items]
 df = pd.DataFrame (req_columns, columns = ['After', 'Before'])
-st.write(df.head(3))
+
+st.metric(df['listAfter'].value_counts())
 #st.subheader('Raw data')
 
 #hist_values = np.histogram(df)
-st.bar_chart(data=df)
+#st.bar_chart(data=df)
 #st.table(data)
