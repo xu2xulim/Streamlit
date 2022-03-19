@@ -25,6 +25,6 @@ df = pd.DataFrame (req_columns, columns = ['After', 'Before'])
 st.write(df.head(3))
 #st.subheader('Raw data')
 
-hist_values = np.histogram(df)
-st.bar_chart(hist_values)
+#hist_values = np.histogram(df)
+st.bar_chart(data=df)
 #st.table(data)
