@@ -38,7 +38,7 @@ res = summary.fetch(query = None, limit=1000, last=None)
 #st.write(res.items)
 output = pd.DataFrame()
 for col in res.items:
-    col['on_list'] = abs(int(col['mov_in'])-int(col['mov_out']))
+    col['on_list'] = abs(int(col['mov_in']-col['mov_out']))
     output = output.append(col, ignore_index=True)
 
 output.columns = ['Date', 'Move In', 'Move Out', 'On List']
