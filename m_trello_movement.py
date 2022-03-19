@@ -1,3 +1,4 @@
+import streamlit as st
 from deta import Deta
 import json
 
