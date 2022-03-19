@@ -34,9 +34,6 @@ col4.metric(label="On List", value=(mov_in[mov_in.columns[0]].count()-mov_out[mo
 
 summary = deta.Base("trello_movement_summary")
 res = summary.fetch(query = None, limit=1000, last=None)
-st.write(res.items)
-for item in res.items:
-    col1.metric(label="", value=item['key'])
-    col2.metric(label="", value=item['mov_in'])
-    col3.metric(label="", value=item['mov_out'])
-    col4.metric(label="", value=abs(int(item['mov_in'])-int(item['mov_out'])))
+req_columns = [[col['key'], col['mov_in'], col['mov_out'], abs(int(col['mov_in']-int(col['mov_out'])))] for col in res.items]
+df = pd.DataFrame (req_columns, columns = ['Date', 'Moved In', 'Moved Out', 'On List'])
+st.write(df)
