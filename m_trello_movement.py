@@ -1,4 +1,5 @@
 import streamlit as st
+import pandas as pd
 from deta import Deta
 import json
 
@@ -19,3 +20,5 @@ data_load_state.text('Loading data...done!')
 
 st.subheader('Raw data')
 st.write(data)
+
+st.table(data)
