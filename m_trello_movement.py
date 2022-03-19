@@ -34,11 +34,11 @@ col4.metric(label="On List", value=(mov_in[mov_in.columns[0]].count()-mov_out[mo
 
 summary = deta.Base("trello_movement_summary")
 res = summary.fetch(query = None, limit=1000, last=None)
+st.write(res.items)
 output = pd.DataFrame()
-
 for col in res.items:
     col['on_list'] = abs(int(col['mov_in'])-int(col['mov_out']))
-    output.append(col, ignore_index=True)
+    output = output.append(col, ignore_index=True)
 
 #output.columns = ['Date', 'Move In', 'Move Out', 'On List']
 st.write(output)
