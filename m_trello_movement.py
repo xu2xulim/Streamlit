@@ -19,11 +19,12 @@ data_load_state = st.text('Loading data...')
 data = res.items
 # Notify the reader that the data was successfully loaded.
 data_load_state.text('Loading data...done!')
-df = st.dataframe(data=data, width=None, height=None)
+st.dataframe(data=data, width=None, height=None)
 #req_columns = [[col['listAfter'], col['listBefore']] for col in res.items]
-#df = pd.DataFrame (req_columns, columns = ['After', 'Before'])
+df = pd.DataFrame (req_columns, columns = ['After', 'Before'])
+st.write(df.head(3))
 #st.subheader('Raw data')
-st.write(df.head(5))
+
 #hist_values = np.histogram(df[listAfter])[0]
 #st.bar_chart(hist_values)
 #st.table(data)
