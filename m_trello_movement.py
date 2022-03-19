@@ -39,4 +39,4 @@ for item in res.items:
     col1.metric(label="", value=item['key'])
     col2.metric(label="", value=item['mov_in'])
     col3.metric(label="", value=item['mov_out'])
-    col4.metric(label="", value=item['mov_in']-item['mov_out'])
+    col4.metric(label="", value=abs(int(item['mov_in'])-int(item['mov_out'])))
