@@ -40,7 +40,6 @@ res = summary.fetch(query = None, limit=1000, last=None)
 #st.write(res.items)
 output = pd.DataFrame()
 for col in res.items:
-    st.write(col)
     output = output.append(col, ignore_index=True)
 
 output.columns = ['Date', 'Move In', 'Move Out', 'On List']
