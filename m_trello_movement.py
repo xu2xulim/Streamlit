@@ -32,7 +32,7 @@ col1, col2, col3, col4 = st.columns(4)
 col1.metric(label="When", value='Now')
 col2.metric(label="Move In", value=mov_in[mov_in.columns[0]].count())
 col3.metric(label="Move Out", value=mov_out[mov_out.columns[0]].count())
-col4.metric(label="On List", value=db.get(data[0]['idList'])['control'])
+col4.metric(label="On List", value=str(db.get(data[0]['idList'])['control']))
 
 summary = deta.Base(st.secrets["SUMMARY"])
 #st.write(summary)
