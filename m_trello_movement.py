@@ -41,7 +41,7 @@ res = summary.fetch(query = None, limit=1000, last=None)
 output = pd.DataFrame()
 for col in res.items:
     output = output.append(col, ignore_index=True)
-
-output.columns = ['Date', 'Move In', 'Move Out', 'On List']
+show = output[['key', 'mov_in', 'mov_out', 'on_list']
+show.columns = ['Date', 'Move In', 'Move Out', 'On List']
 st.header('Daily summary')
 st.table(output)
