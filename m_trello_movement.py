@@ -44,4 +44,4 @@ for col in res.items:
 show = output[['key', 'mov_in', 'mov_out', 'on_list']
 show.columns = ['Date', 'Move In', 'Move Out', 'On List']
 st.header('Daily summary')
-st.table(output)
+st.table(show)
