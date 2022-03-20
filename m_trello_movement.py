@@ -21,11 +21,11 @@ data = res.items
 # Notify the reader that the data was successfully loaded.
 
 #st.dataframe(data=data, width=None, height=None)
-req_columns = [[col['listAfter'], col['listBefore']] for col in res.items]
-df = pd.DataFrame (req_columns, columns = ['After', 'Before'])
+req_columns = [col['idList'], [col['listAfter'], col['listBefore']] for col in res.items]
+df = pd.DataFrame (req_columns, columns = ['idList', 'After', 'Before'])
 #st.write(df)
-mov_in = df.loc[df['After'] == 'Up Next']
-mov_out = df.loc[df['Before'] == 'Up Next']
+mov_in = df.loc[df['After'] == df['idList']]
+mov_out = df.loc[df['Before'] == df['idList']]
 data_load_state.text('Loading data...done!')
 st.header('Movement Dashboard')
 col1, col2, col3, col4 = st.columns(4)
