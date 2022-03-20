@@ -21,7 +21,7 @@ data = res.items
 # Notify the reader that the data was successfully loaded.
 
 #st.dataframe(data=data, width=None, height=None)
-req_columns = [col['idList'], col['listAfter'], col['listBefore']] for col in res.items]
+req_columns = [[col['idList'], col['listAfter'], col['listBefore']] for col in res.items]
 df = pd.DataFrame (req_columns, columns = ['idList', 'After', 'Before'])
 #st.write(df)
 mov_in = df.loc[df['After'] == df['idList']]
