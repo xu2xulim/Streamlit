@@ -33,8 +33,8 @@ selected_board = st.sidebar.selectbox(
     'Select a board', options=df['name'])
 
 if selected_board != "":
-    item = next(x for x in res.json()['result'] if x['name'] == selected_board)
-    payload = {"board_id" : item['id'], "list_id" : list_id, "card_id" : card_id}
+    bd = next(x for x in res.json()['result'] if x['name'] == selected_board)
+    payload = {"board_id" : bd['id'], "list_id" : list_id, "card_id" : card_id}
     res = httpx.post('https://cs0kji.deta.dev/list',json=payload)
     df = pd.DataFrame(res.json()['result'])
     selected_col = ""
@@ -43,7 +43,7 @@ if selected_board != "":
 
     if selected_col !="" :
         item = next(x for x in res.json()['result'] if x['name'] == selected_col)
-        payload = {"board_id" : "", "list_id" : item['id'], "card_id" : ""}
+        payload = {"board_id" : bd['id'], "list_id" : item['id'], "card_id" : ""}
         res = httpx.post('https://cs0kji.deta.dev/cards',json=payload)
         st.write(res.json()['result'])
         df = pd.DataFrame(res.json()['result'])
