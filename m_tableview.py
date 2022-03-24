@@ -25,10 +25,10 @@ import httpx
 payload = {"board_id" : "", "list_id" : "", "card_id" : ""}
 res = httpx.post('https://cs0kji.deta.dev/board',json=payload)
 ll = []
-for name in [x['name'] for x in res.json()['result']]:
-    ll.append("'{}'".format(name))
+["'{}'".format(x['name']) for x in res.json()['result']]
 
-board_csv = (", ".join(ll))
+
+board_csv = "({})".format(", ".join(["'{}'".format(x['name']) for x in res.json()['result']]))
 st.write(board_csv)
 option = st.sidebar.selectbox(
     'How would you like to be contacted?',
