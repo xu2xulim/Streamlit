@@ -25,7 +25,7 @@ import httpx
 res = httpx.get('https://cs0kji.deta.dev/board')
 
 data = res.json()['result']
-
+st.write(data)
 board_list = (",".join(data['name'].keys()))
 
 option = st.sidebar.selectbox(
