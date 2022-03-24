@@ -46,20 +46,20 @@ if selected_board != "":
         payload = {"board_id" : bd['id'], "list_id" : item['id'], "card_id" : ""}
         res = httpx.post('https://cs0kji.deta.dev/cards',json=payload)
         data = res.json()['result']
-        st.write(data)
+        #st.write(data)
 
         rows = []
 
         # appending rows
         for item in data:
             item_row = item['customfield']
-            time = item['card']
+            crd = item['card']
 
             for row in item_row:
-                row['card']= time
+                row['card']= crd
                 rows.append(row)
 
                 # using data frame
         df = pd.DataFrame(rows)
         #df = pd.DataFrame(data['card'].values())
-        st.table(df)
+        
