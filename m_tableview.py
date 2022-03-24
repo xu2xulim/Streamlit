@@ -57,5 +57,5 @@ if selected_board != "":
                 row['card']= crd
                 rows.append(row)
 
-        df_x = pd.DataFrame(rows)
-        st.dataframe(df_x.fillna(value='None'))
+        df_x = pd.DataFrame(rows).filna('None')
+        st.dataframe(df_x)
