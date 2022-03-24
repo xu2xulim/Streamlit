@@ -22,7 +22,10 @@ import httpx
 # Notify the reader that the data was successfully loaded.
 
 #st.dataframe(data=data, width=None, height=None)
-payload = {"board_id" : "", "list_id" : "", "card_id" : ""}
+board_id = ""
+list_id = ""
+card_id = ""
+payload = {"board_id" : board_id, "list_id" : list_id, "card_id" : card_id}
 res = httpx.post('https://cs0kji.deta.dev/board',json=payload)
 df = pd.DataFrame(res.json()['result'])
 
@@ -30,7 +33,16 @@ st.write(df.head())
 option = st.sidebar.selectbox(
     'Select a board', options=df['name'])
 
-st.write(df.loc[df['name'] == option]['id'])
+board_id = df.loc[df['name'] == option]['id']
+res = httpx.post('https://cs0kji.deta.dev/list',json=payload)
+
+df = pd.DataFrame(res.json()['result'])
+
+st.write(df.head())
+option = st.sidebar.selectbox(
+    'Select a list', options=df['name'])
+
+st.write(option)
 """
 if option == 'Email' :
     st.write('You selected:', option)
