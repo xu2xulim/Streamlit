@@ -23,10 +23,10 @@ import httpx
 
 #st.dataframe(data=data, width=None, height=None)
 res = httpx.get('https://cs0kji.deta.dev/board')
-
-data = json.loads(res.text)['result']
-st.write(data)
-board_list = (",".join(data['name'].keys()))
+print(res.text)
+#data = json.loads(res.text)['result']
+st.write(res.text)
+"""board_list = (",".join(data['name'].keys()))
 
 option = st.sidebar.selectbox(
     'How would you like to be contacted?',
@@ -41,4 +41,4 @@ else:
     option = st.sidebar.selectbox(
         'How would you like to be contacted?',
         #('Email', 'Home phone', 'Mobile phone')
-        board_list)
+        board_list)"""
