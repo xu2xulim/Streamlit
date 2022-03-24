@@ -25,7 +25,7 @@ import httpx
 board_id = ""
 list_id = ""
 card_id = ""
-option = None
+option = ""
 payload = {"board_id" : board_id, "list_id" : list_id, "card_id" : card_id}
 res = httpx.post('https://cs0kji.deta.dev/board',json=payload)
 df = pd.DataFrame(res.json()['result'])
@@ -34,8 +34,8 @@ st.write(df.head())
 option = st.sidebar.selectbox(
     'Select a board', options=df['name'])
 
-if option != None:
-    st.write(df.loc[df['name'] == option, 'id'].values)
+if option != "":
+    st.write(df.loc[df['name'] == option, 'id'].values[0])
     st.write(payload)
     #res = httpx.post('https://cs0kji.deta.dev/list',json=payload)
 
