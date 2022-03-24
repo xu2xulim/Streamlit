@@ -60,6 +60,6 @@ if selected_board != "":
                 rows.append(row)
 
                 # using data frame
-        #df = pd.DataFrame(rows)
+        df = pd.DataFrame(rows)
         #df = pd.DataFrame(data['card'].values())
-        st.write(rows)
+        st.write(df.head())
