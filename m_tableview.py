@@ -24,17 +24,17 @@ import httpx
 #st.dataframe(data=data, width=None, height=None)
 payload = {"board_id" : "", "list_id" : "", "card_id" : ""}
 res = httpx.post('https://cs0kji.deta.dev/board',json=payload)
-print(res.text)
-#data = json.loads(res.text)['result']
-st.write(res.text)
-"""board_list = (",".join(data['name'].keys()))
 
+#data = json.loads(res.text)['result']
+
+board_csv = (",".join(data['name'].keys()data['name'].keys()))
+st.write(board_csv)
 option = st.sidebar.selectbox(
     'How would you like to be contacted?',
     #('Email', 'Home phone', 'Mobile phone')
-    board_list)
+    board_csv)
 
-
+"""
 if option == 'Email' :
     st.write('You selected:', option)
 else:
