@@ -60,5 +60,5 @@ if selected_board != "":
                 rows.append(row)
 
                 # using data frame
-        df = pd.DataFrame(rows)
-        st.dataframe(df)#df = pd.DataFrame(data['card'].values())
+        df_x = pd.DataFrame(rows)
+        st.dataframe(df_x)#df = pd.DataFrame(data['card'].values())
