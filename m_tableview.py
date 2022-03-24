@@ -33,16 +33,17 @@ st.write(df.head())
 option = st.sidebar.selectbox(
     'Select a board', options=df['name'])
 
-board_id = df.loc[df['name'] == option]['id']
-res = httpx.post('https://cs0kji.deta.dev/list',json=payload)
+if option != None:
+    board_id = df.loc[df['name'] == option]['id']
+    res = httpx.post('https://cs0kji.deta.dev/list',json=payload)
 
-df = pd.DataFrame(res.json()['result'])
+    df = pd.DataFrame(res.json()['result'])
 
-st.write(df.head())
-option = st.sidebar.selectbox(
-    'Select a list', options=df['name'])
+    st.write(df.head())
+    option = st.sidebar.selectbox(
+        'Select a list', options=df['name'])
 
-st.write(option)
+    st.write(option)
 """
 if option == 'Email' :
     st.write('You selected:', option)
