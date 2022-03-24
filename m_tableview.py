@@ -47,10 +47,7 @@ if selected_board != "":
         res = httpx.post('https://cs0kji.deta.dev/cards',json=payload)
         data = res.json()['result']
         st.write(data)
-        #df = pd.dataframe([x['card'] for x in data])
-        st.write([x['card'] for x in data])
 
-        # rows list initialization
         rows = []
 
         # appending rows
@@ -63,6 +60,6 @@ if selected_board != "":
                 rows.append(row)
 
                 # using data frame
-        df = pd.DataFrame(rows)
+        #df = pd.DataFrame(rows)
         #df = pd.DataFrame(data['card'].values())
-        st.table(df)
+        st.write(rows)
