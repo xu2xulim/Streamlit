@@ -58,4 +58,4 @@ if selected_board != "":
                 rows.append(row)
 
         df_x = pd.DataFrame(rows)
-        st.dataframe(df_x)
+        st.dataframe(data=df_x)
