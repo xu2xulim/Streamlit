@@ -22,7 +22,8 @@ import httpx
 # Notify the reader that the data was successfully loaded.
 
 #st.dataframe(data=data, width=None, height=None)
-res = httpx.get('https://cs0kji.deta.dev/board',json={})
+payload = {"board_id" : "", "list_id" : "", "card_id" : ""}
+res = httpx.get('https://cs0kji.deta.dev/board',json=payload)
 print(res.text)
 #data = json.loads(res.text)['result']
 st.write(res.text)
