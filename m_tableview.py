@@ -28,7 +28,7 @@ df = pd.DataFrame(res.json()['result'])
 
 st.write(df.head())
 option = st.sidebar.selectbox(
-    'How would you like to be contacted?', options=df)
+    'Select a board', options=df['name'])
 
 """
 if option == 'Email' :
