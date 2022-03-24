@@ -30,6 +30,7 @@ st.write(df.head())
 option = st.sidebar.selectbox(
     'Select a board', options=df['name'])
 
+st.write(df.loc[df['name'] == option]['id'])
 """
 if option == 'Email' :
     st.write('You selected:', option)
