@@ -49,5 +49,20 @@ if selected_board != "":
         st.write(data)
         #df = pd.dataframe([x['card'] for x in data])
         st.write([x['card'] for x in data])
+
+        # rows list initialization
+        rows = []
+
+        # appending rows
+        for item in data:
+            item_row = item['custom_field']
+            time = item['card']
+
+            for row in item_row:
+                row['card']= time
+                rows.append(row)
+
+                # using data frame
+        df = pd.DataFrame(rows)
         #df = pd.DataFrame(data['card'].values())
-        #st.write(df)
+        st.write(df)
