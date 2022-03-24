@@ -24,10 +24,11 @@ import httpx
 #st.dataframe(data=data, width=None, height=None)
 payload = {"board_id" : "", "list_id" : "", "card_id" : ""}
 res = httpx.post('https://cs0kji.deta.dev/board',json=payload)
+ll = []
+for name in [x['name'] for x in res.json()['result']]:
+    ll.append("'{}'".format(name))
 
-[x['name'] for x in res.json()['result']]
-
-board_csv = (" , ".join([x['name'] for x in res.json()['result']]))
+board_csv = (", ".join(ll))
 st.write(board_csv)
 option = st.sidebar.selectbox(
     'How would you like to be contacted?',
