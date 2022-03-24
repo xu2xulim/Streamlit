@@ -47,7 +47,7 @@ if selected_board != "":
         res = httpx.post('https://cs0kji.deta.dev/cards',json=payload)
         data = res.json()['result']
         st.write(data)
-        df = pd.dataframe([x['card'] for x in data])
-        st.write(df.head())
+        #df = pd.dataframe([x['card'] for x in data])
+        st.write([x['card'] for x in data])
         #df = pd.DataFrame(data['card'].values())
         #st.write(df)
