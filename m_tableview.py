@@ -28,16 +28,17 @@ data = res.json()
 
 board_list = (",".join(data['name'].keys()))
 
+option = st.sidebar.selectbox(
+    'How would you like to be contacted?',
+    #('Email', 'Home phone', 'Mobile phone')
+    board_list)
 
-
-)
 
 if option == 'Email' :
-    st.write('You selected:', option)
+    st.write('You selected:', option)S
 else:
 # Add a slider to the sidebar:
     option = st.sidebar.selectbox(
         'How would you like to be contacted?',
         #('Email', 'Home phone', 'Mobile phone')
-        board_list
-    )
+        board_list)
