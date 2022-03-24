@@ -7,11 +7,11 @@ from deta import Deta
 import json
 
 # 2) initialize with a project key
-deta = Deta(st.secrets["tableview"])
+#deta = Deta(st.secrets["tableview"])
 
 # 3) create and use as many DBs as you want!
-db = deta.Base(st.secrets["MOVEMENT"])
-today = datetime.today().strftime('%Y-%m-%d')
+#db = deta.Base(st.secrets["MOVEMENT"])
+#today = datetime.today().strftime('%Y-%m-%d')
 #res = db.fetch(query = {'date' : today}, limit=1000, last=None)
 
 # Create a text element and let the reader know the data is loading.
