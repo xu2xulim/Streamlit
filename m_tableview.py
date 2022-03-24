@@ -36,8 +36,7 @@ option = st.sidebar.selectbox(
 
 if option != "":
     item = next(x for x in res.json()['result'] if x['name'] == option)
-    
-    payload['board_id'] = item['id']
+    payload = {"board_id" : item['id'], "list_id" : list_id, "card_id" : card_id}
     st.write(payload)
     res = httpx.post('https://cs0kji.deta.dev/list',json=payload)
 
