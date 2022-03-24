@@ -35,7 +35,7 @@ option = st.sidebar.selectbox(
 
 
 if option == 'Email' :
-    st.write('You selected:', option)S
+    st.write('You selected:', option)
 else:
 # Add a slider to the sidebar:
     option = st.sidebar.selectbox(
