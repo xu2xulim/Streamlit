@@ -65,4 +65,4 @@ if selected_board != "":
                 # using data frame
         df = pd.DataFrame(rows)
         #df = pd.DataFrame(data['card'].values())
-        st.write(df)
+        st.table(df)
