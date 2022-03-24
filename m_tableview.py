@@ -22,13 +22,16 @@ import json
 
 #st.dataframe(data=data, width=None, height=None)
 # Add a selectbox to the sidebar:
-add_selectbox = st.sidebar.selectbox(
+option = st.sidebar.selectbox(
     'How would you like to be contacted?',
     ('Email', 'Home phone', 'Mobile phone')
 )
 
+if option == 'Email' :
+    st.write('You selected:', option)
+else:
 # Add a slider to the sidebar:
-add_slider = st.sidebar.slider(
-    'Select a range of values',
-    0.0, 100.0, (25.0, 75.0)
-)
+    add_slider = st.sidebar.slider(
+        'Select a range of values',
+        0.0, 100.0, (25.0, 75.0)
+        )
