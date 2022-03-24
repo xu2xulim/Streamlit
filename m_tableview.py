@@ -26,13 +26,13 @@ res = httpx.get('https://cs0kji.deta.dev/board')
 
 data = res.json()
 
-s = ",".join(data['name'].keys())
+board_list = (",".join(data['name'].keys()))
 
 
 option = st.sidebar.selectbox(
     'How would you like to be contacted?',
     #('Email', 'Home phone', 'Mobile phone')
-    (s)
+    board_list
 )
 
 if option == 'Email' :
