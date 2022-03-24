@@ -26,7 +26,7 @@ res = httpx.get('https://cs0kji.deta.dev/board')
 
 data = res.json()
 
-s = ",".join(data['name'].keys()))
+s = ",".join(data['name'].keys())
 
 
 option = st.sidebar.selectbox(
