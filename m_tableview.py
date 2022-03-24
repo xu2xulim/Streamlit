@@ -24,7 +24,7 @@ import httpx
 #st.dataframe(data=data, width=None, height=None)
 res = httpx.get('https://cs0kji.deta.dev/board')
 
-data = res.json()
+data = res.json()['result']
 
 board_list = (",".join(data['name'].keys()))
 
