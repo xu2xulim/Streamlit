@@ -27,7 +27,7 @@ res = httpx.post('https://cs0kji.deta.dev/board',json=payload)
 
 [x['name'] for x in res.json()['result']]
 
-board_csv = (", ".join([x['name'] for x in res.json()['result']]))
+board_csv = (" , ".join([x['name'] for x in res.json()['result']]))
 st.write(board_csv)
 option = st.sidebar.selectbox(
     'How would you like to be contacted?',
