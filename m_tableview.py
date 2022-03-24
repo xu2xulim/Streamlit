@@ -55,7 +55,7 @@ if selected_board != "":
 
         # appending rows
         for item in data:
-            item_row = item['custom_field']
+            item_row = item['customfield']
             time = item['card']
 
             for row in item_row:
