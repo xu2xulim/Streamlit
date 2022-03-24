@@ -35,11 +35,11 @@ option = st.sidebar.selectbox(
     'Select a board', options=df['name'])
 
 if option != None:
-    board_id=df.loc[df['name'] == option, 'id'].values[0]
+    st.write(df.loc[df['name'] == option, 'id'].values)
     st.write(payload)
-    res = httpx.post('https://cs0kji.deta.dev/list',json=payload)
+    #res = httpx.post('https://cs0kji.deta.dev/list',json=payload)
 
-    df = pd.DataFrame(res.json()['result'])
+    #df = pd.DataFrame(res.json()['result'])
 
     st.write(df.head())
     option = st.sidebar.selectbox(
