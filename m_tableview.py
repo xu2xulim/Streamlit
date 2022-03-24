@@ -46,17 +46,7 @@ if selected_board != "":
         payload = {"board_id" : bd['id'], "list_id" : item['id'], "card_id" : ""}
         res = httpx.post('https://cs0kji.deta.dev/cards',json=payload)
         data = res.json()['result']
-        """
-        rows = []
-
-        for item in data:
-            item_row = item['customfield']
-            crd = item['card']
-
-            for row in item_row:
-                row['card']= crd
-                rows.append(row)
-        """
+        
         df_x = pd.DataFrame(data)
         st.dataframe(df_x)
         # test
