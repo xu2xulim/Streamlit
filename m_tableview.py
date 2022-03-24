@@ -5,6 +5,7 @@ import numpy as np
 from datetime import datetime
 from deta import Deta
 import json
+import httpx
 
 # 2) initialize with a project key
 #deta = Deta(st.secrets["tableview"])
@@ -21,10 +22,17 @@ import json
 # Notify the reader that the data was successfully loaded.
 
 #st.dataframe(data=data, width=None, height=None)
-# Add a selectbox to the sidebar:
+res = httpx.get('https://cs0kji.deta.dev/board')
+
+data = res.json()
+
+s = ",".join(data['name'].keys()))
+
+
 option = st.sidebar.selectbox(
     'How would you like to be contacted?',
-    ('Email', 'Home phone', 'Mobile phone')
+    #('Email', 'Home phone', 'Mobile phone')
+    (s)
 )
 
 if option == 'Email' :
@@ -34,4 +42,4 @@ else:
     add_slider = st.sidebar.slider(
         'Select a range of values',
         0.0, 100.0, (25.0, 75.0)
-        )
+        S)
