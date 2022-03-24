@@ -25,34 +25,22 @@ import httpx
 board_id = ""
 list_id = ""
 card_id = ""
-option = ""
+selected_board = ""
 payload = {"board_id" : board_id, "list_id" : list_id, "card_id" : card_id}
 res = httpx.post('https://cs0kji.deta.dev/board',json=payload)
 df = pd.DataFrame(res.json()['result'])
-
-st.write(df.head())
-option = st.sidebar.selectbox(
+selected_board = st.sidebar.selectbox(
     'Select a board', options=df['name'])
 
-if option != "":
-    item = next(x for x in res.json()['result'] if x['name'] == option)
+if selected_board != "":
+    item = next(x for x in res.json()['result'] if x['name'] == selected_board)
     payload = {"board_id" : item['id'], "list_id" : list_id, "card_id" : card_id}
-    st.write(payload)
     res = httpx.post('https://cs0kji.deta.dev/list',json=payload)
-
     df = pd.DataFrame(res.json()['result'])
-
-    st.write(df.head())
-    option = st.sidebar.selectbox(
+    selected_col = ""
+    selected_col = st.sidebar.selectbox(
         'Select a list', options=df['name'])
 
-    st.write(option)
-"""
-if option == 'Email' :
-    st.write('You selected:', option)
-else:
-# Add a slider to the sidebar:
-    option = st.sidebar.selectbox(
-        'How would you like to be contacted?',
-        #('Email', 'Home phone', 'Mobile phone')
-        board_list)"""
+    if selected_col !="" :
+        col_id = next(x for x in res.json()['result'] if x['name'] == selected_col)
+        st.write("To be continued")
