@@ -45,5 +45,6 @@ if selected_board != "":
         item = next(x for x in res.json()['result'] if x['name'] == selected_col)
         payload = {"board_id" : "", "list_id" : item['id'], "card_id" : ""}
         res = httpx.post('https://cs0kji.deta.dev/cards',json=payload)
-        df = pd.DataFrame(res.json()['result'])
-        st.write(df)
+        st.write(res.json()['result'])
+        #df = pd.DataFrame(res.json()['result'])
+        #st.write(df)
