@@ -61,6 +61,8 @@ for ix in range(0, len(df2.index)) :
     for iz in range(0, len(df3.index)):
         if df2.iloc[ix]['date'] == df3.iloc[iz]['date']:
             st.write(type(df2.iloc[ix]['mbr_id']))
+            st.write(type(df3.iloc[iz][df2.iloc[ix]['mbr_id']]))
+            st.write(type( df2.iloc[ix]['key']))
             df3.iloc[iz][df2.iloc[ix]['mbr_id']] = df2.iloc[ix]['key']
             break
 
