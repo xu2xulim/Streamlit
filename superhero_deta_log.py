@@ -12,6 +12,6 @@ log = alert = Deta("c0vidk60_8unssenvnHkuZmQfqhZ4jW49o5hRMvwG").Base('superhero_
 res = log.fetch(query=None, limit=None, last=None)
 
 df = pd.DataFrame.from_dict(res.items)
-df['date']=df.datatine.str.slice(0, 10)
+df['date']=df.datetime.str.slice(0, 10)
 endpoint_mbr = df.groupby(['endpoint', 'mbr_id', 'date']).count().fillna(0)
 st.dataframe(endpoint_mbr)
