@@ -37,7 +37,7 @@ st.dataframe(chart_data)
 st.dataframe(df2)
 
 
-columns = ['date', 'key']
+columns = ['date']
 
 for ix in range(0, len(df2.index)) :
     if df2.iloc[ix]['mbr_id'] not in columns:
@@ -54,7 +54,7 @@ for ix in range(0, len(df2.index)) :
         dd = {'date': df2.iloc[ix]['date']}
         df3 = df3.append(dd, ignore_index = True)
     else:
-        df3.loc[df2.iloc[ix]['date']][df2.iloc[ix]['mbr_id']] = df2.iloc[ix]['key']
+        df3.loc[df2.iloc[ix]['date']][df2.iloc[ix]['mbr_id']] = df2.iloc[ix]['key'].item
 
 
 st.dataframe(df3)
