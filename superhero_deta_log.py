@@ -19,6 +19,6 @@ st.dataframe(df2)
 """
 df1 = df.groupby(['endpoint', 'mbr_id', 'date']).count()
 #grouped_multiple.columns = ['endpoint', 'mbr_id', 'date', 'count']
-df1 = grouped_multiple.reset_index()
+df1 = df1.reset_index()
 df2 = df1[['endpoint', 'mbr_id', 'date', 'key']]
 st.bar_chart(df2)
