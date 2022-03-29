@@ -23,4 +23,4 @@ df1 = df1.reset_index()
 df2 = df1[['endpoint', 'mbr_id', 'date', 'key']]
 #st.dataframe(df2)
 
-st.bar_chart(df2[['date', ['endpoint', 'key']]].set_index('date'))
+st.bar_chart(df2[['date', df2['endpoint', 'key']]].set_index('date'))
