@@ -54,7 +54,7 @@ for ix in range(0, len(df2.index)) :
         dd = {'date': df2.iloc[ix]['date']}
         df3 = df3.append(dd, ignore_index = True)
     else:
-        df3.loc[df2.iloc[ix]['date']][df2.iloc[ix]['mbr_id']] = df2.iloc[ix]['key'].item
+        df3.loc[df2.iloc[ix]['date']][df2.iloc[ix]['mbr_id']] = df2.iloc[ix]['key'].value
 
 
 st.dataframe(df3)
