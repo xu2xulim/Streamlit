@@ -49,7 +49,7 @@ df3.set_index('date')
 
 
 for ix in range(0, len(df2.index)) :
-    st.write(df2.iloc[ix]['date'].str)
+    st.write(df2.iloc[ix]['date'])
     st.write(df3['date'].str)
     st.write(df2.iloc[ix]['key'])
     dd = {}
