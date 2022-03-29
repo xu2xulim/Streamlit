@@ -49,10 +49,13 @@ df3.set_index('date')
 
 
 for ix in range(0, len(df2.index)) :
+    dd = {}
     if df2.iloc[ix]['date'] not in df3['date'].keys() :
-        df3[df2.iloc[ix]['date']] = {}
-    else:
-        df3[df2.iloc[ix]['date']][df2.iloc[ix]['mbr_id']] = df2.iloc[ix]['key']
+        dd = {'date': df2.iloc[ix]['date']}
+        df3 = df3.append(dd, ignore_index = True)
+    else"
+        df3.loc[df2.iloc[ix]['date']][df2.iloc[ix]['mbr_id']] = df2.iloc[ix]['key']
+   
 
 st.dataframe(df3)
 st.bar_chart(df3)
