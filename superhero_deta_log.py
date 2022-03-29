@@ -37,11 +37,12 @@ st.dataframe(chart_data)
 st.dataframe(df2)
 
 df3 = pd.DataFrame()
-df3.columns = ['date', 'mbr_id', 'key']
+df3.columns = ['date', 'key']
 df3.set_index('date')
 for ix in range(0, len(df2.index)) :
+    if df2.iloc[ix]['mbr_id'] not in df3.keys():
+        df3[df2.iloc[ix]['mbr_id']] = {}
 
-    df3[df2.iloc[ix]['date']][df2.iloc[ix]['mbr_id']] = df2.iloc[ix]['key'].item
 
 st.dataframe(df3)
 # Vertical stacked bar chart
