@@ -56,14 +56,14 @@ for ix in range(0, len(df2.index)) :
 
     for iz in range(0, len(df3.index)):
         if df2.iloc[ix]['date'] == df3.iloc[iz]['date']:
-            df3[df2.iloc[ix]['mbr_id']].iloc[iz] = df2.iloc[ix]['key']
+            df3[df2.iloc[ix]['mbr_id']].iloc[iz] = float(df2.iloc[ix]['key'])
             break
 
 
 
 
 
-chart_data3 = df3.fillna(0).astype(float).set_index('date')
+chart_data3 = df3.fillna(0).astype(str).set_index('date')
 
 st.bar_chart(chart_data3)
 # Vertical stacked bar chart
