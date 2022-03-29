@@ -46,13 +46,13 @@ for ix in range(0, len(df2.index)) :
 st.write(columns)
 df3 = pd.DataFrame(columns=columns)
 df3.set_index('date')
-
+st.write(df3)
 
 for ix in range(0, len(df2.index)) :
     st.write(df2.iloc[ix]['date'])
     st.write(df2.iloc[ix]['key'])
     dd = {}
-    if df2.iloc[ix]['date'] in df3.loc['date'].values:
+    if df2.iloc[ix]['date'] in df3['date'].values:
         pass
     else:
         st.write('Found')
