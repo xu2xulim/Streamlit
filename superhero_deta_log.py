@@ -63,7 +63,7 @@ for ix in range(0, len(df2.index)) :
             st.write(type(df2.iloc[ix]['mbr_id']))
             st.write(type(df3.iloc[iz][df2.iloc[ix]['mbr_id']]))
             st.write(type( df2.iloc[ix]['key']))
-            df3.iloc[iz][df2.iloc[ix]['mbr_id']] = df2.iloc[ix]['key']
+            df3[df2.iloc[ix]['mbr_id']].iloc[iz] = df2.iloc[ix]['key']
             break
 
 
