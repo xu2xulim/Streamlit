@@ -13,6 +13,11 @@ res = log.fetch(query=None, limit=None, last=None)
 
 df = pd.DataFrame.from_dict(res.items)
 df['date']=df.datetime.str.slice(0, 10)
-df1 = df.groupby(['endpoint', 'mbr_id', 'date']).count().fillna(0)
+"""df1 = df.groupby(['endpoint', 'mbr_id', 'date']).count().fillna(0)
 df2 = df1[['endpoint', 'mbr_id', 'date', 'key']]
 st.dataframe(df2)
+"""
+grouped_multiple = df.groupby(['endpoint', 'mbr_id', 'date']).count()
+grouped_multiple.columns = ['count']
+grouped_multiple = grouped_multiple.reset_index()
+st.write(grouped_multiple)
