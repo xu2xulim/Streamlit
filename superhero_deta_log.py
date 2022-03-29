@@ -52,7 +52,7 @@ for ix in range(0, len(df2.index)) :
     st.write(df2.iloc[ix]['date'])
     st.write(df2.iloc[ix]['key'])
     dd = {}
-    if (df3['date'] == df2.iloc[ix]['date']).any():
+    if (df3['date'] != df2.iloc[ix]['date']).any():
         st.write('Found')
         dd = {'date': df2.iloc[ix]['date']}
         df3 = df3.append(dd, ignore_index = True)
