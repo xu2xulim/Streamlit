@@ -60,7 +60,7 @@ for ix in range(0, len(df2.index)) :
 
     for iz in range(0, len(df3.index)):
         if df2.iloc[ix]['date'] == df3.iloc[iz]['date']:
-            df3.iloc[ix][df2.iloc[ix]['mbr_id']] = df2.iloc[ix]['mbr_id']
+            df3.iloc[iz][df2.iloc[ix]['mbr_id']] = df2.iloc[ix]['mbr_id']
             break
 
 
