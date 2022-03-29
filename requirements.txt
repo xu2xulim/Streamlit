@@ -3,3 +3,4 @@ deta
 pandas
 numpy
 httpx
+click<=8.0.4
