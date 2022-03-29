@@ -58,9 +58,8 @@ for ix in range(0, len(df2.index)) :
         dd = {'date': df2.iloc[ix]['date']}
         df3 = df3.append(dd, ignore_index = True)
 
-
-    dd = {df2.iloc[ix]['mbr_id'] : df2.iloc[ix]['key'] }
-    df3.loc[df2.iloc[ix]['date']].append(dd, ignore_index)
+    i = df3.loc[df2.iloc[ix]['date']].index()
+    df3.iloc[i][df2.iloc[ix]['mbr_id']]=df2.iloc[ix]['key']
 
 
 
