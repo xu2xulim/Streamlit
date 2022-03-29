@@ -13,4 +13,4 @@ res = log.fetch(query=None, limit=None, last=None)
 
 df = pd.DataFrame.from_dict(res.items)
 endpoint_mbr = df.groupby(['endpoint', 'mbr_id']).size().unstack()
-st.bar_chart(data=endpoint_mbr)
+st.dataframe(endpoint_mbr)
