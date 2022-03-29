@@ -49,7 +49,7 @@ df3.set_index('date')
 
 
 for ix in range(0, len(df2.index)) :
-    st.write(df2.iloc[ix])
+    st.write(df2.iloc[ix]['date'])
     dd = {}
     if df2.iloc[ix]['date'] not in df3['date'].keys() :
         dd = {'date': df2.iloc[ix]['date']}
