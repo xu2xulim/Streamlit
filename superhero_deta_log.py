@@ -37,7 +37,7 @@ st.dataframe(chart_data)
 st.dataframe(df2)
 
 df3 = pd.DataFrame()
-df3.columns('date', 'mbr_r', 'key')
+df3.columns = ('date', 'mbr_r', 'key')
 df3.set_index('date')
 for ix in range(0, len(df2.index)) :
 
