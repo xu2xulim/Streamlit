@@ -43,7 +43,7 @@ for ix in range(0, len(df2.index)) :
         columns.append(df2.iloc[ix]['mbr_id'])
 
 df3 = pd.DataFrame(columns=columns)
-df3.set_index('date')
+
 
 
 for ix in range(0, len(df2.index)) :
@@ -63,7 +63,8 @@ for ix in range(0, len(df2.index)) :
 
 
 
-chart_data3 = df3.fillna(0).astype(str)
+chart_data3 = df3.fillna(0).astype(str).set_index('date')
+
 st.bar_chart(chart_data3)
 # Vertical stacked bar chart
 st.bar_chart(chart_data)
