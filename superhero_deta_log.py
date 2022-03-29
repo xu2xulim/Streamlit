@@ -12,5 +12,5 @@ log = alert = Deta("c0vidk60_8unssenvnHkuZmQfqhZ4jW49o5hRMvwG").Base('superhero_
 res = log.fetch(query=None, limit=None, last=None)
 
 df = pd.DataFrame.from_dict(res.items)
-
-st.bar_chart(data=df)
+endpoint_mbr = df['endpoint', 'mbr_id']
+st.bar_chart(data=endpoint_mbr)
