@@ -29,11 +29,6 @@ st.bar_chart(df2[['mbr_id', 'key']].set_index('mbr_id'))
 
 st.bar_chart(df2[['endpoint', 'key']].set_index('endpoint'))
 
-chart_data = pd.DataFrame(
-    np.random.rand(9, 4),
-    index=["air","coffee","orange","whitebread","potato","wine","beer","wheatbread","carrot"],
-)
-st.dataframe(chart_data)
 st.dataframe(df2)
 
 columns = ['date']
@@ -43,8 +38,6 @@ for ix in range(0, len(df2.index)) :
         columns.append(df2.iloc[ix]['mbr_id'])
 
 df3 = pd.DataFrame(columns=columns)
-
-
 
 for ix in range(0, len(df2.index)) :
     dd = {}
@@ -59,13 +52,8 @@ for ix in range(0, len(df2.index)) :
             df3[df2.iloc[ix]['mbr_id']].iloc[iz] = float(df2.iloc[ix]['key'])
             break
 
-
-
-
-
-chart_data3 = df3.fillna(0).astype(str).set_index('date')
-
-st.bar_chart(chart_data3)
-# Vertical stacked bar chart
+chart_data = df3.fillna(0).astype(str).set_index('date')
+st.dataframe(chart_data)
 st.bar_chart(chart_data)
+
 ##
