@@ -21,6 +21,6 @@ df1 = df.groupby(['endpoint', 'mbr_id', 'date']).count()
 #grouped_multiple.columns = ['endpoint', 'mbr_id', 'date', 'count']
 df1 = df1.reset_index()
 df2 = df1[['endpoint', 'mbr_id', 'date', 'key']]
-st.dataframe(df2)
+#st.dataframe(df2)
 
-st.bar_chart(df2[['date','key']])
+st.dataframe(df2[['date','key']])
