@@ -58,8 +58,11 @@ for ix in range(0, len(df2.index)) :
         dd = {'date': df2.iloc[ix]['date']}
         df3 = df3.append(dd, ignore_index = True)
 
-    #i = df3.loc[df2.iloc[ix]['date']].index()
-    #df3.iloc[i][df2.iloc[ix]['mbr_id']]=df2.iloc[ix]['key']
+    for iz in range(0, len(df3.index)):
+        if df2.iloc[ix]['date'] == df3.iloc[iz]['date']:
+            df3.iloc[ix][df2.iloc[ix]['mbr_id']] = df2.iloc[ix]['mbr_id']
+            break
+
 
 
 
