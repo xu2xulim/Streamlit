@@ -52,7 +52,7 @@ for ix in range(0, len(df2.index)) :
             df3[df2.iloc[ix]['mbr_id']].iloc[iz] = float(df2.iloc[ix]['key'])
             break
 
-chart_data = df3.fillna(0).astype(str).set_index('date')
+chart_data = df3.fillna(0).astype(str).set_index('mbr_id')
 st.dataframe(chart_data)
 st.bar_chart(chart_data)
 
