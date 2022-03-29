@@ -34,5 +34,12 @@ chart_data = pd.DataFrame(
     index=["air","coffee","orange","whitebread","potato","wine","beer","wheatbread","carrot"],
 )
 st.dataframe(chart_data)
+st.dataframe(df2)
+
+df3 = pd.DataFrame()
+df3['date']=df2['date']
+for ix in range(0, df2['key'].value_count()) :
+    df3['mbr_id'].iloc[ix]= df2['mbr_id']['key'].iloc[ix]
+st.dataframe(df3)
 # Vertical stacked bar chart
 st.bar_chart(chart_data)
