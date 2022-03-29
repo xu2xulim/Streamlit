@@ -63,7 +63,7 @@ for ix in range(0, len(df2.index)) :
 
 
 
-chart_data3 = df3.fillna(0))
+chart_data3 = df3.fillna(0)
 st.bar_chart(chart_data3)
 # Vertical stacked bar chart
 st.bar_chart(chart_data)
