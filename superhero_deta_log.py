@@ -37,9 +37,9 @@ st.dataframe(chart_data)
 st.dataframe(df2)
 
 df3 = pd.DataFrame()
-df3['date']=df2['date']
 for ix in range(0, len(df2.index)) :
-    df3['mbr_id'].iloc[ix]= df2['mbr_id']['key'].iloc[ix]
+    df3[df2['date'].iloc[ix].value][df2['mbr_id'].iloc[ix].value] = df2['key'].iloc[ix].value
+
 st.dataframe(df3)
 # Vertical stacked bar chart
 st.bar_chart(chart_data)
