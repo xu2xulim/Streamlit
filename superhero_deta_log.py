@@ -11,4 +11,4 @@ log = alert = Deta("c0vidk60_8unssenvnHkuZmQfqhZ4jW49o5hRMvwG").Base('superhero_
 
 res = log.fetch(query=None, limit=None, last=None)
 
-st.write(res)
+st.write(res.items())
