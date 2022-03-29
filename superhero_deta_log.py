@@ -38,7 +38,7 @@ st.dataframe(df2)
 
 df3 = pd.DataFrame()
 df3.columns('date', 'mbr_r', 'key')
-df3..set_index('date')
+df3.set_index('date')
 for ix in range(0, len(df2.index)) :
 
     df3[df2.iloc[ix]['date']][df2.iloc[ix]['mbr_id']] = df2.iloc[ix]['key'].item
