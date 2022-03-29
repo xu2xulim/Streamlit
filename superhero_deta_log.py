@@ -50,11 +50,10 @@ df3.set_index('date')
 
 for ix in range(0, len(df2.index)) :
     st.write(df2.iloc[ix]['date'])
-    st.write(df3['date'].str)
     st.write(df2.iloc[ix]['key'])
     dd = {}
-
-    if df3[df3['date'].str.contains(df2.iloc[ix]['date'])] :
+    if df2.iloc[ix]['date'] in df3.loc[:,"date"]:
+        st.write('Found')
         dd = {'date': df2.iloc[ix]['date']}
         df3 = df3.append(dd, ignore_index = True)
     else:
