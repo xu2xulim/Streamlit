@@ -36,14 +36,15 @@ chart_data = pd.DataFrame(
 st.dataframe(chart_data)
 st.dataframe(df2)
 
-df3 = pd.DataFrame()
-df3.columns = ['date', 'key']
-df3.set_index('date')
+#df3 = pd.DataFrame()
+#columns = ['date', 'key']
+#df3.set_index('date')
 for ix in range(0, len(df2.index)) :
     if df2.iloc[ix]['mbr_id'] not in df3.keys():
-        df3[df2.iloc[ix]['mbr_id']] = {}
+        column.append(df2.iloc[ix]['mbr_id'])
 
+st.write(columns)
 
-st.dataframe(df3)
+#st.dataframe(df3)
 # Vertical stacked bar chart
 st.bar_chart(chart_data)
