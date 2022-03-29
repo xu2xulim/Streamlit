@@ -37,10 +37,10 @@ st.dataframe(chart_data)
 st.dataframe(df2)
 
 #df3 = pd.DataFrame()
-#columns = ['date', 'key']
+columns = ['date', 'key']
 #df3.set_index('date')
 for ix in range(0, len(df2.index)) :
-    if df2.iloc[ix]['mbr_id'] not in df3.keys():
+    if df2.iloc[ix]['mbr_id'] not in columns:
         column.append(df2.iloc[ix]['mbr_id'])
 
 st.write(columns)
