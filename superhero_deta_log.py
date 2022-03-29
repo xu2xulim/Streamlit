@@ -13,5 +13,6 @@ res = log.fetch(query=None, limit=None, last=None)
 
 df = pd.DataFrame.from_dict(res.items)
 df['date']=df.datetime.str.slice(0, 10)
-endpoint_mbr = df.groupby(['endpoint', 'mbr_id', 'date']).count().fillna(0)
-st.dataframe(endpoint_mbr)
+df1 = df.groupby(['endpoint', 'mbr_id', 'date']).count().fillna(0)
+df2 = df1[['endpoint', 'mbr_id', 'date', 'key'])
+st.dataframe(df2)
