@@ -37,7 +37,9 @@ st.dataframe(chart_data)
 st.dataframe(df2)
 
 df3 = pd.DataFrame()
+df3.columns('date', 'mbr_r', 'key')
 for ix in range(0, len(df2.index)) :
+
     df3[df2.iloc[ix]['date']][df2.iloc[ix]['mbr_id']] = df2.iloc[ix]['key'].item
 
 st.dataframe(df3)
