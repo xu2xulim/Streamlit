@@ -24,3 +24,7 @@ df2 = df1[['endpoint', 'mbr_id', 'date', 'key']]
 #st.dataframe(df2)
 
 st.bar_chart(df2[['date', 'key']].set_index('date'))
+
+st.bar_chart(df2[['mbr_id', 'key']].set_index('mbr_id'))
+
+st.bar_chart(df2[['endpoint', 'key']].set_index('endpoint'))
