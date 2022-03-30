@@ -16,14 +16,14 @@ log = alert = Deta("c0vidk60_8unssenvnHkuZmQfqhZ4jW49o5hRMvwG").Base('superhero_
 res = log.fetch(query=None, limit=None, last=None)
 
 dd = {}
-for row in unique([x['datetime'][0:10] for x in res.items]) :
+for row in unique([x['mbr_id'] for x in res.items]) :
     if row not in dd.keys():
         dd[row] = {}
-    for y in unique([x['mbr_id'] for x in res.items]):
+    for y in unique([x['datetime'][0:10] for x in res.items]):
         dd[row][y] = 0
-
+st.write(dd)
 for z in res.items :
-    dd[z['datetime'][0:10]][z['mbr_id']] =+ 1
+    dd[z['mbr_id']][z['datetime'][0:10]] =+ 1
 dx = pd.DataFrame.from_dict(dd)
 st.dataframe(dx)
 st.bar_chart(dx.astype(str))
