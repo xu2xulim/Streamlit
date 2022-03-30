@@ -24,8 +24,9 @@ for row in unique([x['datetime'][0:10] for x in res.items]) :
 
 for z in res.items :
     dd[z['datetime'][0:10]][z['mbr_id']] =+ 1
-
-st.bar_chart(pd.DataFrame.from_dict(dd).astype(str))
+dx = pd.DataFrame.from_dict(dd)
+st.dataframe(dx)
+st.bar_chart(dx.astype(str))
 
 
 
