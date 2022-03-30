@@ -7,9 +7,27 @@ from deta import Deta
 import json
 import requests
 
+def unique(list1):
+    x = np.array(list1)
+    return np.unique(x)
+
 log = alert = Deta("c0vidk60_8unssenvnHkuZmQfqhZ4jW49o5hRMvwG").Base('superhero_log')
 
 res = log.fetch(query=None, limit=None, last=None)
+
+dd = {}
+for row in unique([x['datetime'][0:10] for x in res.items]) :
+    if row not in dd.keys():
+        dd[row] = {}
+    for y in unique([x['mbr_id'] for x in res.items]):
+        dd[row][y] = 0
+
+for z in res.items :
+    dd[z['datetime'][0:10]][z['mbr_id']] =+ 1
+
+st.chart_data(dd.astype(str))
+
+
 
 df = pd.DataFrame.from_dict(res.items)
 df['date']=df.datetime.str.slice(0, 10)
