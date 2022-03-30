@@ -21,11 +21,11 @@ unique_dates = unique([x['datetime'][0:10] for x in res.items])
 st.title('7 Day Superhero Dashboard')
 
 st.header('Metrics')
-"""col1, col2, col3, col4= st.columns(4)
+col1, col2, col3, col4= st.columns(4)
 col1.metric(label="Days", value=len(unique_dates))
 col2.metric(label="Active Members", value=len(unique_mbr), delta = (len(unique_mbr)-st.session_state['save_mbr_num']))
 col3.metric(label="Active Endpoints", value=len(unique_endpoints), delta = (len(unique_endpoints)-st.session_state['save_end_num']))
-col4.metric(label="All Requests", value=len(res.items), delta = (len(res.items)-st.session_state['save_req_num']) )"""
+col4.metric(label="All Requests", value=len(res.items), delta = (len(res.items)-st.session_state['save_req_num']) )
 
 st.session_state['save_mbr_num'] = len(unique_mbr)
 st.session_state['save_end_num'] = len(unique_endpoints)
