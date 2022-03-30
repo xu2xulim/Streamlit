@@ -23,7 +23,7 @@ for row in unique([x['mbr_id'] for x in res.items]) :
         dd[row][y] = 0
 st.write(dd)
 for z in res.items :
-    dd[z['mbr_id']][z['datetime'][0:10]] =+ 1
+    dd[z['mbr_id']][z['datetime'][0:10]] = dd[z['mbr_id']][z['datetime'][0:10]] + 1
 dx = pd.DataFrame.from_dict(dd)
 st.dataframe(dx)
 st.bar_chart(dx.astype(str))
