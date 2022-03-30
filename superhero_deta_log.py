@@ -14,9 +14,15 @@ def unique(list1):
 log = alert = Deta("c0vidk60_8unssenvnHkuZmQfqhZ4jW49o5hRMvwG").Base('superhero_log')
 
 res = log.fetch(query=None, limit=None, last=None)
-unique_mbr = unique([x['mbr_id'] for x in res.items]
+unique_mbr = unique([x['mbr_id'] for x in res.items])
 unique_endpoints = unique([x['endpoint'] for x in res.items])
-unique_dates = [x['datetime'][0:10] for x in res.items]
+unique_dates = unique([x['datetime'][0:10] for x in res.items])
+
+col1, col2, col3= st.columns(3)
+col1.metric(label="Days", value=len(unique_dates))
+col2.metric(label="Active Members", value=len(unique_mbr))
+col3.metric(label="Active", value=len(unique_endpoints))
+
 
 dd = {}
 ##Start
