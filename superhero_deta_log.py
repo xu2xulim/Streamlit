@@ -39,7 +39,7 @@ for row in unique([x['endpoint'] for x in res.items]) :
         dd[row][y] = 0
 
 for z in res.items :
-    dd[z['endpoint']][z['datetime'][0:10]] = dd[z['endpoint]][z['datetime'][0:10]] + 1
+    dd[z['endpoint']][z['datetime'][0:10]] = dd[z['endpoint']][z['datetime'][0:10]] + 1
 d_endpoint = pd.DataFrame.from_dict(dd)
 st.header('Daily usage by endpoint')
 st.dataframe(d_endpoint)
