@@ -29,7 +29,9 @@ d_mbr = pd.DataFrame.from_dict(dd)
 st.header('Daily usage by member')
 st.dataframe(d_mbr)
 st.bar_chart(d_mbr)
+
 ##Start
+dd = {}
 for row in unique([x['endpoint'] for x in res.items]) :
     if row not in dd.keys():
         dd[row] = {}
