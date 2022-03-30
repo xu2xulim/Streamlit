@@ -14,13 +14,16 @@ def unique(list1):
 log = alert = Deta("c0vidk60_8unssenvnHkuZmQfqhZ4jW49o5hRMvwG").Base('superhero_log')
 
 res = log.fetch(query=None, limit=None, last=None)
+unique_mbr = unique([x['mbr_id'] for x in res.items]
+unique_endpoints = unique([x['endpoint'] for x in res.items])
+unique_dates = [x['datetime'][0:10] for x in res.items]
 
 dd = {}
 ##Start
-for row in unique([x['mbr_id'] for x in res.items]) :
+for row in unique_mbr :
     if row not in dd.keys():
         dd[row] = {}
-    for y in unique([x['datetime'][0:10] for x in res.items]):
+    for y in unique_dates:
         dd[row][y] = 0
 
 for z in res.items :
@@ -32,10 +35,10 @@ st.bar_chart(d_mbr)
 
 ##Start
 dd = {}
-for row in unique([x['endpoint'] for x in res.items]) :
+for row in unique_endpoints :
     if row not in dd.keys():
         dd[row] = {}
-    for y in unique([x['datetime'][0:10] for x in res.items]):
+    for y in unique_dates:
         dd[row][y] = 0
 
 for z in res.items :
