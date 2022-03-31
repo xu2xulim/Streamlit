@@ -17,7 +17,8 @@ res = log.fetch(query=None, limit=None, last=None)
 unique_mbr = unique([x['mbr_id'] for x in res.items])
 unique_endpoints = unique([x['endpoint'] for x in res.items])
 unique_dates = unique([x['datetime'][0:10] for x in res.items])
-
+states = st.session_state
+st.write(states)
 if 'saved_mbr_num' not in st.session_state or  'saved_end_num' not in st.session_state or 'saved_req_num' not in st.session_state:
     st.session_state['saved_mbr_num'] = len(unique_mbr)
     st.session_state['saved_end_num'] = len(unique_endpoints)
