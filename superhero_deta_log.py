@@ -11,7 +11,7 @@ def unique(list1):
     x = np.array(list1)
     return np.unique(x)
 
-log = alert = Deta("c0vidk60_8unssenvnHkuZmQfqhZ4jW49o5hRMvwG").Base('superhero_log')
+log = alert = Deta(os.environ.get('DETA_PROJECT_ID')).Base('superhero_log')
 
 res = log.fetch(query=None, limit=None, last=None)
 unique_mbr = unique([x['mbr_id'] for x in res.items])
