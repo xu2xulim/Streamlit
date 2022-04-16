@@ -47,7 +47,7 @@ for row in unique_mbr :
 for z in res.items :
     dd[z['mbr_id']][z['datetime'][0:10]] = dd[z['mbr_id']][z['datetime'][0:10]] + 1
 d_mbr = pd.DataFrame.from_dict(dd)
-st.write(d.mbr.keys())
+st.write(d_mbr.keys())
 st.header('Daily usage by member')
 st.dataframe(d_mbr)
 st.bar_chart(d_mbr)
