@@ -47,7 +47,7 @@ for row in unique_mbr :
 for z in res.items :
     dd[z['mbr_id']][z['datetime'][0:10]] = dd[z['mbr_id']][z['datetime'][0:10]] + 1
 d_mbr = pd.DataFrame.from_dict(dd)
-st.write(d_mbr.keys())
+
 st.header('Daily usage by member')
 st.dataframe(d_mbr)
 st.bar_chart(d_mbr)
@@ -66,3 +66,8 @@ d_endpoint = pd.DataFrame.from_dict(dd)
 st.header('Daily usage by endpoint')
 st.dataframe(d_endpoint)
 st.bar_chart(d_endpoint)
+
+result = d_mbr.to_json(orient="split")
+parsed = json.loads(result)
+
+res = requests.post("https://68359.wayscript.io/st_members", json=parsed)
