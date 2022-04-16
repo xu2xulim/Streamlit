@@ -18,7 +18,7 @@ unique_mbr = unique([x['mbr_id'] for x in res.items])
 unique_endpoints = unique([x['endpoint'] for x in res.items])
 unique_dates = unique([x['datetime'][0:10] for x in res.items])
 states = st.session_state
-st.write(states)
+
 if 'saved_mbr_num' not in st.session_state or  'saved_end_num' not in st.session_state or 'saved_req_num' not in st.session_state:
     st.session_state['saved_mbr_num'] = len(unique_mbr)
     st.session_state['saved_end_num'] = len(unique_endpoints)
@@ -47,6 +47,7 @@ for row in unique_mbr :
 for z in res.items :
     dd[z['mbr_id']][z['datetime'][0:10]] = dd[z['mbr_id']][z['datetime'][0:10]] + 1
 d_mbr = pd.DataFrame.from_dict(dd)
+st.write(d.mbr.keys())
 st.header('Daily usage by member')
 st.dataframe(d_mbr)
 st.bar_chart(d_mbr)
