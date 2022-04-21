@@ -19,7 +19,7 @@ with st.expander("Open to enter order details"):
     url = "https://api.trello.com/1/boards/5fdd53039a97d380e792101e/cards?{}".format(url_values)
     result = urllib.request.urlopen(url)
     dd = {}
-    for x in json.loads(result.read().decode('utf-8'))
+    for x in json.loads(result.read().decode('utf-8')) :
         if x['idList'] in dd.keys():
             pass
         else:
