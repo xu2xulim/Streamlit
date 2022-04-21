@@ -25,5 +25,5 @@ with st.expander("Open to enter order details"):
         else:
             dd[x['idList']] = 0
         dd[x['idList']] += 1
-
-    st.bar_chart(st.dataframe(dd))
+    df = pd.DataFrame(dd)
+    st.bar_chart(df)
