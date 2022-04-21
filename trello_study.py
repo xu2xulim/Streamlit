@@ -19,5 +19,5 @@ with st.expander("Open to enter order details"):
     url = "https://api.trello.com/1/boards/611dc770573a0335f5d9fa11/cards?{}".format(url_values)
     result = urllib.request.urlopen(url)
     details = [x['badges']['due'] for x in json.loads(result.read().decode('utf-8')) if x != ""]
-    df = pd.dataframe(details)
-    st.write(df)
+    st.dataframe(details)
+    
