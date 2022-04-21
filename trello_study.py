@@ -14,7 +14,7 @@ import urllib.parse
 st.header("Trello Study")
 
 with st.expander("Open to enter order details"):
-    data = {'key' : st.secrets('TRELLO_API_KEY'), 'token' : st.secrets('TRELLO_TOKEN')}
+    data = {'key' : st.secrets['TRELLO_API_KEY'], 'token' : st.secrets['TRELLO_TOKEN']}
     url_values = urllib.parse.urlencode(data)
     url = "https://trello.com/b/SsRevba7/project-archives.json?{}".format(url_values)
     result = urllib.request.urlopen(url)
