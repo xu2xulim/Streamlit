@@ -18,5 +18,11 @@ with st.expander("Open to enter order details"):
     url_values = urllib.parse.urlencode(data)
     url = "https://api.trello.com/1/boards/5fdd53039a97d380e792101e/cards?{}".format(url_values)
     result = urllib.request.urlopen(url)
-    details = [ {x['id'] : x['idList']} for x in json.loads(result.read().decode('utf-8'))]
-    st.dataframe(details)
+    dd = {}
+    for x in json.loads(result.read().decode('utf-8'))
+        if x['idList'] in dd.keys():
+            pass
+        else:
+            dd[x['idList']] = []
+        dd[x['idList']].append(x['id'])
+    st.dataframe(dd)
