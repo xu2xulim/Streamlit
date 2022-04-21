@@ -25,4 +25,5 @@ with st.expander("Open to enter order details"):
         else:
             dd[x['idList']] = []
         dd[x['idList']].append(x['id'])
-    st.dataframe(dd)
+
+    st.write(dd)
