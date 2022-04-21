@@ -23,7 +23,7 @@ with st.expander("Open to enter order details"):
         if x['idList'] in dd.keys():
             pass
         else:
-            dd[x['idList']] = []
-        dd[x['idList']].append(x['id'])
+            dd[x['idList']] = 0
+        dd[x['idList']] += 1
 
     st.write(dd)
