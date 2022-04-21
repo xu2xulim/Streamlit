@@ -16,7 +16,7 @@ st.header("Trello Study")
 with st.expander("Open to enter order details"):
     data = {'key' : st.secrets['TRELLO_API_KEY'], 'token' : st.secrets['TRELLO_TOKEN']}
     url_values = urllib.parse.urlencode(data)
-    url = "https://trello.com/b/SsRevba7/project-archives.json?{}".format(url_values)
+    url = "https://api.trello.com/1/boards/611dc770573a0335f5d9fa11/cards?{}".format(url_values)
     result = urllib.request.urlopen(url)
     json_obj = json.loads(result.read().decode('utf-8'))
     st.json(json_obj)
