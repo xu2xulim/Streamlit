@@ -16,14 +16,13 @@ log = alert = Deta(os.environ.get('DETA_PROJECT_ID')).Base('superhero_log')
 Users=Deta(os.environ.get('DETA_PROJECT_ID')).Base(os.environ.get('MILYNNUS_ST_USERS_BASE'))
 
 res = Users.fetch(query=None, limit=100, last=None)
-if res.status_codes == 200 :
-    names = []
-    usernames = []
-    hashed_passwords = []
-    for x in res.items :
-        names.append(x['name'])
-        usernames.append(x['username'])
-        hashed_passwords[x['hash_password']]
+names = []
+usernames = []
+hashed_passwords = []
+for x in res.items :
+    names.append(x['name'])
+    usernames.append(x['username'])
+    hashed_passwords[x['hash_password']]
 
 authenticator = stauth.Authenticate(names, usernames, hashed_passwords,
     'milynnus_stauth', os.environ.get('MILYNNUS_ST_USERS_SIGNATURE'), cookie_expiry_days=30)
