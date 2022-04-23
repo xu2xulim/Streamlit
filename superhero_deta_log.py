@@ -15,11 +15,11 @@ def unique(list1):
 log = alert = Deta(os.environ.get('DETA_PROJECT_ID')).Base('superhero_log')
 Users=Deta(os.environ.get('DETA_PROJECT_ID')).Base(os.environ.get('MILYNNUS_ST_USERS_BASE'))
 
-res = Users.fetch()
-names = []
-usernames = []
-hashed_passwords = []
+res = Users.fetch(query=None, limit=100, last=None)
 if res.status_codes == 200 :
+    names = []
+    usernames = []
+    hashed_passwords = []
     for x in res.items :
         names.append(x['name'])
         usernames.append(x['username'])
