@@ -20,7 +20,7 @@ names = []
 usernames = []
 hashed_passwords = []
 if res.status_codes == 200 :
-    for x res.items :
+    for x in res.items :
         names.append(x['name'])
         usernames.append(x['username'])
         hashed_passwords[x['hash_password']]
