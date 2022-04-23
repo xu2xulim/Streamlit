@@ -22,7 +22,7 @@ hashed_passwords = []
 for x in res.items :
     names.append(x['name'])
     usernames.append(x['username'])
-    hashed_passwords[x['hash_password']]
+    hashed_passwords.append(x['hash_password'])
 
 authenticator = stauth.Authenticate(names, usernames, hashed_passwords,
     'milynnus_stauth', os.environ.get('MILYNNUS_ST_USERS_SIGNATURE'), cookie_expiry_days=30)
