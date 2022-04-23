@@ -1,4 +1,5 @@
 import streamlit as st
+import streamlit_authenticator as stauth
 import pandas as pd
 import numpy as np
 import os
@@ -12,6 +13,32 @@ def unique(list1):
     return np.unique(x)
 
 log = alert = Deta(os.environ.get('DETA_PROJECT_ID')).Base('superhero_log')
+Users=Deta(os.environ.get('DETA_PROJECT_ID')).Base(os.environ.get('MILYNNUS_ST_USERS_BASE'))
+
+res = Users.fetch()
+names = []
+usernames = []
+hashed_passwords = []
+if res.status_codes == 200 :
+    for x res.items :
+        names.append(x['name'])
+        usernames.append(x['username'])
+        hashed_passwords[x['hash_password']]
+
+authenticator = stauth.Authenticate(names, usernames, hashed_passwords,
+    'milynnus_stauth', os.environ.get('MILYNNUS_ST_USERS_SIGNATURE'), cookie_expiry_days=30)
+
+name, authentication_status, username = authenticator.login('Login', 'main')
+
+if st.session_state['authentication_status']:
+    authenticator.logout('Logout', 'main')
+    st.write('Welcome *%s*' % (st.session_state['name']))
+    st.title('Some content')
+elif st.session_state['authentication_status'] == False:
+    st.error('Username/password is incorrect')
+elif st.session_state['authentication_status'] == None:
+    st.warning('Please enter your username and password')
+
 
 res = log.fetch(query=None, limit=None, last=None)
 unique_mbr = unique([x['mbr_id'] for x in res.items])
