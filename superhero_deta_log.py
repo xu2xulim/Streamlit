@@ -32,14 +32,14 @@ name, authentication_status, username = authenticator.login('Login', 'main')
 if st.session_state['authentication_status']:
     authenticator.logout('Logout', 'main')
     st.write('Welcome *%s*' % (st.session_state['name']))
-    st.title('Some content')
+    st.title('7 Day Superhero Dashboard')
 elif st.session_state['authentication_status'] == False:
     st.error('Username/password is incorrect')
 elif st.session_state['authentication_status'] == None:
     st.warning('Please enter your username and password')
 
 if st.session_state['authentication_status'] == True:
-    with st.expander("7 Day Superhero Dashboard"):
+    with st.expander("Open to see dashboard"):
         res = log.fetch(query=None, limit=None, last=None)
         unique_mbr = unique([x['mbr_id'] for x in res.items])
         unique_endpoints = unique([x['endpoint'] for x in res.items])
