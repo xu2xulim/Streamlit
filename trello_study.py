@@ -9,7 +9,13 @@ import requests
 
 import urllib.request
 import urllib.parse
-
+def trello_client(key, tkn):
+    client = TrelloClient(
+        api_key = key,
+        token = tkn,
+        )
+    mbr_id = client.fetch_json('members/me')['id']
+    return (client, mbr_id)
 #order = Deta(st.secrets["DETA_PROJECT_ID"]).Base("trello_orders")
 st.header("Trello Study")
 
@@ -18,5 +24,7 @@ with st.expander("Open to test"):
     url_values = urllib.parse.urlencode(data)
     url = "https://api.trello.com/1/cards/622aea41f4c5bd708e45fdd3?{}".format(url_values)
     result = urllib.request.urlopen(url)
-
-    st.write(json.loads(result.text))
+    (client, me) = trello_client(st.secrets['TRELLO_API_KEY'], st.secrets['TRELLO_TOKEN'])
+    card=client.get_card(json.loads(result.read().decode('utf-8'))['id'])
+    st.write(card.name)
+    st.dataframe(client.checklists)
