@@ -19,4 +19,4 @@ with st.expander("Open to test"):
     url = "https://api.trello.com/1/cards/622aea41f4c5bd708e45fdd3?{}".format(url_values)
     result = urllib.request.urlopen(url)
 
-    st.write(result)
+    st.write(json.loads(result.text))
