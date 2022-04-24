@@ -30,7 +30,7 @@ with st.expander("Open to test"):
     #card=client.get_card(json.loads(result.read().decode('utf-8'))['id'])
     card = client.get_card("622aea41f4c5bd708e45fdd3")
     st.write("Labels")
-    labels = st.dataframe([{'state' : itm['color'], 'name' : itm['name']}for itm in card.labels])
+    labels = st.dataframe([{'color' : itm.color, 'name' : itm.name}for itm in card.labels])
     st.header(card.name)
     st.subheader(card.desc)
     st.write("Checklists")
