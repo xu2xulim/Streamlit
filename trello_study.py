@@ -14,7 +14,7 @@ import urllib.parse
 st.header("Trello Study")
 
 with st.expander("Open to test"):
-    data = {'key' : st.secrets['TRELLO_API_KEY'], 'token' : st.secrets['TRELLO_TOKEN']
+    data = {'key' : st.secrets['TRELLO_API_KEY'], 'token' : st.secrets['TRELLO_TOKEN']}
     url_values = urllib.parse.urlencode(data)
     url = "https://api.trello.com/1/cards/622aea41f4c5bd708e45fdd3?{}".format(url_values)
     result = urllib.request.urlopen(url)
