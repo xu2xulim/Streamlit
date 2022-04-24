@@ -31,6 +31,6 @@ with st.expander("Open to test"):
     card = client.get_card("622aea41f4c5bd708e45fdd3")
     st.header(card.name)
     st.subheader(card.desc)
-    items = st.dataframechecklists[0].items)
+    items = st.dataframe(checklists[0].items)
     items_sel = items[["state", "name", "due", "idMember"]]
     st.dataframe(items_sel)
