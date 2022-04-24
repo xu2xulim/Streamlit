@@ -29,8 +29,11 @@ with st.expander("Open to test"):
     (client, me) = trello_client(st.secrets['TRELLO_API_KEY'], st.secrets['TRELLO_TOKEN'])
     #card=client.get_card(json.loads(result.read().decode('utf-8'))['id'])
     card = client.get_card("622aea41f4c5bd708e45fdd3")
+    st.write("Labels")
+    labels = st.dataframe([{'state' : itm['color'], 'name' : itm['name']}for itm in card.labels])
     st.header(card.name)
     st.subheader(card.desc)
-    items = st.dataframe([{'state' : itm['state'], 'name' : itm['name']}for itm in card.checklists[0].items])
-
-    st.write(items)
+    st.write("Checklists")
+    for for cl in card.checklists :
+        st.subheader(cl.name)
+        items = st.dataframe([{'state' : itm['state'], 'name' : itm['name']}for itm in cl.items])
