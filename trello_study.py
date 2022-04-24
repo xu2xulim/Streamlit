@@ -33,4 +33,4 @@ with st.expander("Open to test"):
     st.subheader(card.desc)
     items = pd.from_dict(card.checklists[0].items)
 
-    st.write(items[['state', 'name', 'due', 'idMember'])
+    st.write(items[['state', 'name', 'due', 'idMember']])
