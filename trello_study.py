@@ -64,7 +64,7 @@ with st.expander("Open to test"):
 
     if not file:
         st.write("Upload a .csv or .xlsx file to get started")
-        return
+        st.stop()
 
     df = get_df(file)
     explore()
