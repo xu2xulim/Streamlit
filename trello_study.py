@@ -31,6 +31,6 @@ with st.expander("Open to test"):
     card = client.get_card("622aea41f4c5bd708e45fdd3")
     st.header(card.name)
     st.subheader(card.desc)
-    items = pd.from_records(card.checklists[0].items)
+    items = st.dataframe(card.checklists[0].items)[['state', 'name', 'due', 'idMember']]
 
-    st.write(items[['state', 'name', 'due', 'idMember']])
+    st.write(items)
