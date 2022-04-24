@@ -27,7 +27,7 @@ def explore(df):
     df_types['Median'] = df[numerical_cols].median()
     df_types['St. Dev.'] = df[numerical_cols].std()
     st.write('Summary:')
-    st.write(df_types)
+    #st.write(df_types)
 
 
 def get_df(file):
