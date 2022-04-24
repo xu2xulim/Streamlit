@@ -34,6 +34,6 @@ with st.expander("Open to test"):
     st.header(card.name)
     st.subheader(card.desc)
     st.write("Checklists")
-    for for cl in card.checklists :
+    for cl in card.checklists :
         st.subheader(cl.name)
         items = st.dataframe([{'state' : itm['state'], 'name' : itm['name']}for itm in cl.items])
