@@ -9,6 +9,8 @@ import requests
 
 import urllib.request
 import urllib.parse
+from trello import TrelloClient, List
+
 def trello_client(key, tkn):
     client = TrelloClient(
         api_key = key,
