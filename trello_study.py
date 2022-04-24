@@ -67,4 +67,4 @@ with st.expander("Open to test"):
         st.stop()
 
     df = get_df(file)
-    explore()
+    explore(df)
