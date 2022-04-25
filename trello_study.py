@@ -38,7 +38,7 @@ def dl (url, key, tkn) :
 def get_card_json (url):
     data = {'key' : st.secrets['TRELLO_API_KEY'], 'token' : st.secrets['TRELLO_TOKEN']}
     url_values = urllib.parse.urlencode(data)
-    url = "{}?{}".format(url, url_values)
+    url = "{}.json?{}".format(url, url_values)
     result = urllib.request.urlopen(url)
     card_json = json.loads(result.read().decode('utf-8'))
     return card_json
