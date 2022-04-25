@@ -12,6 +12,7 @@ import urllib.request
 import urllib.parse
 from trello import TrelloClient, List
 
+@st.cache(suppress_st_warning=True)
 def trello_client(key, tkn):
     client = TrelloClient(
         api_key = key,
@@ -20,18 +21,18 @@ def trello_client(key, tkn):
     mbr_id = client.fetch_json('members/me')['id']
     return (client, mbr_id)
 #order = Deta(st.secrets["DETA_PROJECT_ID"]).Base("trello_orders")
-st.header("Trello Study")
 
-with st.expander("Open to test"):
+st.header("Trello Study")
+(client, me) = trello_client(st.secrets['TRELLO_API_KEY'], st.secrets['TRELLO_TOKEN'])
+card = client.get_card("622aea41f4c5bd708e45fdd3")
+st.header(card.name)
+with st.expander("Labels"):
     #data = {'key' : st.secrets['TRELLO_API_KEY'], 'token' : st.secrets['TRELLO_TOKEN']}
     #url_values = urllib.parse.urlencode(data)
     #url = "https://api.trello.com/1/cards/622aea41f4c5bd708e45fdd3?{}".format(url_values)
     #result = urllib.request.urlopen(url)
-    (client, me) = trello_client(st.secrets['TRELLO_API_KEY'], st.secrets['TRELLO_TOKEN'])
+
     #card=client.get_card(json.loads(result.read().decode('utf-8'))['id'])
-    card = client.get_card("622aea41f4c5bd708e45fdd3")
-    st.header(card.name)
-    st.write("Labels")
     lbl_color = '''<p style="color:{}">{}</p>'''
     card_labels = ""
     for lbl in card.labels:
@@ -40,8 +41,11 @@ with st.expander("Open to test"):
         else:
             card_labels = card_labels + lbl_color.format(lbl.color, lbl.name) + " "
     components.html(card_labels)
-    st.subheader(card.desc)
-    st.write("Checklists")
+
+with st.expander("Card Description"):
+    st.markdown(card.desc)
+
+with st.expander("Checklists"):
     for cl in card.checklists :
         st.subheader(cl.name)
         items = st.table([{'state' : itm['state'], 'name' : itm['name']}for itm in cl.items])
