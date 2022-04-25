@@ -54,8 +54,6 @@ with st.expander("Open to see status of checklists on card"):
         st.dataframe(items)
 
 with st.expander("Open to inspect custom fields on card"):
-    for cf in card.custom_fields :
     data = [{'name' : cf.name, 'value' : cf.value, 'type' : cf.field_type} for cf in card.custom_fields]
     items = pd.DataFrame(data)
-
     st.dataframe(items)
