@@ -41,10 +41,10 @@ with st.expander("Open to see card labels"):
     lbl_color = '''<p style="color:{}">{}</p>'''
     card_labels = ""
     for lbl in card_json['labels']:
-        if lbl.name == "":
-            card_labels = card_labels + lbl_color.format(lbl.color, lbl.color) + " "
+        if lbl['name'] == "":
+            card_labels = card_labels + lbl_color.format(lbl['color'], lbl['color']) + " "
         else:
-            card_labels = card_labels + lbl_color.format(lbl.color, lbl.name) + " "
+            card_labels = card_labels + lbl_color.format(lbl['color'], lbl['name']) + " "
     components.html(card_labels)
 
 with st.expander("Open to see card start and due status"):
