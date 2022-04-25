@@ -38,7 +38,7 @@ def dl (url, key, tkn) :
 def card_dict (url):
     data = {'key' : st.secrets['TRELLO_API_KEY'], 'token' : st.secrets['TRELLO_TOKEN']}
     url_values = urllib.parse.urlencode(data)
-    url = "{}?{}".format(url_values)
+    url = "{}?{}".format(url, url_values)
     result = urllib.request.urlopen(url)
     card_json = json.loads(result.read().decode('utf-8'))
     return card_json
@@ -71,7 +71,7 @@ with st.sidebar:
             card_dict = {}
             for url in user["shared_cards"] :
                 card_json = card_dict(url)
-                card_dict(card_json['name']) = card_json['id']
+                card_dict[card_json['name']] = card_json['id']
 
         option = st.selectbox(
             'Select the card you like to see',
