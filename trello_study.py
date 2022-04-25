@@ -78,7 +78,7 @@ with st.sidebar:
                     Users.put({'name' : name, 'username' : username, 'hash_password' : stauth.Hasher([password]).generate()[0]})
 
         with st.expander("Admin setup"):
-            with st.form("Fill in your name, your preferred username and password", clear_on_submit=True):
+            with st.form("Enter the card url to be shared with the user", clear_on_submit=True):
                 username = st.text_input("Username")
                 url = st.text_input("Card URL")
                 admin_secret = st.text_input("Admin Secret", type="password")
