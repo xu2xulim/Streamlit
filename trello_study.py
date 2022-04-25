@@ -40,7 +40,7 @@ def dl (url, key, tkn) :
 card = client.get_card(query_params['card_id'][0])
 card_json = card._json_obj
 st.write(card_json)
-cover = dl(card_json['cover']['scaled'][3]['url'], st.secrets['TRELLO_API_KEY'], st.secrets['TRELLO_TOKEN'])
+cover = dl(card_json['cover']['scaled'][-1]['url'], st.secrets['TRELLO_API_KEY'], st.secrets['TRELLO_TOKEN'])
 st.image(cover)
 st.header(card.name)
 
