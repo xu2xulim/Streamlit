@@ -21,10 +21,10 @@ def trello_client(key, tkn):
     mbr_id = client.fetch_json('members/me')['id']
     return (client, mbr_id)
 #order = Deta(st.secrets["DETA_PROJECT_ID"]).Base("trello_orders")
-
+query_params = st.experimental_get_query_params()
 st.header("Trello Study")
 (client, me) = trello_client(st.secrets['TRELLO_API_KEY'], st.secrets['TRELLO_TOKEN'])
-card = client.get_card("622aea41f4c5bd708e45fdd3")
+card = client.get_card(query_params['card_id'])
 st.header(card.name)
 with st.expander("Open to see card labels"):
     #data = {'key' : st.secrets['TRELLO_API_KEY'], 'token' : st.secrets['TRELLO_TOKEN']}
