@@ -35,6 +35,15 @@ def dl (url, key, tkn) :
     data = webUrl.read()
     return data
 
+def card_dict (url):
+    data = {'key' : st.secrets['TRELLO_API_KEY'], 'token' : st.secrets['TRELLO_TOKEN']}
+    url_values = urllib.parse.urlencode(data)
+    url = "{}?{}".format(url_values)
+    result = urllib.request.urlopen(url)
+    card_json = json.loads(result.read().decode('utf-8')
+    return { card_json['name'] : card_json['id']}
+
+
 Users=Deta(os.environ.get('DETA_PROJECT_ID')).Base(os.environ.get('MILYNNUS_ST_USERS_BASE'))
 
 res = Users.fetch(query=None, limit=100, last=None)
@@ -55,9 +64,17 @@ with st.sidebar:
     if st.session_state['authentication_status']:
         authenticator.logout('Logout', 'main')
         st.write('Welcome *%s*' % (st.session_state['name']))
+
+        res = Users.fetch(query={"name" : name, "username" : username}, limit=None, last=None)
+        if len(res.items) == 1:
+            user = Users.get(res.items[0]["key"])
+            card_dict = {}
+            for url in user["shared_cards"] :
+                card_dict.update(card_dict(url))
+
         option = st.selectbox(
             'Select the card you like to see',
-            ('Streamlit Card Prototype', 'Streamlit Card Prototype I', 'Streamlit Card Prototype II'))
+            data=card.dict)
 
         st.write('You selected:', option)
     elif st.session_state['authentication_status'] == False:
@@ -119,12 +136,7 @@ st.image(cover)
 st.header(card.name)
 
 with st.expander("Open to see card labels"):
-    #data = {'key' : st.secrets['TRELLO_API_KEY'], 'token' : st.secrets['TRELLO_TOKEN']}
-    #url_values = urllib.parse.urlencode(data)
-    #url = "https://api.trello.com/1/cards/622aea41f4c5bd708e45fdd3?{}".format(url_values)
-    #result = urllib.request.urlopen(url)
 
-    #card=client.get_card(json.loads(result.read().decode('utf-8'))['id'])
     lbl_color = '''<p style="color:{}">{}</p>'''
     card_labels = ""
     for lbl in card_json['labels']:
