@@ -99,7 +99,7 @@ with st.sidebar:
                             st.write("Card with url {} is already shared with {}".format(url, username))
                         else:
                             shared_cards.append(url)
-                            user.update({"shared_card" : shared_cards })
+                            users.update({"shared_card" : shared_cards }, user["key"])
                             st.write("Card with url {} is shared with {}".format(url, username))
 
 
