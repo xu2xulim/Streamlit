@@ -27,7 +27,7 @@ def trello_client(key, tkn):
 
 st.header("Trello Study")
 (client, me) = trello_client(st.secrets['TRELLO_API_KEY'], st.secrets['TRELLO_TOKEN'])
-card = client.get_card(query_params['card_id'])
+card = client.get_card(query_params['card_id'][0])
 st.header(card.name)
 
 with st.expander("Open to see card labels"):
