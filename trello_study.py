@@ -47,24 +47,31 @@ for x in res.items :
     hashed_passwords.append(x['hash_password'])
 
 with st.sidebar:
+    with st.expander("Login"):
+        authenticator = stauth.Authenticate(names, usernames, hashed_passwords,
+            'milynnus_stauth', os.environ.get('MILYNNUS_ST_USERS_SIGNATURE'), cookie_expiry_days=30)
 
-    authenticator = stauth.Authenticate(names, usernames, hashed_passwords,
-        'milynnus_stauth', os.environ.get('MILYNNUS_ST_USERS_SIGNATURE'), cookie_expiry_days=30)
+        name, authentication_status, username = authenticator.login('Login', 'sidebar')
 
-    name, authentication_status, username = authenticator.login('Login', 'sidebar')
+        if st.session_state['authentication_status']:
+            authenticator.logout('Logout', 'main')
+            st.write('Welcome *%s*' % (st.session_state['name']))
+            option = st.selectbox(
+                'Select the card you like to see',
+                ('Streamlit Card Prototype', 'Streamlit Card Prototype I', 'Streamlit Card Prototype II'))
 
-    if st.session_state['authentication_status']:
-        authenticator.logout('Logout', 'main')
-        st.write('Welcome *%s*' % (st.session_state['name']))
-        option = st.selectbox(
-            'Select the card you like to see',
-            ('Streamlit Card Prototype', 'Streamlit Card Prototype I', 'Streamlit Card Prototype II'))
+            st.write('You selected:', option)
+        elif st.session_state['authentication_status'] == False:
+            st.error('Username/password is incorrect')
+        elif st.session_state['authentication_status'] == None:
+            st.warning('Please enter your username and password')
 
-        st.write('You selected:', option)
-    elif st.session_state['authentication_status'] == False:
-        st.error('Username/password is incorrect')
-    elif st.session_state['authentication_status'] == None:
-        st.warning('Please enter your username and password')
+    with st.expander("Register"):
+        st.write("Users sign-up here")
+
+    with st.expander("Admin setup"):
+        st.write("Users sign-up here")
+
 
 
 
