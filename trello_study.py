@@ -134,7 +134,13 @@ if 'card_id' in st.session_state:
 card = client.get_card(card_id)
 card_json = card._json_obj
 st.write(card_json)
-if card_json['cover'] != "" :
+if card_json['idAttachmentCover'] == None and card_json['manualCoverAttachment'] == True :
+    request = urllib.request.Request(card_json['cover']['scaled'][-1]['url'])
+    #request.add_header('Authorization', '''OAuth oauth_consumer_key="{}", oauth_token="{}"'''.format(key, tkn))
+    webUrl  = urllib.request.urlopen(request)
+
+    st.image(webUrl.read())
+else:
     cover = dl(card_json['cover']['scaled'][-1]['url'], st.secrets['TRELLO_API_KEY'], st.secrets['TRELLO_TOKEN'])
     st.image(cover)
 
