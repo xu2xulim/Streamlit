@@ -51,4 +51,4 @@ with st.expander("Checklists"):
         data = [{'state' : itm['state'], 'name' : itm['name']} for itm in cl.items]
         items = pd.DataFrame(data)
         items["state"].replace({"complete": "✅", "incomplete": "❌"}, inplace=True)
-        st.table(items)
+        st.dataframe(items.style.hide_index())
