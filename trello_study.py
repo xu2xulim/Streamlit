@@ -40,7 +40,7 @@ def card_dict (url):
     url_values = urllib.parse.urlencode(data)
     url = "{}?{}".format(url_values)
     result = urllib.request.urlopen(url)
-    card_json = json.loads(result.read().decode('utf-8')
+    card_json = json.loads(result.read().decode('utf-8'))
     return card_json
 
 
