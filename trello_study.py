@@ -86,7 +86,7 @@ with st.sidebar:
 
     if not st.session_state['authentication_status']:
         with st.expander("Register"):
-            st.write("This form is for user self registration. The registration data is kept in a Deta Base.")
+            st.warning("This form is for user self registration. The registration data is kept in a Deta Base.")
             with st.form("Fill in your name, your preferred username and password", clear_on_submit=True):
                 name = st.text_input("Name")
                 username = st.text_input("Username")
@@ -98,7 +98,7 @@ with st.sidebar:
                     Users.put({'name' : name, 'username' : username, 'hash_password' : stauth.Hasher([password]).generate()[0]})
 
         with st.expander("Admin setup"):
-            st.write("This form is used by the administrator to attach card urls to a username. An admin secret is required for the update.")
+            st.warning("This form is used by the administrator to attach card urls to a username. An admin secret is required for the update.")
             with st.form("Enter the card url to be shared with the user", clear_on_submit=True):
                 username = st.text_input("Username")
                 url = st.text_input("Card URL")
