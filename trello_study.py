@@ -65,19 +65,39 @@ with st.sidebar:
     elif st.session_state['authentication_status'] == None:
         st.warning('Please enter your username and password')
 
-    with st.expander("Register"):
-        with st.form("Fill in your name, your preferred username and password", clear_on_submit=True):
-            name = st.text_input("Name")
-            username = st.text_input("Username")
-            password = st.text_input("Password", type="password")
+    if not st.session_state['authentication_status']:
+        with st.expander("Register"):
+            with st.form("Fill in your name, your preferred username and password", clear_on_submit=True):
+                name = st.text_input("Name")
+                username = st.text_input("Username")
+                password = st.text_input("Password", type="password")
 
-            submit = st.form_submit_button("Submit")
+                submit = st.form_submit_button("Submit")
 
-            if submit:
-                Users.put({'name' : name, 'username' : username, 'hash_password' : stauth.Hasher([password]).generate()[0]})
-                 
-    with st.expander("Admin setup"):
-        st.write("Users sign-up here")
+                if submit:
+                    Users.put({'name' : name, 'username' : username, 'hash_password' : stauth.Hasher([password]).generate()[0]})
+
+        with st.expander("Admin setup"):
+            with st.form("Fill in your name, your preferred username and password", clear_on_submit=True):
+                username = st.text_input("Username")
+                url = st.text_input("Card URL")
+                admin_secret = st.text_input("Admin Secret", type="password")
+
+                submit = st.form_submit_button("Submit")
+
+                if submit and admin_secret == os.environ.get('MILYNNUS_ST_USERS_SIGNATURE'):
+                    user = Users.get({'username' : username})
+                    try :
+                        shared_cards = user['share_card']
+                    except:
+                        shared_cards = []
+                    if url in shared_cards :
+                        st.write("Card with url {} is already shared with {}".format(url, username))
+                    else:
+                        shared_cards.append(url)
+                        user.update({"shared_card" : shared_cards })
+                        st.write("Card with url {} is shared with {}".format(url, username))
+
 
 
 
