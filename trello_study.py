@@ -23,6 +23,7 @@ def trello_client(key, tkn):
     mbr_id = client.fetch_json('members/me')['id']
     return (client, mbr_id)
 #order = Deta(st.secrets["DETA_PROJECT_ID"]).Base("trello_orders")
+@st.cache(suppress_st_warning=True)
 def dl (url, key, tkn) :
 
     request = urllib.request.Request(url)
@@ -85,4 +86,4 @@ with st.expander("Open to see status of checklists on card"):
         items["state"].replace({"complete": "✅", "incomplete": "❌"}, inplace=True)
         st.dataframe(items)
 
-with st.expander("Open to see images of attachments"):
+#with st.expander("Open to see images of attachments"):
