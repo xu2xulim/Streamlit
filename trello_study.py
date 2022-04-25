@@ -93,14 +93,14 @@ with st.sidebar:
                         st.write(users.items[0]["key"])
                         user = Users.get(users.items[0]["key"])
                         try :
-                            shared_cards = user['share_card']
+                            shared_cards = user['shared_cards']
                         except:
                             shared_cards = []
                         if url in shared_cards :
                             st.write("Card with url {} is already shared with {}".format(url, username))
                         else:
                             shared_cards.append(url)
-                            Users.update({"shared_card" : shared_cards }, user["key"])
+                            Users.update({"shared_cards" : shared_cards }, user["key"])
                             st.write("Card with url {} is shared with {}".format(url, username))
 
 
