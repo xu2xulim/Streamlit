@@ -23,12 +23,24 @@ def trello_client(key, tkn):
     mbr_id = client.fetch_json('members/me')['id']
     return (client, mbr_id)
 #order = Deta(st.secrets["DETA_PROJECT_ID"]).Base("trello_orders")
+def dl (url, key, tkn) :
 
-st.header("Trello Study")
+    request = urllib.request.Request(url)
+    request.add_header('Authorization', '''OAuth oauth_consumer_key="{}", oauth_token="{}"'''.format(key, tkn))
+    webUrl  = urllib.request.urlopen(request)
+
+    data = webUrl.read()
+    return data
+
+
+
+#st.header("Trello Study")
 (client, me) = trello_client(st.secrets['TRELLO_API_KEY'], st.secrets['TRELLO_TOKEN'])
 card = client.get_card(query_params['card_id'][0])
 card_json = card._json_obj
-st.write(card_json)
+#st.write(card_json)
+cover = dl(card_json['cover']['scaled'][0]['url'], st.secrets['TRELLO_API_KEY'], st.secrets['TRELLO_TOKEN'])
+st.image(cover)
 st.header(card.name)
 
 with st.expander("Open to see card labels"):
@@ -72,3 +84,5 @@ with st.expander("Open to see status of checklists on card"):
         items = pd.DataFrame(data)
         items["state"].replace({"complete": "✅", "incomplete": "❌"}, inplace=True)
         st.dataframe(items)
+
+with st.expander("Open to see images of attachments"):
