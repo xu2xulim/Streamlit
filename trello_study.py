@@ -51,7 +51,7 @@ with st.expander("Open to read card description"):
 with st.expander("Open to inspect custom fields on card"):
     data = [{'name' : cf.name , 'value' : cf.value} for cf in card.custom_fields]
     #data = [{'name' : cf.name, 'value' : cf._value, 'type' : cf.field_type} for cf in card.custom_fields]
-    st.table(data)
+    st.json(data)
 
 with st.expander("Open to see status of checklists on card"):
     for cl in card.checklists :
