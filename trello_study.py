@@ -90,7 +90,8 @@ with st.sidebar:
                     if len(users.items) != 1 :
                         st.write("User is not found")
                     else:
-                        user = users.get(users.items[0]["key"])
+                        st.write(users.items[0]["key"])
+                        user = Users.get(users.items[0]["key"])
                         try :
                             shared_cards = user['share_card']
                         except:
@@ -99,7 +100,7 @@ with st.sidebar:
                             st.write("Card with url {} is already shared with {}".format(url, username))
                         else:
                             shared_cards.append(url)
-                            users.update({"shared_card" : shared_cards }, user["key"])
+                            Users.update({"shared_card" : shared_cards }, user["key"])
                             st.write("Card with url {} is shared with {}".format(url, username))
 
 
