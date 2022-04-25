@@ -56,11 +56,17 @@ with st.sidebar:
     if st.session_state['authentication_status']:
         authenticator.logout('Logout', 'main')
         st.write('Welcome *%s*' % (st.session_state['name']))
-        st.title('7 Day Superhero Dashboard')
+        option = st.selectbox(
+            'Select the card you like to see',
+            ('Streamlit Card Prototype', 'Streamlit Card Prototype I', 'Streamlit Card Prototype II'))
+
+st.write('You selected:', option)
     elif st.session_state['authentication_status'] == False:
         st.error('Username/password is incorrect')
     elif st.session_state['authentication_status'] == None:
         st.warning('Please enter your username and password')
+
+
 
 #st.header("Trello Study")
 (client, me) = trello_client(st.secrets['TRELLO_API_KEY'], st.secrets['TRELLO_TOKEN'])
