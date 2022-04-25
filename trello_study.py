@@ -41,7 +41,7 @@ def card_dict (url):
     url = "{}?{}".format(url_values)
     result = urllib.request.urlopen(url)
     card_json = json.loads(result.read().decode('utf-8')
-    return { card_json['name'] : card_json['id']}
+    return card_json
 
 
 Users=Deta(os.environ.get('DETA_PROJECT_ID')).Base(os.environ.get('MILYNNUS_ST_USERS_BASE'))
@@ -70,11 +70,12 @@ with st.sidebar:
             user = Users.get(res.items[0]["key"])
             card_dict = {}
             for url in user["shared_cards"] :
-                card_dict.update(card_dict(url))
+                card_json = card_dict(url)
+                card_dict(card_json['name']) = card_json['id']
 
         option = st.selectbox(
             'Select the card you like to see',
-            data=card.dict)
+            data=list(card_dict.keys())
 
         st.write('You selected:', option)
     elif st.session_state['authentication_status'] == False:
