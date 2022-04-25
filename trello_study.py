@@ -48,6 +48,6 @@ with st.expander("Card Description"):
 with st.expander("Checklists"):
     for cl in card.checklists :
         st.subheader(cl.name)
-        items = pd.from_records([{'state' : itm['state'], 'name' : itm['name']}for itm in cl.items])
-        items["state"].replace({"complete": "✅", "incomplete": "❌"}, inplace=True)
-        st.dataframe(items)
+        st.write([{'state' : itm['state'], 'name' : itm['name']} for itm in cl.items]))
+        #items["state"].replace({"complete": "✅", "incomplete": "❌"}, inplace=True)
+        #st.dataframe(items)
