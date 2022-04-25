@@ -90,7 +90,7 @@ with st.sidebar:
                     if len(users.items) != 1 :
                         st.write("User is not found")
                     else:
-                        user = users.items[0]
+                        user = users.get(users.items[0]["key"])
                         try :
                             shared_cards = user['share_card']
                         except:
