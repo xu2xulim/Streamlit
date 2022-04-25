@@ -53,7 +53,7 @@ with st.expander("Open to see card start and due status"):
     dates['Due'] = card.due_date
     dates['Completed?'] = card_json['dueComplete']
 
-    st.table(dates)
+    st.json(dates)
 
 
 with st.expander("Open to read card description"):
