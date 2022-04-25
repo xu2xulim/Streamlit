@@ -82,8 +82,11 @@ with st.expander("Open to see status of checklists on card"):
     for cl in card.checklists :
         st.write(cl.name)
         data = [{'state' : itm['state'], 'name' : itm['name'], 'due' : itm['due'], 'member' : itm['idMember']} for itm in cl.items]
-        items = pd.DataFrame(data)
+        items = pd.DataFrame(data).fillna("Not Available")
         items["state"].replace({"complete": "✅", "incomplete": "❌"}, inplace=True)
         st.dataframe(items)
 
-#with st.expander("Open to see images of attachments"):
+with st.expander("Open to see images of attachments"):
+    for attach in card.attachments:
+        data = dl(attach['url'],t.secrets['TRELLO_API_KEY'], st.secrets['TRELLO_TOKEN'] )
+        st.image(data)
