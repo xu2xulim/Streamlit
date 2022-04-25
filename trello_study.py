@@ -86,17 +86,22 @@ with st.sidebar:
                 submit = st.form_submit_button("Submit")
 
                 if submit and admin_secret == os.environ.get('MILYNNUS_ST_USERS_SIGNATURE'):
-                    user = Users.get({"username" : username})
-                    try :
-                        shared_cards = user['share_card']
-                    except:
-                        shared_cards = []
-                    if url in shared_cards :
-                        st.write("Card with url {} is already shared with {}".format(url, username))
+                    users = Users.fetch(query={"username" : username}, limit=None, last=Nobe)
+                    if len(user.items) != 1 :
+                        st.write("User is not found")
                     else:
-                        shared_cards.append(url)
-                        user.update({"shared_card" : shared_cards })
-                        st.write("Card with url {} is shared with {}".format(url, username))
+                        user = user.items[0]
+                        try :
+                            shared_cards = user['share_card']
+                        except:
+                            shared_cards = []
+                        if url in shared_cards :
+                            st.write("Card with url {} is already shared with {}".format(url, username))
+                        else:
+                            shared_cards.append(url)
+                            user.update({"shared_card" : shared_cards })
+                            st.write("Card with url {} is shared with {}".format(url, username))
+
 
 
 
