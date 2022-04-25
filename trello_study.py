@@ -88,7 +88,7 @@ with st.expander("Open to see status of checklists on card"):
 
 with st.expander("Open to see images of attachments"):
     for attach in card.attachments:
-        ext = attach['name'].split(".")[-1]S
+        ext = attach['name'].split(".")[-1]
         if ext == 'jpg' or ext == 'png' or ext = 'jpeg':
             data = dl(attach['url'],st.secrets['TRELLO_API_KEY'], st.secrets['TRELLO_TOKEN'] )
             st.image(data)
