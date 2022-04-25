@@ -158,6 +158,7 @@ with st.expander("Open to see card labels"):
             card_labels = card_labels + lbl_color.format(lbl['color'], lbl['color'])
         else:
             card_labels = card_labels + lbl_color.format(lbl['color'], lbl['name'])
+    st.markdown(card_labels, unsafe_allow_html=False )
     components.html(card_labels)
 
 with st.expander("Open to see card start and due status"):
