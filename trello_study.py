@@ -86,7 +86,7 @@ with st.sidebar:
                 submit = st.form_submit_button("Submit")
 
                 if submit and admin_secret == os.environ.get('MILYNNUS_ST_USERS_SIGNATURE'):
-                    users = Users.fetch(query={"username" : username}, limit=None, last=Nobe)
+                    users = Users.fetch(query={"username" : username}, limit=None, last=None)
                     if len(user.items) != 1 :
                         st.write("User is not found")
                     else:
