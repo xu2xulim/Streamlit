@@ -75,7 +75,7 @@ with st.sidebar:
 
         option = st.selectbox(
             'Select the card you like to see',
-            data=list(card_dict.keys()))
+            options=list(card_dict.keys()))
 
         st.write('You selected:', option)
     elif st.session_state['authentication_status'] == False:
