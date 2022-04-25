@@ -40,7 +40,7 @@ with st.expander("Open to see card labels"):
     #card=client.get_card(json.loads(result.read().decode('utf-8'))['id'])
     lbl_color = '''<p style="color:{}">{}</p>'''
     card_labels = ""
-    for lbl in card.labels:
+    for lbl in card_json['labels']:
         if lbl.name == "":
             card_labels = card_labels + lbl_color.format(lbl.color, lbl.color) + " "
         else:
