@@ -1,7 +1,7 @@
 import streamlit as st
 import pandas as pd
 import numpy as np
-import streamlit.components.v1 as html
+import streamlit.components.v1 as components
 
 from datetime import datetime
 from deta import Deta
@@ -32,7 +32,7 @@ with st.expander("Open to test"):
     card = client.get_card("622aea41f4c5bd708e45fdd3")
     st.header(card.name)
     st.write("Labels")
-    html("""<p style="color:red">This is a paragraph.</p>""")
+    components.html("""<p style="color:red">This is a paragraph.</p>""")
     labels = st.table([{'color' : itm.color, 'name' : itm.name}for itm in card.labels])
     st.subheader(card.desc)
     st.write("Checklists")
