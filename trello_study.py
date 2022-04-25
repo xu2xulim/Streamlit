@@ -78,6 +78,7 @@ with st.sidebar:
             options=list(card_dict.keys()))
 
         st.write('You selected:', option)
+        st.session_state['card_id'] = card_dict[option]
     elif st.session_state['authentication_status'] == False:
         st.error('Username/password is incorrect')
     elif st.session_state['authentication_status'] == None:
@@ -123,7 +124,7 @@ with st.sidebar:
 
 
 
-card_id = card_dict[option]
+card_id = st.session_state['card_id']
 if not st.session_state['authentication_status']  :
     st.stop()
 
@@ -132,8 +133,10 @@ if not st.session_state['authentication_status']  :
 card = client.get_card(card_id)
 card_json = card._json_obj
 #st.write(card_json)
-cover = dl(card_json['cover']['scaled'][-1]['url'], st.secrets['TRELLO_API_KEY'], st.secrets['TRELLO_TOKEN'])
-st.image(cover)
+if card_json['cover'] != "" :
+    cover = dl(card_json['cover']['scaled'][-1]['url'], st.secrets['TRELLO_API_KEY'], st.secrets['TRELLO_TOKEN'])
+    st.image(cover)
+
 st.header(card.name)
 
 with st.expander("Open to see card labels"):
