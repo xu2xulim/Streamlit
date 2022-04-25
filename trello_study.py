@@ -45,6 +45,17 @@ with st.expander("Open to see card labels"):
             card_labels = card_labels + lbl_color.format(lbl.color, lbl.name) + " "
     components.html(card_labels)
 
+with st.expander("Open to see card start and due status"):
+    card_json = card._json_obj
+    st. write(card_json)
+    dates = {}
+    dates['Start'] = card_json['start']
+    dates['Due'] = card.due_date
+    dates['Completed?'] = card_json['dueComplete']
+
+    st.table(dates)
+
+
 with st.expander("Open to read card description"):
     st.markdown(card.desc, unsafe_allow_html=False)
 
