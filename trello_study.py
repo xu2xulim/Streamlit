@@ -123,13 +123,13 @@ with st.sidebar:
 
 
 
-
-if not st.session_state['authentication_status'] :
+card_id = card_dict[option]
+if not st.session_state['authentication_status']  :
     st.stop()
 
 #st.header("Trello Study")
 (client, me) = trello_client(st.secrets['TRELLO_API_KEY'], st.secrets['TRELLO_TOKEN'])
-card = client.get_card(query_params['card_id'][0])
+card = client.get_card(card_id)
 card_json = card._json_obj
 #st.write(card_json)
 cover = dl(card_json['cover']['scaled'][-1]['url'], st.secrets['TRELLO_API_KEY'], st.secrets['TRELLO_TOKEN'])
