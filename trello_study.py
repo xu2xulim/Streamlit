@@ -32,7 +32,6 @@ with st.expander("Open to test"):
     card = client.get_card("622aea41f4c5bd708e45fdd3")
     st.header(card.name)
     st.write("Labels")
-    components.html('''<p style="color:%s">%s</p>''')
     lbl_color = '''<p style="color:{}">{}</p>'''
     card_labels = ""
     for lbl in card.labels:
