@@ -27,6 +27,7 @@ def trello_client(key, tkn):
 st.header("Trello Study")
 (client, me) = trello_client(st.secrets['TRELLO_API_KEY'], st.secrets['TRELLO_TOKEN'])
 card = client.get_card(query_params['card_id'][0])
+card_json = card._json_obj
 st.header(card.name)
 
 with st.expander("Open to see card labels"):
@@ -38,7 +39,7 @@ with st.expander("Open to see card labels"):
     #card=client.get_card(json.loads(result.read().decode('utf-8'))['id'])
     lbl_color = '''<p style="color:{}">{}</p>'''
     card_labels = ""
-    for lbl in card.labels:
+    for lbl in card_json['labels']:
         if lbl.name == "":
             card_labels = card_labels + lbl_color.format(lbl.color, lbl.color) + " "
         else:
@@ -46,26 +47,25 @@ with st.expander("Open to see card labels"):
     components.html(card_labels)
 
 with st.expander("Open to see card start and due status"):
-    card_json = card._json_obj
-    st. write(card_json)
+    #st. write(card_json)
     dates = {}
     dates['Start'] = card_json['start']
-    dates['Due'] = card.due_date
+    dates['Due'] = card_json['due']
     dates['Completed?'] = card_json['dueComplete']
 
     st.json(dates)
 
 
 with st.expander("Open to read card description"):
-    st.markdown(card.desc, unsafe_allow_html=False)
+    st.markdown(card_json['desc'], unsafe_allow_html=False)
 
 with st.expander("Open to inspect custom fields on card"):
-    data = [{'name' : cf.name , 'value' : cf.value} for cf in card.custom_fields]
+    data = [{'name' : cf.name , 'value' : cf.value} for cf in card_json['customfields']]
     #data = [{'name' : cf.name, 'value' : cf._value, 'type' : cf.field_type} for cf in card.custom_fields]
     st.json(data)
 
 with st.expander("Open to see status of checklists on card"):
-    for cl in card.checklists :
+    for cl in card_json['checklists'] :
         st.write(cl.name)
         data = [{'state' : itm['state'], 'name' : itm['name'], 'due' : itm['due'], 'member' : itm['idMember']} for itm in cl.items]
         items = pd.DataFrame(data)
