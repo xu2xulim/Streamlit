@@ -86,7 +86,7 @@ with st.sidebar:
                 submit = st.form_submit_button("Submit")
 
                 if submit and admin_secret == os.environ.get('MILYNNUS_ST_USERS_SIGNATURE'):
-                    user = Users.get({'username' : username})
+                    user = Users.get({"username" : username})
                     try :
                         shared_cards = user['share_card']
                     except:
