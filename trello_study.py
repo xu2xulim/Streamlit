@@ -40,7 +40,7 @@ with st.expander("Open to see card labels"):
     #card=client.get_card(json.loads(result.read().decode('utf-8'))['id'])
     lbl_color = '''<p style="color:{}">{}</p>'''
     card_labels = ""
-    for lbl in card_json['labels']:
+    for lbl in card.labels:
         if lbl.name == "":
             card_labels = card_labels + lbl_color.format(lbl.color, lbl.color) + " "
         else:
@@ -61,12 +61,12 @@ with st.expander("Open to read card description"):
     st.markdown(card_json['desc'], unsafe_allow_html=False)
 
 with st.expander("Open to inspect custom fields on card"):
-    data = [{'name' : cf.name , 'value' : cf.value} for cf in card_json['customfields']]
+    data = [{'name' : cf.name , 'value' : cf.value} for cf in card.custom_fields]
     #data = [{'name' : cf.name, 'value' : cf._value, 'type' : cf.field_type} for cf in card.custom_fields]
     st.json(data)
 
 with st.expander("Open to see status of checklists on card"):
-    for cl in card_json['checklists'] :
+    for cl in card.checklists :
         st.write(cl.name)
         data = [{'state' : itm['state'], 'name' : itm['name'], 'due' : itm['due'], 'member' : itm['idMember']} for itm in cl.items]
         items = pd.DataFrame(data)
