@@ -43,12 +43,12 @@ with st.expander("Labels"):
     components.html(card_labels)
 
 with st.expander("Card Description"):
-    st.markdown(card.desc)
+    st.markdown(card.desc, unsafe_allow_html=False)
 
 with st.expander("Checklists"):
     for cl in card.checklists :
-        st.subheader(cl.name)
+        st.write(cl.name)
         data = [{'state' : itm['state'], 'name' : itm['name']} for itm in cl.items]
         items = pd.DataFrame(data)
         items["state"].replace({"complete": "✅", "incomplete": "❌"}, inplace=True)
-        st.dataframe(items)
+        st.table(items)
