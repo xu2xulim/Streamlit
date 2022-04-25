@@ -60,7 +60,7 @@ with st.sidebar:
             'Select the card you like to see',
             ('Streamlit Card Prototype', 'Streamlit Card Prototype I', 'Streamlit Card Prototype II'))
 
-st.write('You selected:', option)
+        st.write('You selected:', option)
     elif st.session_state['authentication_status'] == False:
         st.error('Username/password is incorrect')
     elif st.session_state['authentication_status'] == None:
