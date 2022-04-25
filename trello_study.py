@@ -66,8 +66,16 @@ with st.sidebar:
         st.warning('Please enter your username and password')
 
     with st.expander("Register"):
-        st.write("Users sign-up here")
+        with st.form("Fill in your name, your preferred username and password", clear_on_submit=True):
+            name = st.text_input("Name")
+            username = st.text_input("Username")
+            password = st.text_input("Password", type="password")
 
+            submit = st.form_submit_button("Submit")
+
+            if submit:
+                Users.put({'name' : name, 'username' : username, 'hash_password' : stauth.Hasher([password]).generate()[0]})
+                 
     with st.expander("Admin setup"):
         st.write("Users sign-up here")
 
