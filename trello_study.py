@@ -124,15 +124,16 @@ with st.sidebar:
 
 
 
-card_id = st.session_state['card_id']
 if not st.session_state['authentication_status']  :
     st.stop()
 
+if 'card_id' in st.session_state:
+    card_id = st.session_state['card_id']
 #st.header("Trello Study")
 (client, me) = trello_client(st.secrets['TRELLO_API_KEY'], st.secrets['TRELLO_TOKEN'])
 card = client.get_card(card_id)
 card_json = card._json_obj
-#st.write(card_json)
+st.write(card_json)
 if card_json['cover'] != "" :
     cover = dl(card_json['cover']['scaled'][-1]['url'], st.secrets['TRELLO_API_KEY'], st.secrets['TRELLO_TOKEN'])
     st.image(cover)
