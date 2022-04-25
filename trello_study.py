@@ -87,7 +87,7 @@ with st.sidebar:
 
                 if submit and admin_secret == os.environ.get('MILYNNUS_ST_USERS_SIGNATURE'):
                     users = Users.fetch(query={"username" : username}, limit=None, last=None)
-                    if len(user.items) != 1 :
+                    if len(users.items) != 1 :
                         st.write("User is not found")
                     else:
                         user = users.items[0]
