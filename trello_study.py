@@ -26,7 +26,7 @@ st.header("Trello Study")
 (client, me) = trello_client(st.secrets['TRELLO_API_KEY'], st.secrets['TRELLO_TOKEN'])
 card = client.get_card("622aea41f4c5bd708e45fdd3")
 st.header(card.name)
-with st.expander("Labels"):
+with st.expander("Open to see card labels"):
     #data = {'key' : st.secrets['TRELLO_API_KEY'], 'token' : st.secrets['TRELLO_TOKEN']}
     #url_values = urllib.parse.urlencode(data)
     #url = "https://api.trello.com/1/cards/622aea41f4c5bd708e45fdd3?{}".format(url_values)
@@ -42,13 +42,13 @@ with st.expander("Labels"):
             card_labels = card_labels + lbl_color.format(lbl.color, lbl.name) + " "
     components.html(card_labels)
 
-with st.expander("Card Description"):
+with st.expander("Open to read card description"):
     st.markdown(card.desc, unsafe_allow_html=False)
 
-with st.expander("Checklists"):
+with st.expander("Open to see status of checklists on card"):
     for cl in card.checklists :
         st.write(cl.name)
-        data = [{'state' : itm['state'], 'name' : itm['name']} for itm in cl.items]
+        data = [{'state' : itm['state'], 'name' : itm['name'], 'due' : itm['due'], 'member' : itm['idMember']} for itm in cl.items]
         items = pd.DataFrame(data)
         items["state"].replace({"complete": "✅", "incomplete": "❌"}, inplace=True)
-        st.table(items.style.hide_index())
+        st.dataframe(items.style.hide_index())
