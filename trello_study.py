@@ -32,7 +32,7 @@ with st.expander("Open to test"):
     card = client.get_card("622aea41f4c5bd708e45fdd3")
     st.header(card.name)
     st.write("Labels")
-    html("<p style="color:red">This is a paragraph.</p>")
+    html("""<p style="color:red">This is a paragraph.</p>""")
     labels = st.table([{'color' : itm.color, 'name' : itm.name}for itm in card.labels])
     st.subheader(card.desc)
     st.write("Checklists")
