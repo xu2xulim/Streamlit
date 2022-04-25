@@ -32,8 +32,15 @@ with st.expander("Open to test"):
     card = client.get_card("622aea41f4c5bd708e45fdd3")
     st.header(card.name)
     st.write("Labels")
-    components.html("""<p style="color:red">This is a paragraph.</p>""")
-    labels = st.table([{'color' : itm.color, 'name' : itm.name}for itm in card.labels])
+    components.html('''<p style="color:%s">%s</p>''')
+    lbl_color = '''<p style="color:{}">{}</p>'''
+    card_labels = ""
+    for lbl in card.labels:
+        if lbl.name == "":
+            card_labels = card_labels + lbl_color.format(lbl.color, lbl.color) + " "
+        else:
+            card_labels = card_labels + lbl_color.format(lbl.color, lbl.name) + " "
+    components.html(card_labels)
     st.subheader(card.desc)
     st.write("Checklists")
     for cl in card.checklists :
