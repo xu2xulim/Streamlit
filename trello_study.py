@@ -106,7 +106,8 @@ with st.sidebar:
 
 
 
-
+if not st.session_state['authentication_status'] :
+    st.stop()
 
 #st.header("Trello Study")
 (client, me) = trello_client(st.secrets['TRELLO_API_KEY'], st.secrets['TRELLO_TOKEN'])
