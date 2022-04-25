@@ -45,11 +45,11 @@ for x in res.items :
     hashed_passwords.append(x['hash_password'])
 
 with st.sidebar:
-    
+
     authenticator = stauth.Authenticate(names, usernames, hashed_passwords,
         'milynnus_stauth', os.environ.get('MILYNNUS_ST_USERS_SIGNATURE'), cookie_expiry_days=30)
 
-        name, authentication_status, username = authenticator.login('Login', 'sidebar')
+    name, authentication_status, username = authenticator.login('Login', 'sidebar')
 
     if st.session_state['authentication_status']:
         authenticator.logout('Logout', 'main')
