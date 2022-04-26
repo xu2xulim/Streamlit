@@ -151,7 +151,7 @@ st.header(card.name)
 
 with st.expander("Open to see card labels"):
 
-    lbl_color='''<p id="px", style="background-color:{};color:{};font-size:150%;">{}</p>'''
+    lbl_color='''<p id="px", style="background-color:{};color:{};font-size:150%;border: 1px solid black;">{}</p>'''
     #lbl_color = '''<p style="color:{}">{}</p>'''
     card_labels = '''<head><style>#px{display:inline;}</style></head><body>'''
     for lbl in card_json['labels']:
