@@ -167,7 +167,8 @@ with st.expander("Open to see card labels"):
                 card_labels = card_labels + lbl_color.format(lbl['color'], 'black', lbl['name']) + "  "
             else:
                 card_labels = card_labels + lbl_color.format(lbl['color'], 'white', lbl['name']) + "  "
-        contain_10[ix].st.write('''<p>"Hello World"</p>''')
+        with contain_10[ix]:
+            components.html('''<p>"Hello World"</p>''')
         ix += 1
 
     card_labels=card_labels + "</body>"
