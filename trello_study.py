@@ -150,12 +150,11 @@ else:
 st.header(card.name)
 
 with st.expander("Open to see card labels"):
-    contain_3 = st.columns(3)
-    st.write(contain_3)
-    st.write(st.columns(3))
+    contain_10 = st.columns(10)
     lbl_color='''<p id="px", style="background-color:{};color:{};">{}</p>'''
     #lbl_color = '''<p style="color:{}">{}</p>'''
     card_labels = '''<head><style>#px{display:inline;}</style></head><body>'''
+    ix = 0
     for lbl in card_json['labels']:
         #color_patch =  "{:<15}".format(lbl['color'])
         if lbl['color'] != None :
@@ -168,6 +167,7 @@ with st.expander("Open to see card labels"):
                 card_labels = card_labels + lbl_color.format(lbl['color'], 'black', lbl['name']) + "  "
             else:
                 card_labels = card_labels + lbl_color.format(lbl['color'], 'white', lbl['name']) + "  "
+        contain_10[ix].component.html(<p>"Hello World"</p>)
 
     card_labels=card_labels + "</body>"
     components.html(card_labels)
