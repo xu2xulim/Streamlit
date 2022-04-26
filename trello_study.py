@@ -212,7 +212,7 @@ with st.expander("Open to see status of checklists on card"):
         st.dataframe(items)
 
 with st.expander("Open to see images of attachments"):
-    colums = st.columns(5)
+    columns = st.columns(5)
     ix = 0
     for attach in card.attachments:
         ext = attach['name'].split(".")[-1]
