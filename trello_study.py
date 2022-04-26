@@ -163,16 +163,16 @@ with st.expander("Open to see card labels"):
         if lbl['name'] == "":
             with contain_10[ix]:
                 components.html(card_labels + lbl_color.format(lbl['color'],lbl['color'], color_patch) + "</body>")
-            card_labels = card_labels + lbl_color.format(lbl['color'],lbl['color'], color_patch) + "  "
+            #card_labels = card_labels + lbl_color.format(lbl['color'],lbl['color'], color_patch) + "  "
         else:
             if lbl['color'] == 'yellow' or lbl['color'] == None:
                 with contain_10[ix]:
                     components.html(card_labels + lbl_color.format(lbl['color'], 'black', lbl['name'])+ "</body>")
-                card_labels = card_labels + lbl_color.format(lbl['color'], 'black', lbl['name']) + "  "
+                #card_labels = card_labels + lbl_color.format(lbl['color'], 'black', lbl['name']) + "  "
             else:
                 with contain_10[ix]:
                     components.html(card_labels + lbl_color.format(lbl['color'], 'white', lbl['name'])+ "</body>")
-                card_labels = card_labels + lbl_color.format(lbl['color'], 'white', lbl['name']) + "  "
+                #card_labels = card_labels + lbl_color.format(lbl['color'], 'white', lbl['name']) + "  "
         ix += 1
 
     card_labels=card_labels + "</body>"
