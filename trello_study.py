@@ -191,11 +191,11 @@ with st.expander("Open to inspect custom fields on card"):
 with st.expander("Open to see status of checklists on card"):
     for cl in card.checklists :
         st.write(cl.name)
-        
-        if itm['idMember'] != None:
+
+        if itm['idMember'] != "":
             assigned_name = client.get_member(itm['idMember']).full_name
         else:
-            assigned_name = None
+            assigned_name = ""
 
         data = [{'state' : itm['state'], 'name' : itm['name'], 'due' : itm['due'], 'member' : assigned_name } for itm in cl.items]
         items = pd.DataFrame(data).fillna("Not Available")
