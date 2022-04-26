@@ -155,11 +155,13 @@ with st.expander("Open to see card labels"):
     card_labels = '''<head><style>#px{display:inline;}</style></head><body>'''
     for lbl in card_json['labels']:
         #color_patch =  "{:<15}".format(lbl['color'])
-        color_patch = lbl['color'].rjust(5, '*')
+        if lbl['color'] != None :
+            color_patch = lbl['color'].rjust(5, '*')
+
         if lbl['name'] == "":
             card_labels = card_labels + lbl_color.format(lbl['color'],lbl['color'], color_patch) + "  "
         else:
-            if lbl['color'] == 'yellow' :
+            if lbl['color'] == 'yellow' or lbl['color'] == None:
                 card_labels = card_labels + lbl_color.format(lbl['color'], 'black', lbl['name']) + "  "
             else:
                 card_labels = card_labels + lbl_color.format(lbl['color'], 'white', lbl['name']) + "  "
