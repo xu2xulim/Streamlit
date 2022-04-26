@@ -200,6 +200,7 @@ with st.expander("Open to see status of checklists on card"):
             else:
                 assigned_name = None
 
+            data['state'] = itm['state']
             data_item['name'] = itm['name']
             data_item['due'] = itm['due']
             data_item['member'] = assigned_name
