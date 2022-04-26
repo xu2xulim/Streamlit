@@ -191,13 +191,20 @@ with st.expander("Open to inspect custom fields on card"):
 with st.expander("Open to see status of checklists on card"):
     for cl in card.checklists :
         st.write(cl.name)
+        data = []
+        for itm in cl.items:
+            data_item = {}
+            if itm['idMember'] != "":
+                assigned_name = client.get_member(itm['idMember']).full_name
+            else:
+                assigned_name = ""
 
-        if itm['idMember'] != "":
-            assigned_name = client.get_member(itm['idMember']).full_name
-        else:
-            assigned_name = ""
+            data_item['name'] = itm['name']
+            data_item['due'] = itm['due']
+            data_item['member'] = assigned_name
+            data.append(data_item)
 
-        data = [{'state' : itm['state'], 'name' : itm['name'], 'due' : itm['due'], 'member' : assigned_name } for itm in cl.items]
+        #data = [{'state' : itm['state'], 'name' : itm['name'], 'due' : itm['due'], 'member' : assigned_name } for itm in cl.items]
         items = pd.DataFrame(data).fillna("Not Available")
         items["state"].replace({"complete": "✅", "incomplete": "❌"}, inplace=True)
         st.dataframe(items)
