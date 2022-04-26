@@ -152,9 +152,9 @@ st.header(card.name)
 with st.expander("Open to see card labels"):
     lbl_color='''<p id="inline", style="background-color:{};">{}</p>'''
     #lbl_color = '''<p style="color:{}">{}</p>'''
-    card_labels = ""
+    card_labels = '''<head><style>inline{display:inline;}</style></head><body>'''
     for lbl in card_json['labels']:
-        if lbl['name'] == '''<head><style>inline{display:inline;}</style></head><body>''':
+        if lbl['name'] == "":
             card_labels = card_labels + lbl_color.format(lbl['color'], lbl['color'])
         else:
             card_labels = card_labels + lbl_color.format(lbl['color'], lbl['name'])
