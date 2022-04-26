@@ -212,11 +212,11 @@ with st.expander("Open to see status of checklists on card"):
         st.dataframe(items)
 
 with st.expander("Open to see images of attachments"):
-    columns = st.columns(10)
+    columns = st.columns(5)
     ix = 0
     for attach in card.attachments:
         ext = attach['name'].split(".")[-1]
-        if (ext == 'jpg' or ext == 'png' or ext == 'jpeg') and attach['id'] != card_json['idAttachmentCover']:
+        if (ext == 'jpg' or ext == 'png' or ext == 'jpeg') and attach['id'] != card_json['idAttachmentCover'] and ix <5:
             data = dl(attach['url'],st.secrets['TRELLO_API_KEY'], st.secrets['TRELLO_TOKEN'] )
             with columns[ix]:
                 columns[ix].image(data)
