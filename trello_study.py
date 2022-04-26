@@ -150,14 +150,14 @@ else:
 st.header(card.name)
 
 with st.expander("Open to see card labels"):
-    lbl_color='''<p id="px", style="background-color:{};">{}</p>'''
+    lbl_color='''<p id="px", style="background-color:{},color:{};">{}</p>'''
     #lbl_color = '''<p style="color:{}">{}</p>'''
     card_labels = '''<head><style>#px{display:inline;}</style></head><body>'''
     for lbl in card_json['labels']:
         if lbl['name'] == "":
-            card_labels = card_labels + lbl_color.format(lbl['color'], "..........") + "  "
+            card_labels = card_labels + lbl_color.format(lbl['color'],lbl['color'], labl['color']) + "  "
         else:
-            card_labels = card_labels + lbl_color.format(lbl['color'], lbl['name']) + "  "
+            card_labels = card_labels + lbl_color.format(lbl['color'], '#FFFF', lbl['name']) + "  "
     card_labels=card_labels + "</body>"
     st.markdown(card_labels, unsafe_allow_html=False )
 
