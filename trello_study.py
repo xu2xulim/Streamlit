@@ -157,7 +157,7 @@ with st.expander("Open to see card labels"):
         if lbl['name'] == "":
             card_labels = card_labels + lbl_color.format(lbl['color'],lbl['color'], labl['color']) + "  "
         else:
-            card_labels = card_labels + lbl_color.format(lbl['color'], '#FFFF', lbl['name']) + "  "
+            card_labels = card_labels + lbl_color.format(lbl['color'], 'white', lbl['name']) + "  "
     card_labels=card_labels + "</body>"
     st.markdown(card_labels, unsafe_allow_html=False )
 
