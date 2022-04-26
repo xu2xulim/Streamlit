@@ -151,7 +151,7 @@ st.header(card.name)
 
 with st.expander("Open to see card labels"):
     contain_3 = st.columns(3)
-    st.write(contain_3[0])
+    st.write(contain_3)
     st.write(st.columns(3))
     lbl_color='''<p id="px", style="background-color:{};color:{};">{}</p>'''
     #lbl_color = '''<p style="color:{}">{}</p>'''
