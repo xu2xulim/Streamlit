@@ -194,6 +194,7 @@ with st.expander("Open to see status of checklists on card"):
         data = []
         for itm in cl.items:
             data_item = {}
+            st.write(itm['idMember'])
             if itm['idMember'] != "":
                 assigned_name = client.get_member(itm['idMember']).full_name
             else:
