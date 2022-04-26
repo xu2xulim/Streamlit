@@ -150,16 +150,17 @@ else:
 st.header(card.name)
 
 with st.expander("Open to see card labels"):
-    lbl_color='''<p id="inline", style="background-color:{};">{}</p>'''
+    lbl_color='''<p id="px", style="background-color:{};">{}</p>'''
     #lbl_color = '''<p style="color:{}">{}</p>'''
-    card_labels = '''<head><style>inline{display:inline;}</style></head><body>'''
+    card_labels = '''<head><style>#px{display:inline;}</style></head><body>'''
     for lbl in card_json['labels']:
         if lbl['name'] == "":
             card_labels = card_labels + lbl_color.format(lbl['color'], lbl['color'])
         else:
             card_labels = card_labels + lbl_color.format(lbl['color'], lbl['name'])
-    st.markdown(card_labels, unsafe_allow_html=False )
     card_labels=card_labels + "</body>"
+    st.markdown(card_labels, unsafe_allow_html=False )
+
     components.html(card_labels)
 
 with st.expander("Open to see card start and due status"):
