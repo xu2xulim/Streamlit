@@ -149,20 +149,23 @@ else:
 
 st.header(card.name)
 
-lbl_color='''<p id="px", style="background-color:{};color:{};">{}</p>'''
-#lbl_color = '''<p style="color:{}">{}</p>'''
-card_labels = '''<head><style>#px{display:inline;}</style></head><body>'''
-for lbl in card_json['labels']:
-    #color_patch =  "{:<15}".format(lbl['color'])
-    color_patch = lbl['color'].rjust(5, '*')
-    if lbl['name'] == "":
-        card_labels = card_labels + lbl_color.format(lbl['color'],lbl['color'], color_patch) + "  "
-    else:
-        card_labels = card_labels + lbl_color.format(lbl['color'], 'white', lbl['name']) + "  "
-card_labels=card_labels + "</body>"
-components.html(card_labels)
-#with st.expander("Open to see card labels"):
+with st.expander("Open to see card labels"):
+    lbl_color='''<p id="px", style="background-color:{};color:{};">{}</p>'''
+    #lbl_color = '''<p style="color:{}">{}</p>'''
+    card_labels = '''<head><style>#px{display:inline;}</style></head><body>'''
+    for lbl in card_json['labels']:
+        #color_patch =  "{:<15}".format(lbl['color'])
+        color_patch = lbl['color'].rjust(5, '*')
+        if lbl['name'] == "":
+            card_labels = card_labels + lbl_color.format(lbl['color'],lbl['color'], color_patch) + "  "
+        else:
+            if lbl['color'] == 'yellow' :
+                card_labels = card_labels + lbl_color.format(lbl['color'], 'black', lbl['name']) + "  "
+            else:
+                card_labels = card_labels + lbl_color.format(lbl['color'], 'white', lbl['name']) + "  "
 
+    card_labels=card_labels + "</body>"
+    components.html(card_labels)
 
 with st.expander("Open to see card start and due status"):
     #st. write(card_json)
