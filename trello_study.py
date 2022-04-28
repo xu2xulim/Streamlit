@@ -50,12 +50,18 @@ def dl (url, key, tkn) :
 
 #@st.cache(suppress_st_warning=True)
 def get_card_json (url):
-    data = {'key' : st.secrets['TRELLO_API_KEY'], 'token' : st.secrets['TRELLO_TOKEN']}
+
+    res = requests.post('https://cs0kji.deta.dev/url2json', json={"url" : url})
+    if res.status_code == 200 :
+        return res.json()
+    else:
+        return {}
+    """data = {'key' : st.secrets['TRELLO_API_KEY'], 'token' : st.secrets['TRELLO_TOKEN']}
     url_values = urllib.parse.urlencode(data)
     url = "{}.json?{}".format(url, url_values)
     result = urllib.request.urlopen(url)
     card_json = json.loads(result.read().decode('utf-8'))
-    return card_json
+    return card_json"""
 
 
 Users=Deta(os.environ.get('DETA_PROJECT_ID')).Base(os.environ.get('MILYNNUS_ST_USERS_BASE'))
