@@ -209,7 +209,7 @@ with st.expander("Open to read card description"):
     st.markdown(card_json['desc'], unsafe_allow_html=False)
 
 with st.expander("Open to inspect custom fields on card"):
-    data = [{'name' : cf.name , 'value' : cf.value} for cf in card.custom_fields]
+    data = [{'name' : cf.name , 'value' : cf.value} for cf in card_json['customFieldItems']]
     #data = [{'name' : cf.name, 'value' : cf._value, 'type' : cf.field_type} for cf in card.custom_fields]
     st.json(data)
 
