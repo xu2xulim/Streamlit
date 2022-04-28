@@ -172,7 +172,7 @@ else:
     cover = dl(card_json['cover']['scaled'][-1]['url'], st.secrets['TRELLO_API_KEY'], st.secrets['TRELLO_TOKEN'])
     st.image(cover)
 
-st.header(card.name)
+st.header(card_json['name'])
 
 with st.expander("Open to see card labels"):
 
