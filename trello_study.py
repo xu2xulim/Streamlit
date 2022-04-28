@@ -34,7 +34,7 @@ def dl (url, key, tkn) :
 
     data = webUrl.read()
     return data
-
+@st.cache(suppress_st_warning=True)
 def get_card_json (url):
     data = {'key' : st.secrets['TRELLO_API_KEY'], 'token' : st.secrets['TRELLO_TOKEN']}
     url_values = urllib.parse.urlencode(data)
