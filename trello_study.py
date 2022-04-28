@@ -239,5 +239,5 @@ with st.expander("Open to see images of attachments"):
 
 
                 with columns[ix]:
-                    columns[ix].image(res.content())
+                    columns[ix].image(res.text)
                 ix += 1
