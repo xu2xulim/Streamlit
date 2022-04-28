@@ -93,7 +93,7 @@ with st.sidebar:
                 username = st.text_input("Username")
                 password = st.text_input("Password", type="password")
                 username_unique = Users.fetch(query={"username" : username})
-                if username_unique == None:
+                if username_unique.count == 0:
                     pass
                 else:
                     st.write("The username {} has been used, please use another username".format(username))
