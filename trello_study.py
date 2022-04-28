@@ -14,7 +14,7 @@ import urllib.request
 import urllib.parse
 from trello import TrelloClient, List
 
-query_params = st.experimental_get_query_params()
+#query_params = st.experimental_get_query_params()
 
 @st.cache(suppress_st_warning=True)
 def trello_client(key, tkn):
@@ -70,9 +70,10 @@ with st.sidebar:
         if len(res.items) == 1:
             user = Users.get(res.items[0]["key"])
             card_dict = {}
-            for url in user["shared_cards"] :
-                card_json = get_card_json(url)
-                card_dict[card_json['name']] = card_json['id']
+            if "shared_cards" in user.keys():
+                for url in user["shared_cards"] :
+                    card_json = get_card_json(url)
+                    card_dict[card_json['name']] = card_json['id']
 
         option = st.selectbox(
             'Select the card you like to see',
