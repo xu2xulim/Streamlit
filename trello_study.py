@@ -30,25 +30,6 @@ def auth_init():
     return names, usernames, hashed_passwords
 
 @st.cache(suppress_st_warning=True)
-def trello_client(key, tkn):
-    client = TrelloClient(
-        api_key = key,
-        token = tkn,
-        )
-    mbr_id = client.fetch_json('members/me')['id']
-    return (client, mbr_id)
-#order = Deta(st.secrets["DETA_PROJECT_ID"]).Base("trello_orders")
-@st.cache(suppress_st_warning=True)
-def dl (url, key, tkn) :
-
-    request = urllib.request.Request(url)
-    request.add_header('Authorization', '''OAuth oauth_consumer_key="{}", oauth_token="{}"'''.format(key, tkn))
-    webUrl  = urllib.request.urlopen(request)
-
-    data = webUrl.read()
-    return data
-
-#@st.cache(suppress_st_warning=True)
 def get_card_json (url):
 
     res = requests.post('https://cs0kji.deta.dev/url2json', json={"url" : url})
@@ -56,13 +37,6 @@ def get_card_json (url):
         return res.json()
     else:
         return {}
-    """data = {'key' : st.secrets['TRELLO_API_KEY'], 'token' : st.secrets['TRELLO_TOKEN']}
-    url_values = urllib.parse.urlencode(data)
-    url = "{}.json?{}".format(url, url_values)
-    result = urllib.request.urlopen(url)
-    card_json = json.loads(result.read().decode('utf-8'))
-    return card_json"""
-
 
 Users=Deta(os.environ.get('DETA_PROJECT_ID')).Base(os.environ.get('MILYNNUS_ST_USERS_BASE'))
 
@@ -151,10 +125,6 @@ if not st.session_state['authentication_status']  :
 
 if 'card_id' in st.session_state:
     card_id = st.session_state['card_id']
-#st.header("Trello Study")
-"""(client, me) = trello_client(st.secrets['TRELLO_API_KEY'], st.secrets['TRELLO_TOKEN'])
-card = client.get_card(card_id)
-card_json = card._json_obj"""
 
 res = requests.post('https://cs0kji.deta.dev/card_json', json={"card_id" : card_id})
 if res.status_code == 200 :
@@ -170,21 +140,18 @@ if card_json['idAttachmentCover'] == None and card_json['manualCoverAttachment']
     st.image(webUrl.read())
 else:
     res = requests.post('https://cs0kji.deta.dev/get_attachment', json={"url" : card_json['cover']['scaled'][-1]['url']})
-    #data = dl(attach['url'],st.secrets['TRELLO_API_KEY'], st.secrets['TRELLO_TOKEN'] )
     if res.status_code == 200:
         st.image(res.content)
-    #cover = dl(card_json['cover']['scaled'][-1]['url'], st.secrets['TRELLO_API_KEY'], st.secrets['TRELLO_TOKEN'])
-    #st.image(cover)
 
 st.header(card_json['name'])
 
 with st.expander("Open to see card labels"):
 
     lbl_color='''<p id="px", style="background-color:{};color:{};font-size:150%;border: 1px solid black;">{}</p>'''
-    #lbl_color = '''<p style="color:{}">{}</p>'''
+
     card_labels = '''<head><style>#px{display:inline;}</style></head><body>'''
     for lbl in card_json['labels']:
-        #color_patch =  "{:<15}".format(lbl['color'])
+
         if lbl['color'] != None :
             color_patch = lbl['color'].rjust(5, '*')
 
@@ -224,8 +191,6 @@ with st.expander("Open to see status of checklists on card"):
         checklist_d = res.json()
         for cl in checklist_d.keys():
             st.write(cl)
-
-        #data = [{'state' : itm['state'], 'name' : itm['name'], 'due' : itm['due'], 'member' : assigned_name } for itm in cl.items]
             items = pd.DataFrame(checklist_d[cl]).fillna("Not Available")
             items["state"].replace({"complete": "✅", "incomplete": "❌"}, inplace=True)
             st.dataframe(items)
@@ -239,7 +204,6 @@ with st.expander("Open to see images of attachments"):
             ext = attach['name'].split(".")[-1]
             if (ext == 'jpg' or ext == 'png' or ext == 'jpeg') and attach['id'] != card_json['idAttachmentCover'] and ix <5:
                 res = requests.post('https://cs0kji.deta.dev/get_attachment', json={"url" : attach['url']})
-                #data = dl(attach['url'],st.secrets['TRELLO_API_KEY'], st.secrets['TRELLO_TOKEN'] )
                 if res.status_code == 200:
                     with columns[ix]:
                         columns[ix].image(res.content)
