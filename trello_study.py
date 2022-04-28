@@ -211,33 +211,20 @@ with st.expander("Open to read card description"):
 with st.expander("Open to inspect custom fields on card"):
     res = requests.post('https://cs0kji.deta.dev/card_customfields', json={"card_id" : card_id})
     if res.status_code == 200 :
-        #card_customfields=res.json()
-        #data = [{'name' : cf.name , 'value' : cf.value} for cf in card_customfields]
-    #data = [{'name' : cf.name, 'value' : cf._value, 'type' : cf.field_type} for cf in card.custom_fields]
         st.json(res.json())
 
 with st.expander("Open to see status of checklists on card"):
-    for cl in card.checklists :
-        st.write(cl.name)
-        data = []
-        for itm in cl.items:
-            data_item = {}
 
-            if itm['idMember'] != None:
-                assigned_name = client.get_member(itm['idMember']).full_name
-            else:
-                assigned_name = None
-
-            data_item['state'] = itm['state']
-            data_item['name'] = itm['name']
-            data_item['due'] = itm['due']
-            data_item['member'] = assigned_name
-            data.append(data_item)
+    res = requests.post('https://cs0kji.deta.dev/card_checklistitems', json={"card_id" : card_id})
+    if res.status_code == 200 :
+        checklist_d = res.json()
+        for cl in checklist_d.keys():
+            st.write(cl)
 
         #data = [{'state' : itm['state'], 'name' : itm['name'], 'due' : itm['due'], 'member' : assigned_name } for itm in cl.items]
-        items = pd.DataFrame(data).fillna("Not Available")
-        items["state"].replace({"complete": "✅", "incomplete": "❌"}, inplace=True)
-        st.dataframe(items)
+            items = pd.DataFrame(checklist_d[cl]).fillna("Not Available")
+            items["state"].replace({"complete": "✅", "incomplete": "❌"}, inplace=True)
+            st.dataframe(items)
 
 with st.expander("Open to see images of attachments"):
     columns = st.columns(5)
