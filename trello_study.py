@@ -97,9 +97,9 @@ with st.sidebar:
                 if username_unique.count == 0:
                     pass
                 else:
-                    st.write("The username {} has been used, please use another username".format(username))
+                    st.write("The username : {} has been used, please use another preferred username.".format(username))
                     st.stop()
-                
+
                 if submit:
                     Users.put({'name' : name, 'username' : username, 'hash_password' : stauth.Hasher([password]).generate()[0]})
 
