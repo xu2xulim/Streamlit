@@ -14,7 +14,6 @@ import urllib.request
 import urllib.parse
 from trello import TrelloClient, List
 
-#query_params = st.experimental_get_query_params()
 @st.cache(suppress_st_warning=True)
 def auth_init():
 
@@ -118,8 +117,6 @@ with st.sidebar:
                             Users.update({"shared_cards" : shared_cards }, user["key"])
                             st.write("Card with url {} is shared with {}".format(url, username))
 
-
-
 if not st.session_state['authentication_status']  :
     st.stop()
 
@@ -131,10 +128,9 @@ if res.status_code == 200 :
     card_json=res.json()
 else:
     st.stop()
-#st.write(card_json)
+
 if card_json['idAttachmentCover'] == None and card_json['manualCoverAttachment'] == True :
     request = urllib.request.Request(card_json['cover']['scaled'][-1]['url'])
-    #request.add_header('Authorization', '''OAuth oauth_consumer_key="{}", oauth_token="{}"'''.format(key, tkn))
     webUrl  = urllib.request.urlopen(request)
 
     st.image(webUrl.read())
