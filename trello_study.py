@@ -237,8 +237,7 @@ with st.expander("Open to see images of attachments"):
                 res = requests.post('https://cs0kji.deta.dev/get_attachment', json={"url" : attach['url']})
                 #data = dl(attach['url'],st.secrets['TRELLO_API_KEY'], st.secrets['TRELLO_TOKEN'] )
                 test_string = res.json()['bytes']
-                st.write(res.json()['bytes'])
-                data = bytes(test_string, 'utf-8')
+                data = bytes(test_string)
                 with columns[ix]:
                     columns[ix].image(data)
                 ix += 1
