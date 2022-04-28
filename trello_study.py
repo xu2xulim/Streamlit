@@ -236,8 +236,7 @@ with st.expander("Open to see images of attachments"):
             if (ext == 'jpg' or ext == 'png' or ext == 'jpeg') and attach['id'] != card_json['idAttachmentCover'] and ix <5:
                 res = requests.post('https://cs0kji.deta.dev/get_attachment', json={"url" : attach['url']})
                 #data = dl(attach['url'],st.secrets['TRELLO_API_KEY'], st.secrets['TRELLO_TOKEN'] )
-
-
-                with columns[ix]:
-                    columns[ix].image(res.text)
-                ix += 1
+                if res.status_code == 200:
+                    with columns[ix]:
+                        columns[ix].image(res.content)
+                    ix += 1
