@@ -209,9 +209,12 @@ with st.expander("Open to read card description"):
     st.markdown(card_json['desc'], unsafe_allow_html=False)
 
 with st.expander("Open to inspect custom fields on card"):
-    data = [{'name' : cf.name , 'value' : cf.value} for cf in card_json['customFieldItems']]
+    res = requests.post('https://cs0kji.deta.dev/card_customfields', json={"card_id" : card_id})
+    if res.status_code == 200 :
+        #card_customfields=res.json()
+        #data = [{'name' : cf.name , 'value' : cf.value} for cf in card_customfields]
     #data = [{'name' : cf.name, 'value' : cf._value, 'type' : cf.field_type} for cf in card.custom_fields]
-    st.json(data)
+        st.json(res.json())
 
 with st.expander("Open to see status of checklists on card"):
     for cl in card.checklists :
