@@ -93,13 +93,13 @@ with st.sidebar:
                 username = st.text_input("Username")
                 password = st.text_input("Password", type="password")
                 username_unique = Users.fetch(query={"username" : username})
+                submit = st.form_submit_button("Submit")
                 if username_unique.count == 0:
                     pass
                 else:
                     st.write("The username {} has been used, please use another username".format(username))
                     st.stop()
-                submit = st.form_submit_button("Submit")
-
+                
                 if submit:
                     Users.put({'name' : name, 'username' : username, 'hash_password' : stauth.Hasher([password]).generate()[0]})
 
