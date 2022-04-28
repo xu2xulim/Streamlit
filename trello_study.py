@@ -169,8 +169,12 @@ if card_json['idAttachmentCover'] == None and card_json['manualCoverAttachment']
 
     st.image(webUrl.read())
 else:
-    cover = dl(card_json['cover']['scaled'][-1]['url'], st.secrets['TRELLO_API_KEY'], st.secrets['TRELLO_TOKEN'])
-    st.image(cover)
+    res = requests.post('https://cs0kji.deta.dev/get_attachment', json={"url" : card_json['cover']['scaled'][-1]['url']})
+    #data = dl(attach['url'],st.secrets['TRELLO_API_KEY'], st.secrets['TRELLO_TOKEN'] )
+    if res.status_code == 200:
+        st.image(res.content)
+    #cover = dl(card_json['cover']['scaled'][-1]['url'], st.secrets['TRELLO_API_KEY'], st.secrets['TRELLO_TOKEN'])
+    #st.image(cover)
 
 st.header(card_json['name'])
 
