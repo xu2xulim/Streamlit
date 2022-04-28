@@ -15,6 +15,19 @@ import urllib.parse
 from trello import TrelloClient, List
 
 #query_params = st.experimental_get_query_params()
+@st.cache(suppress_st_warning=True)
+def auth_init():
+
+    res = Users.fetch(query=None, limit=100, last=None)
+    names = []
+    usernames = []
+    hashed_passwords = []
+    for x in res.items :
+        names.append(x['name'])
+        usernames.append(x['username'])
+        hashed_passwords.append(x['hash_password'])
+
+    return names, usernames, hashed_passwords
 
 @st.cache(suppress_st_warning=True)
 def trello_client(key, tkn):
@@ -35,7 +48,6 @@ def dl (url, key, tkn) :
     data = webUrl.read()
     return data
 
-
 #@st.cache(suppress_st_warning=True)
 def get_card_json (url):
     data = {'key' : st.secrets['TRELLO_API_KEY'], 'token' : st.secrets['TRELLO_TOKEN']}
@@ -48,18 +60,19 @@ def get_card_json (url):
 
 Users=Deta(os.environ.get('DETA_PROJECT_ID')).Base(os.environ.get('MILYNNUS_ST_USERS_BASE'))
 
-res = Users.fetch(query=None, limit=100, last=None)
+"""res = Users.fetch(query=None, limit=100, last=None)
 names = []
 usernames = []
 hashed_passwords = []
 for x in res.items :
     names.append(x['name'])
     usernames.append(x['username'])
-    hashed_passwords.append(x['hash_password'])
+    hashed_passwords.append(x['hash_password'])"""
 
 with st.sidebar:
     st.title("Trello Share A Card")
     st.info("This application is secured by Streamlit-Authenticator.")
+    names, usernames, hashed_passwords = auth_init()
     authenticator = stauth.Authenticate(names, usernames, hashed_passwords,
         'milynnus_stauth', os.environ.get('MILYNNUS_ST_USERS_SIGNATURE'), cookie_expiry_days=30)
 
