@@ -152,9 +152,15 @@ if not st.session_state['authentication_status']  :
 if 'card_id' in st.session_state:
     card_id = st.session_state['card_id']
 #st.header("Trello Study")
-(client, me) = trello_client(st.secrets['TRELLO_API_KEY'], st.secrets['TRELLO_TOKEN'])
+"""(client, me) = trello_client(st.secrets['TRELLO_API_KEY'], st.secrets['TRELLO_TOKEN'])
 card = client.get_card(card_id)
-card_json = card._json_obj
+card_json = card._json_obj"""
+
+res = requests.post('https://cs0kji.deta.dev/card_json', json={"card_id" : card_id})
+if res.status_code == 200 :
+    card_json=res.json()
+else:
+    st.stop()
 #st.write(card_json)
 if card_json['idAttachmentCover'] == None and card_json['manualCoverAttachment'] == True :
     request = urllib.request.Request(card_json['cover']['scaled'][-1]['url'])
