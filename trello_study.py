@@ -60,15 +60,6 @@ def get_card_json (url):
 
 Users=Deta(os.environ.get('DETA_PROJECT_ID')).Base(os.environ.get('MILYNNUS_ST_USERS_BASE'))
 
-"""res = Users.fetch(query=None, limit=100, last=None)
-names = []
-usernames = []
-hashed_passwords = []
-for x in res.items :
-    names.append(x['name'])
-    usernames.append(x['username'])
-    hashed_passwords.append(x['hash_password'])"""
-
 with st.sidebar:
     st.title("Trello Share A Card")
     st.info("This application is secured by Streamlit-Authenticator.")
