@@ -32,4 +32,13 @@ st.write("Something above")
 db = Deta(os.environ.get('DETA_PROJECT_ID')).Base("item_alert")
 res = db.fetch()
 json_obj = st.json(res.items)
+events = []
+for itm in res.items:
+    dd = {}
+    due = itm['item_due']
+    dd["start_date"] = "month" : due[5:6], "day" : due[8:9], "year" :due[0:3]
+    dd["text"] = {"headline" : itm['item_state'], "text" : itm['item_name']}
+    events.append(dd)
+st.write(events)
+json_obj = {"events" : events}
 timeline(json_obj)
