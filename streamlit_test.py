@@ -1,7 +1,7 @@
 import streamlit as st
 
 import streamlit.components.v1 as components
-import streamlit_timeline as timeline
+from streamlit_timeline as timeline
 from deta import Deta
 import os
 import json
@@ -32,7 +32,6 @@ st.write("Something above")
 
 db = Deta(os.environ.get('DETA_PROJECT_ID')).Base("item_alert")
 res = db.fetch()
-json_obj = st.json(res.items)
 events = []
 for itm in res.items:
     dd = {}
@@ -40,8 +39,8 @@ for itm in res.items:
     dd["start_date"] = {"month" : due[5:7], "day" : due[8:10], "year" :due[0:4]}
     dd["text"] = {"headline" : itm['item_state'], "text" : itm['item_name']}
     events.append(dd)
-st.write(events)
+
 event_dict = {}
 event_dict['events'] = events
-json_obj= json.dumps(event_dict)
-timeline(json_obj)
+
+timeline(st.json(event_dict))
