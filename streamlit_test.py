@@ -1,7 +1,7 @@
 import streamlit as st
 
 import streamlit.components.v1 as components
-from streamlit_timeline as timeline
+import streamlit_timeline as timeline
 from deta import Deta
 import os
 import json
