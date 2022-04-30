@@ -15,7 +15,7 @@ html = '''<!DOCTYPE html>
     </head>
     <body>
         <img src="https://cdn.wayscript.com/static/img/logos/logo.png">
-        <div>Hello World</div>
+        <!-- <div>Hello World</div> -->
         <blockquote class="trello-card-compact">
           <a href="https://trello.com/c/AKtsBUPw/79-setup-your-smtp-on-contalist-and-test">Trello Card</a>
         </blockquote>
