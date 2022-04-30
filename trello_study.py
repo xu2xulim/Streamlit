@@ -199,7 +199,7 @@ with st.expander("Open to see images of attachments"):
         for attach in res.json()['attachments']:
             ext = attach['name'].split(".")[-1]
             if (ext == 'jpg' or ext == 'png' or ext == 'jpeg') and attach['id'] != card_json['idAttachmentCover'] and ix <5:
-                res = await requests.post('https://cs0kji.deta.dev/get_attachment', json={"url" : attach['url']})
+                res = requests.post('https://cs0kji.deta.dev/get_attachment', json={"url" : attach['url']})
                 if res.status_code == 200:
                     with columns[ix]:
                         columns[ix].image(res.content)
