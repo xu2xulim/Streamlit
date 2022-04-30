@@ -42,5 +42,5 @@ for itm in res.items:
 
 event_dict = {}
 event_dict['events'] = events
-
-timeline(st.json(event_dict))
+json_obj = json.dumps(event_dict)
+timeline(json_obj)
