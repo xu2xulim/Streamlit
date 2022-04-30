@@ -19,11 +19,6 @@ html = '''<!DOCTYPE html>
         <blockquote class="trello-card-compact">
           <a href="https://trello.com/c/AKtsBUPw/79-setup-your-smtp-on-contalist-and-test">Trello Card</a>
         </blockquote>
-        <script>
-            if (window.TrelloCards) {
-                setTimeout(() => window.TrelloCards.load(), 1000);
-                }
-        </script>
         <script src="https://p.trellocdn.com/embed.min.js"></script>
     </body>
 </html>'''
