@@ -23,5 +23,5 @@ html = '''<!DOCTYPE html>
     </body>
 </html>'''
 
-components.iframe(html, height=150)
+components.html(html, height=150)
 st.write("Something above")
