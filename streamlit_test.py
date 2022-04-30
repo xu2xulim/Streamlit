@@ -16,6 +16,7 @@ html = '''<!DOCTYPE html>
     <body>
         <img src="https://cdn.wayscript.com/static/img/logos/logo.png">
         <div>Hello World</div>
+        <script src="https://p.trellocdn.com/embed.min.js"></script>
     </body>
 </html>'''
 
