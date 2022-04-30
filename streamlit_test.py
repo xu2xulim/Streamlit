@@ -1,7 +1,7 @@
 import streamlit as st
 
 import streamlit.components.v1 as components
-import streamlit_timeline as timeline
+from streamlit_timeline import timeline
 from deta import Deta
 import os
 import json
@@ -43,4 +43,4 @@ for itm in res.items:
 event_dict = {}
 event_dict['events'] = events
 
-timeline.timeline(st.json(event_dict))
+timeline(st.json(event_dict))
