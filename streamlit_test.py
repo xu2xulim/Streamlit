@@ -40,5 +40,7 @@ for itm in res.items:
     dd["text"] = {"headline" : itm['item_state'], "text" : itm['item_name']}
     events.append(dd)
 st.write(events)
-json_obj = {"events" : events}
+json_obj = {}
+json_obj['events'] = events
+
 timeline(json_obj)
