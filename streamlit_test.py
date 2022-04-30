@@ -29,7 +29,7 @@ html = '''<!DOCTYPE html>
 components.html(html, height=150)
 st.write("Something above")
 
-db = Deta(os.environ.get('DETA_PROJECT_ID').Base("item_alert")
+db = Deta(os.environ.get('DETA_PROJECT_ID')).Base("item_alert")
 res = db.fetch()
 json_obj = st.json(res.items)
 timeline(json_obj)
