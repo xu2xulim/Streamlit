@@ -12,7 +12,7 @@ import requests
 
 import urllib.request
 import urllib.parse
-from trello import TrelloClient, List
+#from trello import TrelloClient, List
 
 @st.cache(suppress_st_warning=True)
 def auth_init():
