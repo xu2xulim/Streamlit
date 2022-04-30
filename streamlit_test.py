@@ -6,7 +6,7 @@ st.write("Something below")
   <a href="https://trello.com/c/AKtsBUPw/79-setup-your-smtp-on-contalist-and-test">Trello Card</a>
 </blockquote>
 <script src="https://p.trellocdn.com/embed.min.js"></script>''')"""
-html = '''<!DOCTYPE html>
+html = f'''<!DOCTYPE html>
 <html lang="en">
     <head>
         <meta charset="utf-8">
@@ -28,5 +28,5 @@ html = '''<!DOCTYPE html>
     </body>
 </html>'''
 
-components.html(html)
+components.html(html, height=150)
 st.write("Something above")
