@@ -1,6 +1,9 @@
 import streamlit as st
 
 import streamlit.components.v1 as components
+import streamlit_timeline as timeline
+from deta import Deta
+import os
 st.write("Something below")
 """components.html('''<blockquote class="trello-card-compact">
   <a href="https://trello.com/c/AKtsBUPw/79-setup-your-smtp-on-contalist-and-test">Trello Card</a>
@@ -25,3 +28,8 @@ html = '''<!DOCTYPE html>
 
 components.html(html, height=150)
 st.write("Something above")
+
+db = Deta(os.environ.get('DETA_PROJECT_ID').Base("item_alert")
+res = db.fetch()
+json_obj = st.json(res.items)
+timeline(json_obj)
