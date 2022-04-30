@@ -36,7 +36,7 @@ events = []
 for itm in res.items:
     dd = {}
     due = itm['item_due']
-    dd["start_date"] = {"month" : due[5:6], "day" : due[8:9], "year" :due[0:3]}
+    dd["start_date"] = {"month" : due[5:7], "day" : due[8:10], "year" :due[0:4]}
     dd["text"] = {"headline" : itm['item_state'], "text" : itm['item_name']}
     events.append(dd)
 st.write(events)
