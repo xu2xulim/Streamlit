@@ -4,6 +4,7 @@ import streamlit.components.v1 as components
 import streamlit_timeline as timeline
 from deta import Deta
 import os
+import json
 st.write("Something below")
 """components.html('''<blockquote class="trello-card-compact">
   <a href="https://trello.com/c/AKtsBUPw/79-setup-your-smtp-on-contalist-and-test">Trello Card</a>
@@ -40,7 +41,7 @@ for itm in res.items:
     dd["text"] = {"headline" : itm['item_state'], "text" : itm['item_name']}
     events.append(dd)
 st.write(events)
-json_obj = {}
-json_obj['events'] = events
-
+event_dict = {}
+event_dict['events'] = events
+json_obj= json.dumps(event_dict)
 timeline(json_obj)
