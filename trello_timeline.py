@@ -31,5 +31,5 @@ card_json = res.json()
 for event in events:
     card_json['events'].append(event)
 st.title("Trello TimeLine")
-st.set_page_config(layout="wide")
+
 timeline(card_json)
