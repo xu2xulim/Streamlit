@@ -6,7 +6,7 @@ from deta import Deta
 import os
 import requests
 import json
-st.write("Something below")
+"""st.write("Something below")
 """components.html('''<blockquote class="trello-card-compact">
   <a href="https://trello.com/c/AKtsBUPw/79-setup-your-smtp-on-contalist-and-test">Trello Card</a>
 </blockquote>
@@ -44,8 +44,8 @@ for itm in res.items:
 event_dict = {}
 event_dict['events'] = events
 json_obj = json.dumps(event_dict)
-timeline(json_obj)
+timeline(json_obj)"""
 
 res = requests.post("https://70297.wayscript.io/timeline")
-st(st.json(res.json()))
+
 timeline(res.json())
