@@ -47,5 +47,5 @@ json_obj = json.dumps(event_dict)
 timeline(json_obj)
 
 res = requests.post("https://70297.wayscript.io/timeline")
-
+st(st.json(res.json()))
 timeline(res.json())
