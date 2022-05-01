@@ -48,4 +48,8 @@ timeline(json_obj)
 
 res = requests.post("https://70297.wayscript.io/timeline")
 
-timeline(res.json())
+card_json = res.json()
+for event in events:
+    card_json['events'].append(event)
+
+timeline(card_json)
