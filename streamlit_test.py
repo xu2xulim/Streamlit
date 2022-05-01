@@ -4,6 +4,7 @@ import streamlit.components.v1 as components
 from streamlit_timeline import timeline
 from deta import Deta
 import os
+import requests
 import json
 st.write("Something below")
 """components.html('''<blockquote class="trello-card-compact">
@@ -44,3 +45,7 @@ event_dict = {}
 event_dict['events'] = events
 json_obj = json.dumps(event_dict)
 timeline(json_obj)
+
+res = requests.post("https://70297.wayscript.io/timeline")
+
+timeline(res.json())
