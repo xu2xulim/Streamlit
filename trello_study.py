@@ -13,6 +13,11 @@ import requests
 import urllib.request
 import urllib.parse
 #from trello import TrelloClient, List
+from dateutil.parser import parse
+from datetime import datetime
+import pytz
+tz = pytz.timezone('Asia/Singapore')
+
 
 @st.cache(suppress_st_warning=True)
 def auth_init():
@@ -160,7 +165,7 @@ with st.expander("Open to see card labels"):
 with st.expander("Open to see card start and due status"):
     #st. write(card_json)
     dates = {}
-    dates['Start'] = card_json['start']
+    dates['Start'] = parse(card_json['start']).astimezone(tz)
     dates['Due'] = card_json['due']
     dates['Completed?'] = card_json['dueComplete']
 
