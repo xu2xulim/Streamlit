@@ -124,17 +124,15 @@ if 'card_id' in st.session_state:
     card_id = st.session_state['card_id']
 
 st.write("New Version")
-#res = requests.post('https://cs0kji.deta.dev/card_json', json={"card_id" : card_id})
+res = requests.post('https://cs0kji.deta.dev/card_json', json={"card_id" : card_id})
 res = requests.post('https://70297.wayscript.io/email2board', json={"card_id" : card_id})
 
 if res.status_code == 200 :
-    #card_json=res.json()
-    card_html = res.text
-    st.write(card_html)
+    card_json=res.json()
+
 else:
     st.stop()
-components.html(card_html)
-st.stop()
+
 if card_json['idAttachmentCover'] == None and card_json['manualCoverAttachment'] == True :
     request = urllib.request.Request(card_json['cover']['scaled'][-1]['url'])
     webUrl  = urllib.request.urlopen(request)
@@ -148,8 +146,18 @@ else:
 st.header(card_json['name'])
 
 with st.expander("Open to see card labels"):
+    lbl_head = '''<p style="margin: 0;"><span style="background-color:rgb(252, 252, 252);"><span class="ql-cursor">﻿</span><span class="cl-trello-card-labels">'''
+    lbl_tail = '''</span></span></p>'''
+    for lbl in card.labels:
+        lbl_name = lbl.name
+        if lbl.name == "":
+            lbl_name = lbl.color
+        itm = '''<b style="color: {}; margin-right: 1.5em;">■ {}</b>'''.format(lbl.color, lbl_name)
+        lbl_head = lbl_head + itm
 
-    lbl_color='''<p id="px", style="background-color:{};color:{};font-size:150%;border: 1px solid black;">{}</p>'''
+    #data['labels'] = lbl_head + lbl_tail
+    components.html(lbl_head + lbl_tail)
+    """lbl_color='''<p id="px", style="background-color:{};color:{};font-size:150%;border: 1px solid black;">{}</p>'''
 
     card_labels = '''<head><style>#px{display:inline;}</style></head><body>'''
     for lbl in card_json['labels']:
@@ -166,7 +174,7 @@ with st.expander("Open to see card labels"):
                 card_labels = card_labels + lbl_color.format(lbl['color'], 'white', lbl['name']) + "   "
 
     card_labels=card_labels + "</body>"
-    components.html(card_labels)
+    components.html(card_labels)"""
 
 with st.expander("Open to see card start and due status"):
     #st. write(card_json)
