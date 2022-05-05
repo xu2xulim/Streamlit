@@ -166,7 +166,7 @@ with st.expander("Open to see card start and due status"):
     #st. write(card_json)
     dates = {}
     dates['Start'] = parse(card_json['start']).astimezone(tz).strftime('%Y-%m-%d')
-    dates['Due'] = card_json['due']
+    dates['Due'] = parse(card_json['due']).astimezone(tz).strftime('%Y-%m-%d %H:%M')
     dates['Completed?'] = card_json['dueComplete']
 
     st.json(dates)
