@@ -155,26 +155,7 @@ with st.expander("Open to see card labels"):
         itm = '''<b style="color: {}; margin-right: 1.5em;">■ {}</b>'''.format(lbl['color'], lbl_name)
         lbl_head = lbl_head + itm
 
-    #data['labels'] = lbl_head + lbl_tail
     components.html(lbl_head + lbl_tail)
-    """lbl_color='''<p id="px", style="background-color:{};color:{};font-size:150%;border: 1px solid black;">{}</p>'''
-
-    card_labels = '''<head><style>#px{display:inline;}</style></head><body>'''
-    for lbl in card_json['labels']:
-
-        if lbl['color'] != None :
-            color_patch = lbl['color'].rjust(5, '*')
-
-        if lbl['name'] == "":
-            card_labels = card_labels + lbl_color.format(lbl['color'],lbl['color'], color_patch) + "   "
-        else:
-            if lbl['color'] == 'yellow' or lbl['color'] == None:
-                card_labels = card_labels + lbl_color.format(lbl['color'], 'black', lbl['name']) + "   "
-            else:
-                card_labels = card_labels + lbl_color.format(lbl['color'], 'white', lbl['name']) + "   "
-
-    card_labels=card_labels + "</body>"
-    components.html(card_labels)"""
 
 with st.expander("Open to see card start and due status"):
     #st. write(card_json)
