@@ -131,10 +131,9 @@ if res.status_code == 200 :
     #card_json=res.json()
     card_html = res.json()['card_html']
     st.write(card_html)
-    components.html(card_html)
 else:
     st.stop()
-
+components.html(card_html)
 st.stop()
 if card_json['idAttachmentCover'] == None and card_json['manualCoverAttachment'] == True :
     request = urllib.request.Request(card_json['cover']['scaled'][-1]['url'])
