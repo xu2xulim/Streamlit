@@ -148,7 +148,7 @@ st.header(card_json['name'])
 with st.expander("Open to see card labels"):
     lbl_head = '''<p style="margin: 0;"><span style="background-color:rgb(252, 252, 252);"><span class="ql-cursor">﻿</span><span class="cl-trello-card-labels">'''
     lbl_tail = '''</span></span></p>'''
-    for lbl in card.labels:
+    for lbl in card_json['labels']:
         lbl_name = lbl.name
         if lbl.name == "":
             lbl_name = lbl.color
