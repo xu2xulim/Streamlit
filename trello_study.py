@@ -125,11 +125,11 @@ if 'card_id' in st.session_state:
 
 st.write("New Version")
 #res = requests.post('https://cs0kji.deta.dev/card_json', json={"card_id" : card_id})
-res = requests.post('https://cs0kji.deta.dev/card_html', json={"card_id" : card_id})
+res = requests.post('https://70297.wayscript.io/email2board', json={"card_id" : card_id})
 
 if res.status_code == 200 :
     #card_json=res.json()
-    card_html = res.json()['card_html']
+    card_html = res.text
     st.write(card_html)
 else:
     st.stop()
