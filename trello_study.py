@@ -130,6 +130,7 @@ res = requests.post('https://cs0kji.deta.dev/card_html', json={"card_id" : card_
 if res.status_code == 200 :
     #card_json=res.json()
     card_html = res.json()['card_html']
+    st.write(card_html)
     components.html(card_html)
 else:
     st.stop()
