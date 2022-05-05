@@ -123,12 +123,18 @@ if not st.session_state['authentication_status']  :
 if 'card_id' in st.session_state:
     card_id = st.session_state['card_id']
 
-res = requests.post('https://cs0kji.deta.dev/card_json', json={"card_id" : card_id})
+
+#res = requests.post('https://cs0kji.deta.dev/card_json', json={"card_id" : card_id})
+res = requests.post('https://cs0kji.deta.dev/card_html', json={"card_id" : card_id})
+
 if res.status_code == 200 :
-    card_json=res.json()
+    #card_json=res.json()
+    card_html = res.json()['card_html']
+    components.html(card_html)
 else:
     st.stop()
 
+st.stop()
 if card_json['idAttachmentCover'] == None and card_json['manualCoverAttachment'] == True :
     request = urllib.request.Request(card_json['cover']['scaled'][-1]['url'])
     webUrl  = urllib.request.urlopen(request)
