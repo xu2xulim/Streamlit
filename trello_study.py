@@ -208,6 +208,15 @@ with st.expander("Open to see status of checklists on card"):
             st.write(cl)
             items = pd.DataFrame(checklist_d[cl]).fillna("Not Available")
             items["state"].replace({"complete": "✅", "incomplete": "❌"}, inplace=True)
+            ix = 0
+            for itm in items["due"] :
+                if itm != None:
+                    try:
+                        items["due"].iloc[ix] = parse(itm).astimezone(tz).strftime('%Y-%m-%d')
+                    except:
+                        pass
+                ix += 1
+
             st.dataframe(items)
 
 with st.expander("Open to see images of attachments"):
