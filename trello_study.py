@@ -178,10 +178,21 @@ with st.expander("Open to read card description"):
 with st.expander("Open to inspect custom fields on card"):
     res = requests.post('https://cs0kji.deta.dev/card_customfields', json={"card_id" : card_id})
     if res.status_code == 200 :
+        cf_list = res.json()[customfields]
+        ix = 0
+        for x in cf_list:
+            if x['Value'][-1] == "Z" and x['Value'].index("T") == 10:
+                try:
+                    cf_list[ix]['Value'] = parse(x['Value']).astimezone(tz).strftime('%Y-%m-%d %H:%M')
+            ix += 1
+
+
+
+
         #customfields = pd.DataFrame(res.json()['customfields'])
         #customfields = df.set_index(['Name', 'Value'])
         #st.write(customfields)
-        st.json(res.json()['customfields'])
+        st.json(cf_list)
 
 with st.expander("Open to see status of checklists on card"):
 
