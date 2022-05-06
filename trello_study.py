@@ -126,7 +126,7 @@ if not st.session_state['authentication_status']  :
     st.stop()
 refresh = st.button("Refresh")
 if refresh :
-    st.experimental.rerun()
+    st.experimental_rerun()
 
 if 'card_id' in st.session_state:
     card_id = st.session_state['card_id']
