@@ -217,7 +217,8 @@ with st.expander("Open to see location on card"):
                 ).add_to(m)
 
                 # call to render Folium map in Streamlit
-            folium_static(m)
+            with st.empty():
+                folium_static(m)
 
 with st.expander("Open to see status of checklists on card"):
 
