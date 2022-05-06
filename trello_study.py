@@ -180,7 +180,7 @@ with st.expander("Open to inspect custom fields on card"):
     if res.status_code == 200 :
         customfields = pd.DataFrame(res.json()['customfields'])
         #customfields = df.set_index(['Name', 'Value'])
-        st.dataframe(customfields)
+        st.write(customfields)
         #st.json(res.json())
 
 with st.expander("Open to see status of checklists on card"):
