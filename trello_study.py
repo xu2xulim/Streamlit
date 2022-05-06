@@ -178,7 +178,7 @@ with st.expander("Open to read card description"):
 with st.expander("Open to inspect custom fields on card"):
     res = requests.post('https://cs0kji.deta.dev/card_customfields', json={"card_id" : card_id})
     if res.status_code == 200 :
-        cf_list = res.json()[customfields]
+        cf_list = res.json()['customfields']
         ix = 0
         for x in cf_list:
             if x['Value'][-1] == "Z" and x['Value'].index("T") == 10:
