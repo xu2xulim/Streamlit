@@ -201,7 +201,7 @@ with st.expander("Open to see location on card"):
     if res.status_code == 200 :
         st.json(res.json())
         location = pd.DataFrame(res.json()['coordinates'], columns=['lat', 'lon'])
-        st.map(data=location, zoom=1000, use_container_width=True)
+        st.map(data=location, zoom=20, use_container_width=True)
 
 
 with st.expander("Open to see status of checklists on card"):
