@@ -194,13 +194,13 @@ with st.expander("Open to inspect custom fields on card"):
 
             ix += 1
 
-
-
-
-        #customfields = pd.DataFrame(res.json()['customfields'])
-        #customfields = df.set_index(['Name', 'Value'])
-        #st.write(customfields)
         st.json(cf_list)
+
+with st.expander("Open to see location on card"):
+    res = requests.post('https://cs0kji.deta.dev/card_location', json={"card_id" : card_id})
+    if res.status_code == 200 :
+        st.json(res.json())
+        
 
 with st.expander("Open to see status of checklists on card"):
 
