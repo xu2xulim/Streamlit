@@ -124,11 +124,14 @@ with st.sidebar:
 
 if not st.session_state['authentication_status']  :
     st.stop()
+refresh = st.button("Refresh")
+if refresh :
+    st.experimental.rerun()
 
 if 'card_id' in st.session_state:
     card_id = st.session_state['card_id']
 
-st.write("New Version")
+
 res = requests.post('https://cs0kji.deta.dev/card_json', json={"card_id" : card_id})
 #res = requests.post('https://70297.wayscript.io/email2board', json={"card_id" : card_id})
 
