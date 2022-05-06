@@ -201,20 +201,22 @@ with st.expander("Open to inspect custom fields on card"):
 with st.expander("Open to see location on card"):
     res = requests.post('https://cs0kji.deta.dev/card_location', json={"card_id" : card_id})
     if res.status_code == 200 :
-        lat = res.json()['coordinates']['latitude']
-        lon = res.json()['coordinates']['longitude']
-        #st.json(res.json())
-        #location = pd.DataFrame(res.json()['coordinates'], columns=['lat', 'lon'])
-        #st.map(data=location, zoom=20, use_container_width=True)
-        m = folium.Map(location=[lat, lon], zoom_start=16)
-        # add marker for Liberty Bell
-        tooltip = "Liberty Bell"
-        folium.Marker(
-            [lat, lon], popup="Liberty Bell", tooltip=tooltip
-            ).add_to(m)
+        result=res.json()
+        if 'latitude' in result['coordinates'].keys() and 'longitude' in result['coordinates'].keys() :
+            lat = result['coordinates']['latitude']
+            lon = result['coordinates']['longitude']
+            #st.json(res.json())
+            #location = pd.DataFrame(res.json()['coordinates'], columns=['lat', 'lon'])
+            #st.map(data=location, zoom=20, use_container_width=True)
+            m = folium.Map(location=[lat, lon], zoom_start=16)
+            # add marker for Liberty Bell
+            tooltip = result['address']
+            folium.Marker(
+                [lat, lon], popup=result['locationName'], tooltip=tooltip
+                ).add_to(m)
 
-        # call to render Folium map in Streamlit
-        folium_static(m)
+                # call to render Folium map in Streamlit
+            folium_static(m)
 
 with st.expander("Open to see status of checklists on card"):
 
