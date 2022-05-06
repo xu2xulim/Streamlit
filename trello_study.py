@@ -181,11 +181,13 @@ with st.expander("Open to inspect custom fields on card"):
         cf_list = res.json()['customfields']
         ix = 0
         for x in cf_list:
-            if x['Value'][-1] == "Z" and x['Value'].index("T") == 10:
-                try:
-                    cf_list[ix]['Value'] = parse(x['Value']).astimezone(tz).strftime('%Y-%m-%d %H:%M')
-                except:
-                    pass
+            if isinstance(x['Value'], (str)):
+                if x['Value'][-1] == "Z" and x['Value'].index("T") == 10:
+                    try:
+                        cf_list[ix]['Value'] = parse(x['Value']).astimezone(tz).strftime('%Y-%m-%d %H:%M')
+                    except:
+                        pass
+
 
             ix += 1
 
