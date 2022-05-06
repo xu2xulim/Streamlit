@@ -186,6 +186,7 @@ with st.expander("Open to inspect custom fields on card"):
                     cf_list[ix]['Value'] = parse(x['Value']).astimezone(tz).strftime('%Y-%m-%d %H:%M')
                 except:
                     pass
+
             ix += 1
 
 
