@@ -254,4 +254,4 @@ with st.expander("Open to see images of attachments"):
                         columns[ix].image(res.content)
                     ix += 1
                 else:
-                    st.warning(res.text)
+                    st.warning(res.status_code)
