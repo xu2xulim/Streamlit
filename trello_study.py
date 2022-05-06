@@ -203,12 +203,13 @@ with st.expander("Open to see location on card"):
     if res.status_code == 200 :
         result=res.json()
         if 'latitude' in result['coordinates'].keys() and 'longitude' in result['coordinates'].keys() :
+            st.json(result)
             lat = result['coordinates']['latitude']
             lon = result['coordinates']['longitude']
             #st.json(res.json())
             #location = pd.DataFrame(res.json()['coordinates'], columns=['lat', 'lon'])
             #st.map(data=location, zoom=20, use_container_width=True)
-            m = folium.Map(location=[lat, lon], zoom_start=16)
+            m = folium.Map(location=[lat, lon], zoom_start=16, width=1200, height=700)
             # add marker for Liberty Bell
             tooltip = result['address']
             folium.Marker(
