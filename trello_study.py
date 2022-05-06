@@ -209,7 +209,7 @@ with st.expander("Open to see location on card"):
             #st.json(res.json())
             #location = pd.DataFrame(res.json()['coordinates'], columns=['lat', 'lon'])
             #st.map(data=location, zoom=20, use_container_width=True)
-            m = folium.Map(location=[lat, lon], zoom_start=16, width=800, height=800)
+            m = folium.Map(location=[lat, lon], zoom_start=16)
             # add marker for Liberty Bell
             tooltip = result['address']
             folium.Marker(
@@ -217,8 +217,7 @@ with st.expander("Open to see location on card"):
                 ).add_to(m)
 
                 # call to render Folium map in Streamlit
-            with st.empty():
-                folium_static(m)
+            folium_static(m, width=1200, height=700)
 
 with st.expander("Open to see status of checklists on card"):
 
