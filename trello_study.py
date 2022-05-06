@@ -178,7 +178,9 @@ with st.expander("Open to read card description"):
 with st.expander("Open to inspect custom fields on card"):
     res = requests.post('https://cs0kji.deta.dev/card_customfields', json={"card_id" : card_id})
     if res.status_code == 200 :
-        st.json(res.json())
+        customfields = pd.DataFrame(res.json()).fillna("Not Available")
+        st.dataframe(customfields)
+        #st.json(res.json())
 
 with st.expander("Open to see status of checklists on card"):
 
