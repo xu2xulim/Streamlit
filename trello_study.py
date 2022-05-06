@@ -200,7 +200,9 @@ with st.expander("Open to see location on card"):
     res = requests.post('https://cs0kji.deta.dev/card_location', json={"card_id" : card_id})
     if res.status_code == 200 :
         st.json(res.json())
-        
+        location = pd.Dataframe(res.json()['coordinates'])
+        st.map(data=location, zoom=None, use_container_width=True)
+
 
 with st.expander("Open to see status of checklists on card"):
 
