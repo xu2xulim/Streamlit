@@ -3,6 +3,8 @@ import pandas as pd
 import numpy as np
 import streamlit.components.v1 as components
 import streamlit_authenticator as stauth
+from streamlit_folium import folium_static
+import folium
 
 import os
 from datetime import datetime
@@ -199,10 +201,20 @@ with st.expander("Open to inspect custom fields on card"):
 with st.expander("Open to see location on card"):
     res = requests.post('https://cs0kji.deta.dev/card_location', json={"card_id" : card_id})
     if res.status_code == 200 :
-        st.json(res.json())
-        location = pd.DataFrame(res.json()['coordinates'], columns=['lat', 'lon'])
-        st.map(data=location, zoom=20, use_container_width=True)
+        lat = res.json()['coordinates']['latitude']
+        lon = res.json()['coordinates']['longitude']
+        #st.json(res.json())
+        #location = pd.DataFrame(res.json()['coordinates'], columns=['lat', 'lon'])
+        #st.map(data=location, zoom=20, use_container_width=True)
+        m = folium.Map(location=[lat, lon], zoom_start=16)
+        # add marker for Liberty Bell
+        tooltip = "Liberty Bell"
+        folium.Marker(
+            [lat, lon], popup="Liberty Bell", tooltip=tooltip
+            ).add_to(m)
 
+        # call to render Folium map in Streamlit
+        folium_static(m)
 
 with st.expander("Open to see status of checklists on card"):
 
