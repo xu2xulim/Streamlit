@@ -20,4 +20,4 @@ with st.expander("Open"):
 
         if submit:
             st.write(datetime.combine(date,time))
-            st.write(datetime.combine(date,time).astimezone(pytz.timezone('Asia/Singapore')))
+            st.write(datetime.combine(date,time).astimezone(pytz.timezone('UTC')))
