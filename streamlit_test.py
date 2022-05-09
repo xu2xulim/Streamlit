@@ -7,6 +7,10 @@ import os
 import requests
 import json
 
+from datetime import datetime
+import pytz
+from dateutil.parser import parse
+
 with st.expander("Open"):
     with st.form("Form", clear_on_submit=True):
         date = st.date_input("Date:")
@@ -15,4 +19,4 @@ with st.expander("Open"):
         submit = st.form_submit_button("Submit")
 
         if submit:
-            st.write("something")
+            st.write(datetime.combine(date,time))
