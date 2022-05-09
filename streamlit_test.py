@@ -8,11 +8,11 @@ import requests
 import json
 
 with st.expander("Open"):
-    with st.form("", clear_on_submit=True):
+    with st.form("Form", clear_on_submit=True):
         date = st.date_input("Date:")
         time = st.time_input("Time:")
 
         submit = st.form_submit_button("Submit")
 
         if submit:
-            st.write()
+            st.write("something")
