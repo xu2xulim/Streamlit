@@ -12,7 +12,7 @@ import pytz
 from dateutil.parser import parse
 
 with st.expander("Open"):
-    with st.form("Form", clear_on_submit=True):
+    with st.form("Form", clear_on_submit=False):
         date = st.date_input("Date:")
         time = st.time_input("Time:")
 
