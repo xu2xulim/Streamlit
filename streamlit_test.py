@@ -14,7 +14,7 @@ from dateutil.parser import parse
 with st.expander("Open"):
     with st.form("Form", clear_on_submit=True):
         date = st.date_input("Date:")
-        time = st.time_input("Time:", datetime.time(8,45))
+        time = st.time_input("Time:", datetime.time(8, 45))
 
         submit = st.form_submit_button("Submit")
 
