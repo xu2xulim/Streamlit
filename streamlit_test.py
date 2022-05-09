@@ -19,5 +19,8 @@ with st.expander("Open"):
         submit = st.form_submit_button("Submit")
 
         if submit:
-            st.write(datetime.combine(date,time))
-            st.write(datetime.combine(date,time).astimezone(pytz.timezone('UTC')))
+            naive_datetime = datetime.combine(date,time)
+            timezone = pytz.timezone('Asia/Singapore')
+            aware_datetime = timezone.localize(naive_datetime)
+            st.write(naive_datetime)
+            st.write(aware_datetime)
