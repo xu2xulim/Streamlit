@@ -42,7 +42,7 @@ if st.session_state['authentication_status'] == True:
     refresh = st.button("Refresh")
     if refresh:
         st.experimental_rerun()
-    with st.expander("Open to see dashboard"):
+    with st.expander("Open to see dashboard", expanded=True):
         res = log.fetch(query=None, limit=None, last=None)
         unique_mbr = unique([x['mbr_id'] for x in res.items])
         unique_endpoints = unique([x['endpoint'] for x in res.items])
