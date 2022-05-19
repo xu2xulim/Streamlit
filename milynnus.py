@@ -120,4 +120,5 @@ if not st.session_state['authentication_status']  :
     st.stop()
 
 with st.expander("Open to details of business model"):
-    st.info("Software Services\nCurrent professional service rate = US$30 per hour\nScope :\nAll software services from consultancy, design, development, test and deployment")
+    st.metric("Professional Services", "US$30/hour", delta=None, delta_color="normal")
+    #st.info("Software Services\nCurrent professional service rate = US$30 per hour\nScope :\nAll software services from consultancy, design, development, test and deployment")
