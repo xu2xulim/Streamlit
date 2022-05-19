@@ -118,3 +118,11 @@ with st.sidebar:
 
 if not st.session_state['authentication_status']  :
     st.stop()
+
+with st.expander("Open to details of business model"):
+    st.info("Software Services
+
+Current professional service rate = US$30 per hour
+
+Scope :
+All software services from consultancy, design, development, test and deployment")
