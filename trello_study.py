@@ -46,7 +46,6 @@ Users=Deta(os.environ.get('DETA_PROJECT_ID')).Base(os.environ.get('MILYNNUS_ST_U
 
 with st.sidebar:
     st.title("Trello Share A Card")
-    st.info("This application is secured by Streamlit-Authenticator.")
     credentials = auth_init()
 
     if credentials:
