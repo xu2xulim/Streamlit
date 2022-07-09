@@ -192,6 +192,7 @@ with st.expander("Open to inspect custom fields on card"):
         cf_list = res.json()['customfields']
         ix = 0
         for x in cf_list:
+            st.write(x['Value'])
             if isinstance(x['Value'], str):
                 if x['Value'][-1] == "Z" and x['Value'].index("T") == 10:
                     try:
