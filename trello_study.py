@@ -25,15 +25,13 @@ tz = pytz.timezone('Asia/Singapore')
 def auth_init():
 
     res = Users.fetch(query=None, limit=100, last=None)
-    names = []
-    usernames = []
-    hashed_passwords = []
+    cd = {"usernames" : {} }
     for x in res.items :
-        names.append(x['name'])
-        usernames.append(x['username'])
-        hashed_passwords.append(x['hash_password'])
+        cd['usernames'][x['username']] = {'name' : x['name'], 'password' : x['hash_password'], 'email' : x['email']}
+        #usernames.append(x['username'])
+        #hashed_passwords.append(x['hash_password'])
 
-    return names, usernames, hashed_passwords
+    return cd
 
 @st.cache(suppress_st_warning=True)
 def get_card_json (url):
@@ -49,11 +47,18 @@ Users=Deta(os.environ.get('DETA_PROJECT_ID')).Base(os.environ.get('MILYNNUS_ST_U
 with st.sidebar:
     st.title("Trello Share A Card")
     st.info("This application is secured by Streamlit-Authenticator.")
-    names, usernames, hashed_passwords = auth_init()
-    authenticator = stauth.Authenticate(names, usernames, hashed_passwords,
-        'milynnus_stauth', os.environ.get('MILYNNUS_ST_USERS_SIGNATURE'), cookie_expiry_days=30)
+    credentials = auth_init()
+
+    if credentials:
+        authenticator = stauth.Authenticate(credentials,
+            'milynnus_stauth', os.environ.get('MILYNNUS_ST_USERS_SIGNATURE'), cookie_expiry_days=30)
+        st.info("This application is secured by Streamlit-Authenticator.")
+    else:
+        st.session_state['authentication_status'] = False
+        st.info("Administrator setup is required.")
 
     name, authentication_status, username = authenticator.login('Login', 'sidebar')
+    st.session_state['authentication_status'] = authentication_status
 
     if st.session_state['authentication_status']:
         authenticator.logout('Logout', 'main')
@@ -85,8 +90,10 @@ with st.sidebar:
             with st.form("Fill in your name, your preferred username and password", clear_on_submit=True):
                 name = st.text_input("Name")
                 username = st.text_input("Username")
+                email = st.text_input("Email")
                 password = st.text_input("Password", type="password")
                 username_unique = Users.fetch(query={"username" : username})
+
                 submit = st.form_submit_button("Submit")
                 if username_unique.count == 0:
                     pass
@@ -248,7 +255,7 @@ with st.expander("Open to see images of attachments"):
             ext = attach['fileName'].split(".")[-1]
             if (ext == 'jpg' or ext == 'png' or ext == 'jpeg') and attach['id'] != card_json['idAttachmentCover'] and ix <5:
                 res = requests.post('https://cs0kji.deta.dev/get_attachment', json={"url" : attach['url']})
-                
+
                 if res.status_code == 200:
                     with columns[ix]:
                         columns[ix].image(res.content)
