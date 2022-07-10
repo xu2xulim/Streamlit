@@ -193,12 +193,12 @@ with st.expander("Open to inspect custom fields on card"):
         st.write(cf_list)
         ix = 0
         for x in cf_list:
-            if isinstance(x['Value'], str):
-                if x['Value'][-1] == "Z" and x['Value'].index("T") == 10:
-                    try:
-                        cf_list[ix]['Value'] = parse(x['Value']).astimezone(tz).strftime('%Y-%m-%d %H:%M')
-                    except:
-                        pass
+            if x['Type'] == "date" and x['Value'] != "":
+                #if x['Value'][-1] == "Z" and x['Value'].index("T") == 10:
+                    #try:
+                cf_list[ix]['Value'] = parse(x['Value']).astimezone(tz).strftime('%Y-%m-%d %H:%M')
+                    #except:
+                        #pass
 
 
             ix += 1
