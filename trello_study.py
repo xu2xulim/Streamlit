@@ -161,6 +161,10 @@ else:
 
 st.header(card_json['name'])
 
+with st.expander("Swagger"):
+    link = '[Demo](https://f0w9hg.deta.dev/docs)'
+    st.markdown(link, unsafe_allow_html=True)
+
 with st.expander("Open to see card labels"):
     lbl_head = '''<p style="margin: 0;"><span style="background-color:rgb(252, 252, 252);"><span class="ql-cursor">﻿</span><span class="cl-trello-card-labels">'''
     lbl_tail = '''</span></span></p>'''
