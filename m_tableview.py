@@ -1,52 +1,25 @@
 import streamlit as st
-import pandas as pd
-import numpy as np
 
-from datetime import datetime
-from deta import Deta
-import json
-import httpx
+def get_param(param_name):
+    query_params = st.experimental_get_query_params()
+    try:
+        return query_params[param_name][0]
+    except:
+        st.write('Parameters is missing')
+        return False
 
-# 2) initialize with a project key
-#deta = Deta(st.secrets["tableview"])
+def get_params(params_names_list):
+    query_params = st.experimental_get_query_params()
+    responses = []
+    for parameter in params_names_list:
+        try:
+            responses.append(query_params[parameter][0])
+        except Exception as e:
+            responses.append(None)
+    return responses
 
-# 3) create and use as many DBs as you want!
-#db = deta.Base(st.secrets["MOVEMENT"])
-#today = datetime.today().strftime('%Y-%m-%d')
-#res = db.fetch(query = {'date' : today}, limit=1000, last=None)
+x = st.number_input('X Parameter',value = float(get_param('x')))
 
-# Create a text element and let the reader know the data is loading.
-#data_load_state = st.text('Loading data...')
-# Load 10,000 rows of data into the dataframe.
-#data = res.items
-# Notify the reader that the data was successfully loaded.
+y = st.number_input('Y Parameter',value = float(get_param('y')))
 
-#st.dataframe(data=data, width=None, height=None)
-board_id = ""
-list_id = ""
-card_id = ""
-selected_board = ""
-payload = {"board_id" : board_id, "list_id" : list_id, "card_id" : card_id}
-res = httpx.post('https://cs0kji.deta.dev/board',json=payload)
-df = pd.DataFrame(res.json()['result'])
-selected_board = st.sidebar.selectbox(
-    'Select a board', options=df['name'])
-
-if selected_board != "":
-    bd = next(x for x in res.json()['result'] if x['name'] == selected_board)
-    payload = {"board_id" : bd['id'], "list_id" : list_id, "card_id" : card_id}
-    res = httpx.post('https://cs0kji.deta.dev/list',json=payload)
-    df = pd.DataFrame(res.json()['result'])
-    selected_col = ""
-    selected_col = st.sidebar.selectbox(
-        'Select a list', options=df['name'])
-
-    if selected_col !="" :
-        item = next(x for x in res.json()['result'] if x['name'] == selected_col)
-        payload = {"board_id" : bd['id'], "list_id" : item['id'], "card_id" : ""}
-        res = httpx.post('https://cs0kji.deta.dev/cards',json=payload)
-        data = res.json()['result']
-        
-        df_x = pd.DataFrame(data)
-        st.dataframe(df_x)
-        # test
+st.write(x+y)
