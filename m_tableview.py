@@ -34,10 +34,11 @@ if uploaded_file is not None:
      # Easy way to get a dictitionary from a CSV
      dd = dataframe.to_dict("records")
 
-     db = Deta(os.environ.get('DEV_PROJECT_ID')).Base('deta_test_base')
+     db = Deta(os.environ.get('DEV_PROJECT_ID')).Base('streamlit_users')
      #for item in dd :
          #st.write(type(item), item)
          #db.put(item)
+    st.write(db.fetch())
 
 
 client = TrelloClient(api_key = os.environ.get('TRELLO_API_KEY'), token = os.environ.get('TRELLO_TOKEN'))
