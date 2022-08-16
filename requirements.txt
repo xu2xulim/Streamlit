@@ -5,7 +5,7 @@ numpy
 httpx
 click<=8.0.4
 streamlit_authenticator
-#py_trello
+git+https://github.com/xu2xulim/py-trello
 components
 streamlit-timeline
 streamlit-folium
