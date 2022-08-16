@@ -39,6 +39,7 @@ if uploaded_file is not None:
          #st.write(type(item), item)
          #db.put(item)
      st.dataframe(db.fetch().items)
+     st.json(db.fetch().items)
 
 
 
