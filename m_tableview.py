@@ -38,7 +38,8 @@ if uploaded_file is not None:
      #for item in dd :
          #st.write(type(item), item)
          #db.put(item)
-     st.write(db.fetch().items)
+     st.dataframe(db.fetch().items)
+
 
 
 client = TrelloClient(api_key = os.environ.get('TRELLO_API_KEY'), token = os.environ.get('TRELLO_TOKEN'))
