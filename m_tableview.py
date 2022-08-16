@@ -1,25 +1,43 @@
 import streamlit as st
+from io import StringIO
+from trello import TrelloClient
+import pandas as pd
+import os
+from deta import Deta
 
-def get_param(param_name):
-    query_params = st.experimental_get_query_params()
-    try:
-        return query_params[param_name][0]
-    except:
-        st.write('Parameters is missing')
-        return False
+if not st.session_state['authentication_status']  :
+    st.stop()
+else:
+    with st.sidebar :
+        st.write("Session State :")
+        st.json(st.session_state)
 
-def get_params(params_names_list):
-    query_params = st.experimental_get_query_params()
-    responses = []
-    for parameter in params_names_list:
-        try:
-            responses.append(query_params[parameter][0])
-        except Exception as e:
-            responses.append(None)
-    return responses
+st.warning ("Upload a file like  a CSV to create a list of dictionaries")
+uploaded_file = st.file_uploader("Choose a file")
+if uploaded_file is not None:
+     # To read file as bytes:
+     bytes_data = uploaded_file.getvalue()
+     #st.write(bytes_data)
 
-x = st.number_input('X Parameter',value = float(get_param('x')))
+     # To convert to a string based IO:
+     stringio = StringIO(uploaded_file.getvalue().decode("utf-8"))
+     #st.write(stringio)
 
-y = st.number_input('Y Parameter',value = float(get_param('y')))
+     # To read file as string:
+     string_data = stringio.read()
+     #st.write(string_data)
 
-st.write(x+y)
+     # Can be used wherever a "file-like" object is accepted:
+     dataframe = pd.read_csv(uploaded_file).fillna("")
+     st.write(dataframe)
+     # Easy way to get a dictitionary from a CSV
+     dd = dataframe.to_dict("records")
+
+     db = Deta(os.environ.get('DEV_PROJECT_ID')).Base('deta_test_base')
+     #for item in dd :
+         #st.write(type(item), item)
+         #db.put(item)
+
+
+client = TrelloClient(api_key = os.environ.get('TRELLO_API_KEY'), token = os.environ.get('TRELLO_TOKEN'))
+client.list_boards()
