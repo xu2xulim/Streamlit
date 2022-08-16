@@ -5,6 +5,7 @@ import pandas as pd
 import os
 from deta import Deta
 
+st.session_state['authentication_status'] = True
 if not st.session_state['authentication_status']  :
     st.stop()
 else:
