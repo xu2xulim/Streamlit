@@ -162,26 +162,26 @@ else:
 
 st.header(card_json['name'])
 
-with st.expander("Open to PDF"):
+#with st.expander("Open to PDF"):
     #columns = st.columns(5)
     #ix = 0
-    res = requests.post('https://cs0kji.deta.dev/card_attachments', json={"card_id" : card_id})
-    if res.status_code == 200 :
-        for attach in res.json()['attachments']:
-            ext = attach['fileName'].split(".")[-1]
-            if ext == 'pdf': # and ix <5:
-                st.write(attach['url'])
-                res = requests.post('https://ironclad-gecko-habitat-dev.wayscript.cloud/', json={"url" : attach['url']})
+res = requests.post('https://cs0kji.deta.dev/card_attachments', json={"card_id" : card_id})
+if res.status_code == 200 :
+    for attach in res.json()['attachments']:
+        ext = attach['fileName'].split(".")[-1]
+        if ext == 'pdf': # and ix <5:
+            st.write(attach['url'])
+            res = requests.post('https://ironclad-gecko-habitat-dev.wayscript.cloud/', json={"url" : attach['url']})
 
-                if res.status_code == 200:
-                    st.markdown(displayPDF(res.content), unsafe_allow_html=True)
-                    #st.write(type(res.content))
-                    #st.markdown(res.content, unsafe_allow_html=True)
-                    #with columns[ix]:
-                        #columns[ix].image(res.content)
-                    #ix += 1
-                else:
-                    st.warning(res.status_code)
+            if res.status_code == 200:
+                st.markdown(displayPDF(res.content), unsafe_allow_html=True)
+                #st.write(type(res.content))
+                #st.markdown(res.content, unsafe_allow_html=True)
+                #with columns[ix]:
+                    #columns[ix].image(res.content)
+                #ix += 1
+            else:
+                st.warning(res.status_code)
 st.stop()
 if card_json['idAttachmentCover'] == None and card_json['manualCoverAttachment'] == True :
     request = urllib.request.Request(card_json['cover']['scaled'][-1]['url'])
