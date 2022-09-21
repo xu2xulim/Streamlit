@@ -20,7 +20,17 @@ from datetime import datetime
 import pytz
 tz = pytz.timezone('Asia/Singapore')
 
+def displayPDF(file):
+    # Opening file from file path
+    #with open(file, "rb") as f:
+        #base64_pdf = base64.b64encode(f.read()).decode('utf-8')
 
+    # Embedding PDF in HTML
+    pdf_display = F'<embed src="data:application/pdf;base64,{file}" width="700" height="1000" type="application/pdf">'
+    return pdf_display
+    # Displaying File
+
+    
 @st.cache(suppress_st_warning=True)
 def auth_init():
 
@@ -257,12 +267,31 @@ with st.expander("Open to see images of attachments"):
     if res.status_code == 200 :
         for attach in res.json()['attachments']:
             ext = attach['fileName'].split(".")[-1]
-            if (ext == 'jpg' or ext == 'png' or ext == 'jpeg' or ext == 'pdf') and attach['id'] != card_json['idAttachmentCover'] and ix <5:
+            if (ext == 'jpg' or ext == 'png' or ext == 'jpeg') and attach['id'] != card_json['idAttachmentCover'] and ix <5:
                 res = requests.post('https://cs0kji.deta.dev/get_attachment', json={"url" : attach['url']})
 
                 if res.status_code == 200:
                     with columns[ix]:
                         columns[ix].image(res.content)
                     ix += 1
+                else:
+                    st.warning(res.status_code)
+
+with st.expander("Open to PDF"):
+    #columns = st.columns(5)
+    #ix = 0
+    res = requests.post('https://cs0kji.deta.dev/card_attachments', json={"card_id" : card_id})
+    if res.status_code == 200 :
+        for attach in res.json()['attachments']:
+            ext = attach['fileName'].split(".")[-1]
+            if (ext == 'pdf') and attach['id'] != card_json['idAttachmentCover']: # and ix <5:
+                res = requests.post('https://cs0kji.deta.dev/get_attachment', json={"url" : attach['url']})
+
+                if res.status_code == 200:
+
+                    st.markdown(displayPDF(res.content), unsafe_allow_html=True)
+                    #with columns[ix]:
+                        #columns[ix].image(res.content)
+                    #ix += 1
                 else:
                     st.warning(res.status_code)
