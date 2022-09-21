@@ -257,7 +257,7 @@ with st.expander("Open to see images of attachments"):
     if res.status_code == 200 :
         for attach in res.json()['attachments']:
             ext = attach['fileName'].split(".")[-1]
-            if (ext == 'jpg' or ext == 'png' or ext == 'jpeg') and attach['id'] != card_json['idAttachmentCover'] and ix <5:
+            if (ext == 'jpg' or ext == 'png' or ext == 'jpeg' or ext == 'pdf') and attach['id'] != card_json['idAttachmentCover'] and ix <5:
                 res = requests.post('https://cs0kji.deta.dev/get_attachment', json={"url" : attach['url']})
 
                 if res.status_code == 200:
