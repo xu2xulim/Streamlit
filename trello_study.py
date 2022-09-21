@@ -173,8 +173,8 @@ with st.expander("Open to PDF"):
                 res = requests.post('https://ironclad-gecko-habitat-dev.wayscript.cloud/', json={"url" : attach['url']})
 
                 if res.status_code == 200:
-                    #st.markdown(res.content, unsafe_allow_html=True)
-                    st.write(type(res.content))
+                    st.markdown(displayPDF(res.content), unsafe_allow_html=True)
+                    #st.write(type(res.content))
                     #st.markdown(res.content, unsafe_allow_html=True)
                     #with columns[ix]:
                         #columns[ix].image(res.content)
