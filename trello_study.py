@@ -159,16 +159,6 @@ if res.status_code == 200 :
 else:
     st.stop()
 
-if card_json['idAttachmentCover'] == None and card_json['manualCoverAttachment'] == True :
-    request = urllib.request.Request(card_json['cover']['scaled'][-1]['url'])
-    webUrl  = urllib.request.urlopen(request)
-
-    st.image(webUrl.read())
-else:
-    res = requests.post('https://cs0kji.deta.dev/get_attachment', json={"url" : card_json['cover']['scaled'][-1]['url']})
-    if res.status_code == 200:
-        st.image(res.content)
-
 st.header(card_json['name'])
 
 with st.expander("Open to PDF"):
@@ -178,7 +168,7 @@ with st.expander("Open to PDF"):
     if res.status_code == 200 :
         for attach in res.json()['attachments']:
             ext = attach['fileName'].split(".")[-1]
-            if ext == 'pdf' and attach['id'] != card_json['idAttachmentCover']: # and ix <5:
+            if ext == 'pdf': # and ix <5:
                 st.write(attach['url'])
                 res = requests.post('https://cs0kji.deta.dev/get_pdf', json={"url" : attach['url']})
 
@@ -191,6 +181,18 @@ with st.expander("Open to PDF"):
                 else:
                     st.warning(res.status_code)
 st.stop()
+if card_json['idAttachmentCover'] == None and card_json['manualCoverAttachment'] == True :
+    request = urllib.request.Request(card_json['cover']['scaled'][-1]['url'])
+    webUrl  = urllib.request.urlopen(request)
+
+    st.image(webUrl.read())
+else:
+    res = requests.post('https://cs0kji.deta.dev/get_attachment', json={"url" : card_json['cover']['scaled'][-1]['url']})
+    if res.status_code == 200:
+        st.image(res.content)
+
+
+
 with st.expander("Swagger"):
     link = '[Demo](https://f0w9hg.deta.dev/docs)'
     st.markdown(link, unsafe_allow_html=True)
