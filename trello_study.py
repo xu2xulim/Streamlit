@@ -19,14 +19,15 @@ from dateutil.parser import parse
 from datetime import datetime
 import pytz
 tz = pytz.timezone('Asia/Singapore')
+import base64
 
 def displayPDF(file):
     # Opening file from file path
     #with open(file, "rb") as f:
         #base64_pdf = base64.b64encode(f.read()).decode('utf-8')
-
+    base64_pdf = base64.b64encode(file).decode('utf-8')
     # Embedding PDF in HTML
-    pdf_display = F'<iframe src="data:application/pdf;base64,{file}" width="700" height="1000" type="application/pdf">'
+    pdf_display = F'<iframe src="data:application/pdf;base64,{base64_pdf}" width="700" height="1000" type="application/pdf">'
     return pdf_display
     # Displaying File
 
