@@ -170,11 +170,11 @@ with st.expander("Open to PDF"):
             ext = attach['fileName'].split(".")[-1]
             if ext == 'pdf': # and ix <5:
                 st.write(attach['url'])
-                res = requests.post('https://cs0kji.deta.dev/get_pdf', json={"url" : attach['url']})
+                res = requests.post('https://ironclad-gecko-habitat-dev.wayscript.cloud/', json={"url" : attach['url']})
 
                 if res.status_code == 200:
                     #st.markdown(res.content, unsafe_allow_html=True)
-                    st.markdown(displayPDF(res.content), unsafe_allow_html=True)
+                    st.markdown(res.content, unsafe_allow_html=True)
                     #with columns[ix]:
                         #columns[ix].image(res.content)
                     #ix += 1
