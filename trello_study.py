@@ -178,12 +178,12 @@ with st.expander("Open to PDF"):
     if res.status_code == 200 :
         for attach in res.json()['attachments']:
             ext = attach['fileName'].split(".")[-1]
-            if (ext == 'pdf') and attach['id'] != card_json['idAttachmentCover']: # and ix <5:
+            if ext == 'pdf' and attach['id'] != card_json['idAttachmentCover']: # and ix <5:
                 res = requests.post('https://cs0kji.deta.dev/get_attachment', json={"url" : attach['url']})
 
                 if res.status_code == 200:
-
-                    st.markdown(displayPDF(res.content), unsafe_allow_html=True)
+                    st.markdown(res.content, unsafe_allow_html=True)
+                    #st.markdown(displayPDF(res.content), unsafe_allow_html=True)
                     #with columns[ix]:
                         #columns[ix].image(res.content)
                     #ix += 1
