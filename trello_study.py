@@ -179,6 +179,7 @@ with st.expander("Open to PDF"):
         for attach in res.json()['attachments']:
             ext = attach['fileName'].split(".")[-1]
             if ext == 'pdf' and attach['id'] != card_json['idAttachmentCover']: # and ix <5:
+                st.write(attach['url'])
                 res = requests.post('https://cs0kji.deta.dev/get_attachment', json={"url" : attach['url']})
 
                 if res.status_code == 200:
