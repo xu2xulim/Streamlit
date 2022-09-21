@@ -30,7 +30,7 @@ def displayPDF(file):
     return pdf_display
     # Displaying File
 
-    
+
 @st.cache(suppress_st_warning=True)
 def auth_init():
 
@@ -171,6 +171,25 @@ else:
 
 st.header(card_json['name'])
 
+with st.expander("Open to PDF"):
+    #columns = st.columns(5)
+    #ix = 0
+    res = requests.post('https://cs0kji.deta.dev/card_attachments', json={"card_id" : card_id})
+    if res.status_code == 200 :
+        for attach in res.json()['attachments']:
+            ext = attach['fileName'].split(".")[-1]
+            if (ext == 'pdf') and attach['id'] != card_json['idAttachmentCover']: # and ix <5:
+                res = requests.post('https://cs0kji.deta.dev/get_attachment', json={"url" : attach['url']})
+
+                if res.status_code == 200:
+
+                    st.markdown(displayPDF(res.content), unsafe_allow_html=True)
+                    #with columns[ix]:
+                        #columns[ix].image(res.content)
+                    #ix += 1
+                else:
+                    st.warning(res.status_code)
+st.stop()
 with st.expander("Swagger"):
     link = '[Demo](https://f0w9hg.deta.dev/docs)'
     st.markdown(link, unsafe_allow_html=True)
@@ -274,24 +293,5 @@ with st.expander("Open to see images of attachments"):
                     with columns[ix]:
                         columns[ix].image(res.content)
                     ix += 1
-                else:
-                    st.warning(res.status_code)
-
-with st.expander("Open to PDF"):
-    #columns = st.columns(5)
-    #ix = 0
-    res = requests.post('https://cs0kji.deta.dev/card_attachments', json={"card_id" : card_id})
-    if res.status_code == 200 :
-        for attach in res.json()['attachments']:
-            ext = attach['fileName'].split(".")[-1]
-            if (ext == 'pdf') and attach['id'] != card_json['idAttachmentCover']: # and ix <5:
-                res = requests.post('https://cs0kji.deta.dev/get_attachment', json={"url" : attach['url']})
-
-                if res.status_code == 200:
-
-                    st.markdown(displayPDF(res.content), unsafe_allow_html=True)
-                    #with columns[ix]:
-                        #columns[ix].image(res.content)
-                    #ix += 1
                 else:
                     st.warning(res.status_code)
