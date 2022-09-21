@@ -174,7 +174,8 @@ with st.expander("Open to PDF"):
 
                 if res.status_code == 200:
                     #st.markdown(res.content, unsafe_allow_html=True)
-                    st.markdown(res.content, unsafe_allow_html=True)
+                    st.write(type(res.content))
+                    #st.markdown(res.content, unsafe_allow_html=True)
                     #with columns[ix]:
                         #columns[ix].image(res.content)
                     #ix += 1
