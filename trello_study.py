@@ -26,7 +26,7 @@ def displayPDF(file):
         #base64_pdf = base64.b64encode(f.read()).decode('utf-8')
 
     # Embedding PDF in HTML
-    pdf_display = F'<embed src="data:application/pdf;base64,{file}" width="700" height="1000" type="application/pdf">'
+    pdf_display = F'<iframe src="data:application/pdf;base64,{file}" width="700" height="1000" type="application/pdf">'
     return pdf_display
     # Displaying File
 
@@ -183,8 +183,8 @@ with st.expander("Open to PDF"):
                 res = requests.post('https://cs0kji.deta.dev/get_attachment', json={"url" : attach['url']})
 
                 if res.status_code == 200:
-                    st.markdown(res.content, unsafe_allow_html=True)
-                    #st.markdown(displayPDF(res.content), unsafe_allow_html=True)
+                    #st.markdown(res.content, unsafe_allow_html=True)
+                    st.markdown(displayPDF(res.content), unsafe_allow_html=True)
                     #with columns[ix]:
                         #columns[ix].image(res.content)
                     #ix += 1
