@@ -177,6 +177,25 @@ else:
     #if res.status_code == 200:
         #st.image(res.content)
 
+with st.expander("Open to see images of attachments"):
+    columns = st.columns(5)
+    ix = 0
+    res = requests.post('https://cs0kji.deta.dev/card_attachments', json={"card_id" : card_id})
+    if res.status_code == 200 :
+        for attach in res.json()['attachments']:
+            ext = attach['fileName'].split(".")[-1]
+            if (ext == 'jpg' or ext == 'png' or ext == 'jpeg') and attach['id'] != card_json['idAttachmentCover'] and ix <5:
+                #res = requests.post('https://cs0kji.deta.dev/get_attachment', json={"url" : attach['url']})
+                res = requests.post('https://ironclad-gecko-habitat-dev.wayscript.cloud/get_image', json={"url" : attach['url']})
+
+                if res.status_code == 200:
+                    with columns[ix]:
+                        #columns[ix].image(res.content)
+                        columns[ix].image(base64.b64decode(res.json()['byte_string']))
+                    ix += 1
+                else:
+                    st.warning(res.status_code)
+
 st.stop()
 
 #with st.expander("Open to PDF"):
