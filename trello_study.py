@@ -150,19 +150,15 @@ if refresh :
 if 'card_id' in st.session_state:
     card_id = st.session_state['card_id']
 
-
+st.header(card_json['name'])
+st.stop()
 res = requests.post('https://cs0kji.deta.dev/card_json', json={"card_id" : card_id})
 #res = requests.post('https://70297.wayscript.io/email2board', json={"card_id" : card_id})
 
 if res.status_code == 200 :
     card_json=res.json()
-
 else:
     st.stop()
-
-st.header(card_json['name'])
-
-
 
 if card_json['idAttachmentCover'] == None and card_json['manualCoverAttachment'] == True :
     #request = urllib.request.Request(card_json['cover']['scaled'][-1]['url'])
