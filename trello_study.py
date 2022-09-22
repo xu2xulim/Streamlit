@@ -175,7 +175,7 @@ if res.status_code == 200 :
 
             if res.status_code == 200:
                 #st.markdown(displayPDF(res.content), unsafe_allow_html=True)
-                st.image(res.content()
+                st.image(res.content())
                 #st.write(type(res.content))
                 #st.markdown(res.content, unsafe_allow_html=True)
                 #with columns[ix]:
