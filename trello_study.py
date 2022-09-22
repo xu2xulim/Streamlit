@@ -176,7 +176,7 @@ else:
     res = requests.post('https://ironclad-gecko-habitat-dev.wayscript.cloud/get_image', json={"url" : card_json['cover']['scaled'][-1]['url']})
     #st.image(webUrl.read())
     st.write("Image is from Wayscript X")
-    st.image(res.json()['byte_string'].decode())
+    st.image(base64.b64decode(res.json()['byte_string']))
     #st.image(res.json()['byte_string'].encode('UTF-16'))
     #st.image(res.json()['Content'].decode('UTF-8'))
     #st.image(res.content)
