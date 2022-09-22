@@ -177,7 +177,7 @@ else:
     #st.image(webUrl.read())
     st.write("Image is from Wayscript X")
     st.write(res.json().keys())
-    st.image(res.json()['byte_string'].encode('UTF-8'))
+    st.image(res.json()['byte_string'].encode('UTF-16'))
     #st.image(res.json()['Content'].decode('UTF-8'))
     #st.image(res.content)
     #res = requests.post('https://cs0kji.deta.dev/get_attachment', json={"url" : card_json['cover']['scaled'][-1]['url']})
