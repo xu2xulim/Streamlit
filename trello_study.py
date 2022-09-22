@@ -183,18 +183,19 @@ if res.status_code == 200 :
                 #ix += 1
             else:
                 st.warning(res.status_code)
-st.stop()
-if card_json['idAttachmentCover'] == None and card_json['manualCoverAttachment'] == True :
-    request = urllib.request.Request(card_json['cover']['scaled'][-1]['url'])
-    webUrl  = urllib.request.urlopen(request)
 
-    st.image(webUrl.read())
+if card_json['idAttachmentCover'] == None and card_json['manualCoverAttachment'] == True :
+    #request = urllib.request.Request(card_json['cover']['scaled'][-1]['url'])
+    #webUrl  = urllib.request.urlopen(request)
+    res = requests.post('https://ironclad-gecko-habitat-dev.wayscript.cloud/get_image', json={"url" : card_json['cover']['scaled'][-1]['url']})
+    #st.image(webUrl.read())
+    st.image(res.content)
 else:
     res = requests.post('https://cs0kji.deta.dev/get_attachment', json={"url" : card_json['cover']['scaled'][-1]['url']})
     if res.status_code == 200:
         st.image(res.content)
 
-
+st.stop()
 
 with st.expander("Swagger"):
     link = '[Demo](https://f0w9hg.deta.dev/docs)'
