@@ -176,7 +176,7 @@ else:
     res = requests.post('https://ironclad-gecko-habitat-dev.wayscript.cloud/get_image', json={"url" : card_json['cover']['scaled'][-1]['url']})
     #st.image(webUrl.read())
     st.write("Image is from Wayscript X")
-    st.write(res.content)
+    st.write(res.json()['bytes'])
     #st.image(res.content)
     #res = requests.post('https://cs0kji.deta.dev/get_attachment', json={"url" : card_json['cover']['scaled'][-1]['url']})
     #if res.status_code == 200:
