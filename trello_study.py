@@ -171,7 +171,7 @@ if res.status_code == 200 :
         ext = attach['fileName'].split(".")[-1]
         if ext == 'pdf': # and ix <5:
             st.write(attach['url'])
-            res = requests.post('https://ironclad-gecko-habitat-dev.wayscript.cloud/', json={"url" : attach['url']})
+            res = requests.post('https://ironclad-gecko-habitat-dev.wayscript.cloud/get_pdf', json={"url" : attach['url']})
 
             if res.status_code == 200:
                 st.markdown(displayPDF(res.content), unsafe_allow_html=True)
