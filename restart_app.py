@@ -34,7 +34,7 @@ def auth_init():
 
     return names, usernames, hashed_passwords
 
-Users=Deta(os.environ.get('DETA_PROJECT_ID')).Base(os.environ.get('MILYNNUS_ST_USERS_BASE'))
+Users=Deta(os.environ.get('DETA_PROJECT_ID')).Base(os.environ.get('MILYNNUS_ST_USERS'))
 
 with st.sidebar:
     st.title("milynnus on Streamlit")
