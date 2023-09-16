@@ -41,7 +41,7 @@ with st.sidebar:
     st.info("This application is secured by Streamlit-Authenticator.")
     names, usernames, hashed_passwords = auth_init()
     authenticator = stauth.Authenticate(names, usernames, hashed_passwords,
-        'milynnus_stauth', os.environ.get('MILYNNUS_ST_USERS_SIGNATURE'), cookie_expiry_days=30)
+        'milynnus_stauth', os.environ.get('MILYNNUS_ST_USERS_SIGNATURE'))
 
     name, authentication_status, username = authenticator.login('Login', 'sidebar')
 
